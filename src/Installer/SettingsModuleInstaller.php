@@ -1,4 +1,4 @@
-<?php namespace Addon\Module\Settings\Installer;
+<?php namespace Streams\Addon\Module\Settings\Installer;
 
 use Streams\Core\Addon\Installer\ModuleInstallerAbstractAbstract;
 
