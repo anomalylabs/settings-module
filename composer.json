@@ -10,7 +10,7 @@
         }
     ],
     "source" : {
-        "type" : "vcs",
+        "type" : "git",
         "url" : "git@github.com:anomalylabs/settings-module.git",
         "reference" : "master"
     },
