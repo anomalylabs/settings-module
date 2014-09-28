@@ -1,5 +1,7 @@
 <?php namespace Streams\Addon\Module\Settings;
 
+use Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
+
 class Settings
 {
     /**
@@ -10,6 +12,21 @@ class Settings
     protected $models = [];
 
     /**
+     * The settings model object.
+     *
+     * @var
+     */
+    protected $settings;
+
+    /**
+     * Create a new Settings instance.
+     */
+    public function __construct()
+    {
+        $this->settings = (new SettingsSettingsEntryModel())->firstOrCreate([]);
+    }
+
+    /**
      * Get a settings value.
      *
      * @param      $key
@@ -18,19 +35,23 @@ class Settings
      */
     public function get($key, $default = null)
     {
-        list($namespace, $setting) = explode('::', $key);
+        list($namespace, $slug) = explode('::', $key);
 
         list($type, $addon) = explode('.', $namespace);
 
-        $model = $this->getModel($type, $addon);
+        $setting = "{$type}_{$addon}_{$slug}";
 
-        if ($settings = $model->first()) {
+        if (isset($this->settings->{$setting})) {
             if (strpos($setting, '.') !== false) {
                 list($setting, $presenter) = explode('.', $setting);
 
-                $value = $settings->{$setting}->{$presenter};
+                $value = $this->settings->{$setting}->{$presenter};
             } else {
-                $value = $settings->{$setting};
+                $value = $this->settings->{$setting};
+            }
+
+            if ($value === null) {
+                $value = $default;
             }
         } else {
             $value = $default;
@@ -48,23 +69,19 @@ class Settings
      */
     public function set($key, $value)
     {
-        list($namespace, $setting) = explode('::', $key);
+        list($namespace, $slug) = explode('::', $key);
 
         list($type, $addon) = explode('.', $namespace);
 
-        $model = $this->getModel($type, $addon);
+        $setting = "{$type}_{$addon}_{$slug}";
 
-        if (!$settings = $model->first()) {
-            $settings = $model->newInstance();
-        }
+        $this->settings->{$setting} = $value;
 
-        $settings->{$setting} = $value;
-
-        return $settings->save();
+        return $this->settings->save();
     }
 
     /**
-     * Return a new settings model per type / addon.
+     * Return all the settings.
      *
      * @param $type
      * @param $addon
@@ -84,23 +101,5 @@ class Settings
         }
 
         return $this->models[$key];
-    }
-
-    /**
-     * Set an alternate model for a settings stream.
-     *
-     * @param $type
-     * @param $addon
-     * @param $model
-     */
-    public function setModel($type, $addon, $model)
-    {
-        $key = "{$type}.{$addon}";
-
-        if (is_string($model)) {
-            $model = new $model;
-        }
-
-        $this->models[$key] = $model;
     }
 } 
