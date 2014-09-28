@@ -1,25 +1,13 @@
 <?php namespace Streams\Addon\Module\Settings;
 
-use Streams\Core\Addon\ModuleAbstract;
+use Streams\Platform\Addon\ModuleAbstract;
 
 class SettingsModule extends ModuleAbstract
 {
     /**
-     * Module sections.
+     * The group string.
      *
-     * @var array
+     * @var null
      */
-    public $sections = [
-        [
-            'path'  => 'admin/settings',
-            'title' => 'Settings',
-        ],
-    ];
-
-    /**
-     * The icon to represent the module.
-     *
-     * @var string
-     */
-    public $icon = '<i class="fa fa-cog"></i>';
+    protected $group = 'group.system';
 }
