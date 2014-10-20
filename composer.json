@@ -1,17 +1,12 @@
 {
-    "name": "anomalylabs/settings-module",
-    "type": "module",
+    "name": "anomaly/settings-module",
+    "type": "streams-addon",
     "description": "Settings module for Streams Platform",
     "authors": [
         {
             "name": "AnomalyLabs",
-            "email": "projects@aiwebsystems.com"
+            "email": "hello@anomaly.is"
         }
     ],
-    "source" : {
-        "type" : "vcs",
-        "url" : "git@github.com:anomalylabs/settings-module.git",
-        "reference" : "master"
-    },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
