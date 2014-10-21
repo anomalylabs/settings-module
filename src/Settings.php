@@ -1,6 +1,6 @@
-<?php namespace Streams\Addon\Module\Settings;
+<?php namespace Anomaly\Streams\Module\Settings;
 
-use Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
+use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
 
 class Settings
 {

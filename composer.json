@@ -1,7 +1,7 @@
 {
     "name": "anomaly/settings-module",
     "type": "streams-addon",
-    "description": "Settings module for Streams Platform",
+    "description": "Settings module.",
     "authors": [
         {
             "name": "AnomalyLabs",

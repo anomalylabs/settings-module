@@ -1,10 +1,10 @@
-<?php namespace Streams\Addon\Module\Settings\Installer;
+<?php namespace Anomaly\Streams\Module\Settings\Installer;
 
-use Streams\Platform\Stream\Model\StreamModel;
-use Streams\Platform\Support\Installer;
-use Streams\Platform\Addon\AddonAbstract;
-use Streams\Platform\Field\Installer\FieldInstaller;
-use Streams\Platform\Assignment\Installer\AssignmentInstaller;
+use Anomaly\Streams\Platform\Stream\Model\StreamModel;
+use Anomaly\Streams\Platform\Support\Installer;
+use Anomaly\Streams\Platform\Addon\AddonAbstract;
+use Anomaly\Streams\Platform\Field\Installer\FieldInstaller;
+use Anomaly\Streams\Platform\Assignment\Installer\AssignmentInstaller;
 
 class SettingsInstaller extends Installer
 {

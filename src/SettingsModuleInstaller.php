@@ -1,6 +1,6 @@
-<?php namespace Streams\Addon\Module\Settings;
+<?php namespace Anomaly\Streams\Module\Settings;
 
-use Streams\Platform\Addon\Installer\ModuleInstaller;
+use Anomaly\Streams\Platform\Addon\Installer\ModuleInstaller;
 
 class SettingsModuleInstaller extends ModuleInstaller
 {

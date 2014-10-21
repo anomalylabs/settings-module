@@ -1,6 +1,6 @@
-<?php namespace Streams\Addon\Module\Settings;
+<?php namespace Anomaly\Streams\Module\Settings;
 
-use Streams\Platform\Addon\ModuleAbstract;
+use Anomaly\Streams\Platform\Addon\ModuleAbstract;
 
 class SettingsModule extends ModuleAbstract
 {
