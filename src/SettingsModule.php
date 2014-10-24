@@ -1,13 +1,7 @@
-<?php namespace Anomaly\Streams\Module\Settings;
+<?php namespace Anomaly\Streams\Addon\Module\Settings;
 
-use Anomaly\Streams\Platform\Addon\ModuleAbstract;
+use Anomaly\Streams\Platform\Addon\Module\ModuleAddon;
 
-class SettingsModule extends ModuleAbstract
+class SettingsModule extends ModuleAddon
 {
-    /**
-     * The group string.
-     *
-     * @var null
-     */
-    protected $group = 'group.system';
 }

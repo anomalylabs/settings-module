@@ -1,15 +1,16 @@
-<?php namespace Anomaly\Streams\Module\Settings;
+<?php namespace Anomaly\Streams\Addon\Module\Settings;
 
-use Anomaly\Streams\Platform\Addon\Installer\ModuleInstaller;
+use Anomaly\Streams\Platform\Addon\Module\ModuleInstaller;
 
 class SettingsModuleInstaller extends ModuleInstaller
 {
     /**
-     * Installers to install.
+     * Installers to run during module installation.
      *
      * @var array
      */
-    protected $install = [
-        'Streams\Addon\Module\Settings\Installer\SettingsStreamInstaller',
+    protected $installers = [
+        'Anomaly\Streams\Addon\Module\Settings\Installer\SettingsFieldInstaller',
+        'Anomaly\Streams\Addon\Module\Settings\Installer\SettingsStreamInstaller',
     ];
 }

@@ -1,9 +1,29 @@
-<?php namespace Anomaly\Streams\Module\Settings\Installer;
+<?php namespace Anomaly\Streams\Addon\Module\Settings\Installer;
 
-use Anomaly\Streams\Platform\Stream\Installer\StreamInstaller;
+use Anomaly\Streams\Platform\Stream\StreamInstaller;
 
 class SettingsStreamInstaller extends StreamInstaller
 {
-    // Defaults are fine.
-    // No assignments.
+
+    /**
+     * Stream information.
+     *
+     * @var array
+     */
+    protected $stream = [
+        'is_hidden' => true,
+    ];
+
+    /**
+     * Stream field assignments.
+     *
+     * @var array
+     */
+    protected $assignments = [
+        'key'        => [],
+        'value'      => [],
+        'addon_type' => [],
+        'addon_slug' => [],
+    ];
+
 }
