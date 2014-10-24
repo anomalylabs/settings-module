@@ -25,7 +25,7 @@ class SettingService
 
         try {
 
-            $value = $this->settings->find($addonType, $addonSlug, $key)->value;
+            $value = $this->settings->findSetting($addonType, $addonSlug, $key)->value;
 
         } catch (SettingDoesNotExistException $e) {
 

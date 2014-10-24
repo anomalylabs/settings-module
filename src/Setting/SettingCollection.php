@@ -5,7 +5,7 @@ use Anomaly\Streams\Platform\Entry\EntryCollection;
 
 class SettingCollection extends EntryCollection
 {
-    public function find($addonType, $addonSlug, $key)
+    public function findSetting($addonType, $addonSlug, $key)
     {
         foreach ($this->items as $item) {
 
