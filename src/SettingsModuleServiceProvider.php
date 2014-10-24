@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\Module\Settings;
 
+use Illuminate\Support\ServiceProvider;
 use Anomaly\Streams\Addon\Module\Settings\Setting\SettingModel;
 use Anomaly\Streams\Addon\Module\Settings\Setting\SettingService;
-use Illuminate\Support\ServiceProvider;
 
 class SettingsModuleServiceProvider extends ServiceProvider
 {
