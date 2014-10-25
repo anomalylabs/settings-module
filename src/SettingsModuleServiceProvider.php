@@ -6,13 +6,20 @@ use Anomaly\Streams\Addon\Module\Settings\Setting\SettingService;
 
 class SettingsModuleServiceProvider extends ServiceProvider
 {
+
     /**
      * Register the service provider.
      */
     public function register()
     {
+        $this->registerPreferenceService();
+        $this->registerHelpers();
+    }
+
+    protected function registerPreferenceService()
+    {
         $this->app->singleton(
-            'streams.settings',
+            'streams.preferences',
             function () {
 
                 return new SettingService(new SettingModel());
@@ -20,5 +27,11 @@ class SettingsModuleServiceProvider extends ServiceProvider
             }
         );
     }
+
+    protected function registerHelpers()
+    {
+        include_once __DIR__ . '../resources/helpers.php';
+    }
+
 }
  
