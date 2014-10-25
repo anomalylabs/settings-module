@@ -30,7 +30,7 @@ class SettingsModuleServiceProvider extends ServiceProvider
 
     protected function registerHelpers()
     {
-        include_once __DIR__ . '../../resources/helpers.php';
+        include_once __DIR__ . '/../resources/helpers.php';
     }
 
 }
