@@ -19,7 +19,7 @@ class SettingsModuleServiceProvider extends ServiceProvider
     protected function registerPreferenceService()
     {
         $this->app->singleton(
-            'streams.preferences',
+            'streams.settings',
             function () {
 
                 return new SettingService(new SettingModel());
