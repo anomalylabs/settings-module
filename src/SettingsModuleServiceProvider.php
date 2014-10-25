@@ -12,8 +12,14 @@ class SettingsModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerServiceProviders();
         $this->registerPreferenceService();
         $this->registerHelpers();
+    }
+
+    protected function registerServiceProviders()
+    {
+        $this->app->register('Anomaly\Streams\Addon\Module\Settings\Provider\RouteServiceProvider');
     }
 
     protected function registerPreferenceService()
