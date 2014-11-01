@@ -4,6 +4,14 @@ use Illuminate\Support\ServiceProvider;
 use Anomaly\Streams\Addon\Module\Settings\Setting\SettingModel;
 use Anomaly\Streams\Addon\Module\Settings\Setting\SettingService;
 
+/**
+ * Class SettingsModuleServiceProvider
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\Streams\Addon\Module\Settings
+ */
 class SettingsModuleServiceProvider extends ServiceProvider
 {
 
@@ -13,16 +21,22 @@ class SettingsModuleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerServiceProviders();
-        $this->registerPreferenceService();
+        $this->registerSettingsService();
         $this->registerHelpers();
     }
 
+    /**
+     * Register internal service providers.
+     */
     protected function registerServiceProviders()
     {
         $this->app->register('Anomaly\Streams\Addon\Module\Settings\Provider\RouteServiceProvider');
     }
 
-    protected function registerPreferenceService()
+    /**
+     * Register the settings service.
+     */
+    protected function registerSettingsService()
     {
         $this->app->singleton(
             'streams.settings',
@@ -34,10 +48,12 @@ class SettingsModuleServiceProvider extends ServiceProvider
         );
     }
 
+    /**
+     * Register the helpers.
+     */
     protected function registerHelpers()
     {
         include_once __DIR__ . '/../resources/helpers.php';
     }
-
 }
  
