@@ -13,4 +13,5 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 class SettingsModule extends Module
 {
 
+    protected $nav = 'nav.system';
 }
