@@ -14,4 +14,8 @@ class SettingsModule extends Module
 {
 
     protected $nav = 'nav.system';
+
+    protected $sections = [
+        'settings'
+    ];
 }

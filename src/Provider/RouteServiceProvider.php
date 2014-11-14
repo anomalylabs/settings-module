@@ -1,5 +1,7 @@
 <?php namespace Anomaly\Streams\Addon\Module\Settings\Provider;
 
+use Illuminate\Routing\Router;
+
 class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\RouteServiceProvider
 {
 
@@ -33,15 +35,23 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
      *
      * @return void
      */
-    public function map()
+    public function map(Router $router)
     {
-        $this->registerSettingsRoutes();
-    }
+        $router->get(
+            'admin/settings',
+            function () {
+                return redirect('admin/settings/modules');
+            }
+        );
 
-    protected function registerSettingsRoutes()
-    {
-        get('admin/settings', 'Anomaly\Streams\Addon\Module\Settings\Http\Admin\SettingsController@index');
+        $router->any(
+            'admin/settings/{type}',
+            'Anomaly\Streams\Addon\Module\Settings\Http\Admin\SettingsController@index'
+        );
+        $router->any(
+            'admin/settings/{type}/{slug}',
+            'Anomaly\Streams\Addon\Module\Settings\Http\Admin\SettingsController@edit'
+        );
     }
-
 }
  
