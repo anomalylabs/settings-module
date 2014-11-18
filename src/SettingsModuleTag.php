@@ -1,6 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Settings;
 
-use Anomaly\Streams\Addon\Tag\Module\ModuleTag;
+use Anomaly\Streams\Platform\Addon\Module\ModuleTag;
 
 /**
  * Class SettingsTag
