@@ -13,7 +13,7 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 class SettingsModule extends Module
 {
 
-    protected $nav = 'nav.system';
+    protected $navigation = 'admin.navigation.system';
 
     protected $sections = [
         'settings'
