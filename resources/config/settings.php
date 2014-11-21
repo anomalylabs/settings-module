@@ -3,19 +3,22 @@
 return [
     [
         'fields' => [
-            'email'       => [
-                'type'  => 'email',
-                'value' => 'service@aiwebsystems.com',
-            ],
-            'timezone'    => [
-                'type' => 'select',
-            ],
-            'date_format' => [
-                'type'  => 'text',
-                'rules' => 'required',
-            ],
-            'time_format' => [
-                'type' => 'text',
+            'test' => [
+                'label'        => 'Test',
+                'instructions' => 'Wha?',
+                //'placeholder'  => 'Test placeholder',
+                //'value'        => '2,3',
+                'type'         => 'wysiwyg',
+                'config'       => [
+                    'country' => 'USA',
+                    /*'title'   => 'name',
+                    'related' => 'Anomaly\Streams\Addon\Module\Users\Role\RoleModel',*/
+                    /*'options' => [
+                        'foo' => 'Foo',
+                        'bar' => 'Bar',
+                        'baz' => 'Baz',
+                    ]*/
+                ],
             ],
         ],
     ],
