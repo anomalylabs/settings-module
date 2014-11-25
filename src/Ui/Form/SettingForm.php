@@ -13,7 +13,7 @@ class SettingForm extends Form
 
     protected function setUpRedirects()
     {
-        $this->setRedirects(
+        $this->setActions(
             [
                 'save',
             ]
@@ -22,7 +22,7 @@ class SettingForm extends Form
 
     protected function setUpActions()
     {
-        $this->setActions(
+        $this->setButtons(
             [
                 'cancel',
             ]
