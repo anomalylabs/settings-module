@@ -1,20 +1,17 @@
 <?php namespace Anomaly\Streams\Addon\Module\Settings\Http\Admin;
 
-use Anomaly\Streams\Addon\Module\Settings\Ui\Form\SettingForm;
+use Anomaly\Streams\Addon\Module\Settings\Ui\Form\SettingFormBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 class SettingsController extends AdminController
 {
 
-    public function index($type)
+    public function edit($type, $slug, SettingFormBuilder $form)
     {
-        echo $type;
-        die;
-    }
-
-    public function edit($type, $slug, SettingForm $form)
-    {
-        $settings = config("{$type}.{$slug}::settings");
+        $settings = $this->execute(
+            'Anomaly\Streams\Addon\Module\Settings\Command\GetFormBuilderSectionsCommand',
+            compact('type', 'slug')
+        );
 
         return $form->setSections($settings)->render();
     }
