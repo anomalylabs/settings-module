@@ -1,13 +1,12 @@
 <?php namespace Anomaly\Streams\Addon\Module\Settings\Setting;
 
 use Anomaly\Streams\Addon\Module\Settings\Exception\SettingDoesNotExistException;
-use Anomaly\Streams\Addon\Module\Settings\Setting\Command\SetSettingValueCommand;
-use Anomaly\Streams\Platform\Traits\CommandableTrait;
+use Laracasts\Commander\CommanderTrait;
 
 class SettingService
 {
 
-    use CommandableTrait;
+    use CommanderTrait;
 
     protected $setting;
 
@@ -40,9 +39,10 @@ class SettingService
         list($namespace, $key) = explode('::', $key);
         list($addonType, $addonSlug) = explode('.', $namespace);
 
-        $command = new SetSettingValueCommand($addonType, $addonSlug, $key, $value);
-
-        $this->execute($command);
+        $this->execute(
+            'Anomaly\Streams\Addon\Module\Settings\Setting\Command\SetSettingValueCommand',
+            compact('addonType', 'addonSlug', 'key', 'value')
+        );
     }
 }
  
