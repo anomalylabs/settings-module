@@ -5,7 +5,7 @@ class GetFormBuilderSectionsCommandHandler
 
     public function handle(GetFormBuilderSectionsCommand $command)
     {
-        return config("{$command->getType()}.{$command->getSlug()}::settings");
+        return config("{$command->getType()}.{$command->getSlug()}::settings", []);
     }
 }
  
