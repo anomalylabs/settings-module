@@ -19,7 +19,8 @@ class SettingsStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $stream = [
-        'is_hidden' => true,
+        'slug'   => 'settings',
+        'hidden' => true,
     ];
 
     /**
@@ -33,5 +34,4 @@ class SettingsStreamInstaller extends StreamInstaller
         'key'        => [],
         'value'      => [],
     ];
-
 }
