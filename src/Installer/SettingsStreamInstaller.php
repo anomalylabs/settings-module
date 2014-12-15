@@ -20,7 +20,7 @@ class SettingsStreamInstaller extends StreamInstaller
      */
     protected $stream = [
         'slug'   => 'settings',
-        'hidden' => true,
+        'locked' => true,
     ];
 
     /**
