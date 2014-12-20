@@ -1,5 +1,6 @@
 <?php namespace Anomaly\Streams\Addon\Module\Settings\Http\Admin;
 
+use Anomaly\Streams\Addon\Module\Settings\Ui\Table\ModuleTableBuilder;
 use Anomaly\Streams\Addon\Module\Settings\Ui\Form\SettingFormBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
