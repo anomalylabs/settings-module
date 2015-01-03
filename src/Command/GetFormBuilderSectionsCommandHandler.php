@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Command;
+<?php namespace Anomaly\SettingsModule\Command;
 
 class GetFormBuilderSectionsCommandHandler
 {

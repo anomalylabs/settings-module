@@ -1,7 +1,7 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Setting;
+<?php namespace Anomaly\SettingsModule\Setting;
 
 use Anomaly\Streams\Platform\Entry\EntryCollection;
-use Anomaly\Streams\Addon\Module\Settings\Exception\SettingDoesNotExistException;
+use Anomaly\Settings\Module\Exception\SettingDoesNotExistException;
 
 class SettingCollection extends EntryCollection
 {

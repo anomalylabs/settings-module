@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Provider;
+<?php namespace Anomaly\SettingsModule\Provider;
 
 use Illuminate\Routing\Router;
 
@@ -46,11 +46,11 @@ class RouteServiceProvider extends \Illuminate\Foundation\Support\Providers\Rout
 
         $router->any(
             'admin/settings/{type}',
-            'Anomaly\Streams\Addon\Module\Settings\Http\Admin\SettingsController@index'
+            'Anomaly\Settings\Module\Http\Admin\SettingsController@index'
         );
         $router->any(
             'admin/settings/{type}/{slug}',
-            'Anomaly\Streams\Addon\Module\Settings\Http\Admin\SettingsController@edit'
+            'Anomaly\Settings\Module\Http\Admin\SettingsController@edit'
         );
     }
 }

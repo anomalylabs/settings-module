@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Setting\Command;
+<?php namespace Anomaly\SettingsModule\Setting\Command;
 
 class SetSettingValueCommand
 {

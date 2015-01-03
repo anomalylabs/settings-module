@@ -1,8 +1,8 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings;
+<?php namespace Anomaly\SettingsModule;
 
 use Illuminate\Support\ServiceProvider;
-use Anomaly\Streams\Addon\Module\Settings\Setting\SettingModel;
-use Anomaly\Streams\Addon\Module\Settings\Setting\SettingService;
+use Anomaly\SettingsModule\Setting\SettingModel;
+use Anomaly\SettingsModule\Setting\SettingService;
 
 /**
  * Class SettingsModuleServiceProvider
@@ -10,7 +10,7 @@ use Anomaly\Streams\Addon\Module\Settings\Setting\SettingService;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Settings
+ * @package       Anomaly\Settings\Module
  */
 class SettingsModuleServiceProvider extends ServiceProvider
 {
@@ -30,7 +30,7 @@ class SettingsModuleServiceProvider extends ServiceProvider
      */
     protected function registerServiceProviders()
     {
-        $this->app->register('Anomaly\Streams\Addon\Module\Settings\Provider\RouteServiceProvider');
+        $this->app->register('Anomaly\SettingsModule\Provider\RouteServiceProvider');
     }
 
     /**

@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Setting;
+<?php namespace Anomaly\SettingsModule\Setting;
 
 use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
 

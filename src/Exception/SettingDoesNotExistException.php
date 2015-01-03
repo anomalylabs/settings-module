@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Exception;
+<?php namespace Anomaly\SettingsModule\Exception;
 
 class SettingDoesNotExistException extends \Exception
 {

@@ -1,6 +1,6 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Setting\Command;
+<?php namespace Anomaly\SettingsModule\Setting\Command;
 
-use Anomaly\Streams\Addon\Module\Settings\Setting\SettingModel;
+use Anomaly\Settings\Module\Setting\SettingModel;
 
 class SetSettingValueCommandHandler
 {

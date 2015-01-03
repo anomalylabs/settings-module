@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings;
+<?php namespace Anomaly\SettingsModule;
 
 use Anomaly\Streams\Platform\Addon\Module\ModuleTag;
 

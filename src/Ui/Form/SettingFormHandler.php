@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Ui\Form;
+<?php namespace Anomaly\SettingsModule\Ui\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 

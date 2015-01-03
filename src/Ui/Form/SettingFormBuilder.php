@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Ui\Form;
+<?php namespace Anomaly\SettingsModule\Ui\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
@@ -6,7 +6,7 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 class SettingFormBuilder extends FormBuilder
 {
 
-    protected $handler = 'Anomaly\Streams\Addon\Module\Settings\Ui\Form\SettingFormHandler@handle';
+    protected $handler = 'Anomaly\Settings\Module\Ui\Form\SettingFormHandler@handle';
 
     protected $actions = [
         'save',

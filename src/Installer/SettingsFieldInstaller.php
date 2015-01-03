@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\Module\Settings\Installer;
+<?php namespace Anomaly\SettingsModule\Installer;
 
 use Anomaly\Streams\Platform\Field\FieldInstaller;
 
@@ -8,7 +8,7 @@ use Anomaly\Streams\Platform\Field\FieldInstaller;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Streams\Addon\Module\Settings\Installer
+ * @package       Anomaly\Settings\Module\Installer
  */
 class SettingsFieldInstaller extends FieldInstaller
 {
