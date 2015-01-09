@@ -1,12 +1,11 @@
 <?php namespace Anomaly\SettingsModule\Setting;
 
-use Anomaly\Settings\Module\Exception\SettingDoesNotExistException;
-use Laracasts\Commander\CommanderTrait;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
 class SettingService
 {
 
-    use CommanderTrait;
+    use DispatchesCommands;
 
     protected $setting;
 
@@ -23,13 +22,7 @@ class SettingService
         list($namespace, $key) = explode('::', $key);
         list($addonType, $addonSlug) = explode('.', $namespace);
 
-        try {
-
-            $value = $this->settings->findSetting($addonType, $addonSlug, $key)->value;
-        } catch (SettingDoesNotExistException $e) {
-
-            $value = $default;
-        }
+        $value = $this->settings->findSetting($addonType, $addonSlug, $key)->value;
 
         return $value;
     }
@@ -39,7 +32,7 @@ class SettingService
         list($namespace, $key) = explode('::', $key);
         list($addonType, $addonSlug) = explode('.', $namespace);
 
-        $this->execute(
+        $this->dispatchFromArray(
             'Anomaly\Settings\Module\Setting\Command\SetSettingValueCommand',
             compact('addonType', 'addonSlug', 'key', 'value')
         );
