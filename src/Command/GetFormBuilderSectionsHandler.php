@@ -1,6 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Command;
 
-class GetFormBuilderSectionsCommandHandler
+class GetFormBuilderSectionsHandler
 {
 
     public function handle(GetFormBuilderSectionsCommand $command)

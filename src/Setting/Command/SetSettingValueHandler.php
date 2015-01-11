@@ -2,7 +2,7 @@
 
 use Anomaly\Settings\Module\Setting\SettingModel;
 
-class SetSettingValueCommandHandler
+class SetSettingValueHandler
 {
     protected $setting;
 
