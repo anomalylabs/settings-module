@@ -2,6 +2,7 @@
 
 class SetSettingValueCommand
 {
+
     protected $addonType;
 
     protected $addonSlug;

@@ -18,4 +18,5 @@ class SettingsModule extends Module
     protected $sections = [
         'settings'
     ];
+
 }

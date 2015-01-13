@@ -4,6 +4,7 @@ use Anomaly\Settings\Module\Setting\SettingModel;
 
 class SetSettingValueHandler
 {
+
     protected $setting;
 
     function __construct(SettingModel $setting)

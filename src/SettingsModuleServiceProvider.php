@@ -1,8 +1,8 @@
 <?php namespace Anomaly\SettingsModule;
 
-use Illuminate\Support\ServiceProvider;
 use Anomaly\SettingsModule\Setting\SettingModel;
 use Anomaly\SettingsModule\Setting\SettingService;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Class SettingsModuleServiceProvider
@@ -43,7 +43,6 @@ class SettingsModuleServiceProvider extends ServiceProvider
             function () {
 
                 return new SettingService(new SettingModel());
-
             }
         );
     }

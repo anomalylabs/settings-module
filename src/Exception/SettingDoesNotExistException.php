@@ -2,5 +2,6 @@
 
 class SettingDoesNotExistException extends \Exception
 {
+
 }
  

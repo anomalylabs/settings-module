@@ -34,4 +34,5 @@ class SettingsStreamInstaller extends StreamInstaller
         'key'        => [],
         'value'      => [],
     ];
+
 }

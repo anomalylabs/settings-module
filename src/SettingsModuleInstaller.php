@@ -4,6 +4,7 @@ use Anomaly\Streams\Platform\Addon\Module\ModuleInstaller;
 
 class SettingsModuleInstaller extends ModuleInstaller
 {
+
     /**
      * Installers to run during module installation.
      *
@@ -13,4 +14,5 @@ class SettingsModuleInstaller extends ModuleInstaller
         'Anomaly\SettingsModule\Installer\SettingsFieldInstaller',
         'Anomaly\SettingsModule\Installer\SettingsStreamInstaller',
     ];
+
 }
