@@ -29,10 +29,8 @@ class SettingsStreamInstaller extends StreamInstaller
      * @var array
      */
     protected $assignments = [
-        'addon_type' => ['required' => true],
-        'addon_slug' => ['required' => true],
-        'key'        => ['required' => true],
-        'value'      => [],
+        'key'   => ['required' => true, 'unique' => true],
+        'value' => [],
     ];
 
 }

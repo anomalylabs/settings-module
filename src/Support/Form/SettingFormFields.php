@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Support\Form;
 
+use Anomaly\SettingsModule\Setting\Contract\SettingRepository;
 use Illuminate\Config\Repository;
 
 /**
@@ -35,10 +36,27 @@ class SettingFormFields
      *
      * @param SettingFormBuilder $builder
      */
-    public function handle(SettingFormBuilder $builder)
+    public function handle(SettingFormBuilder $builder, SettingRepository $settings)
     {
-        if (!$fields = $this->config->get(app($builder->getEntry())->getNamespace('settings.fields'))) {
-            $fields = $this->config->get(app($builder->getEntry())->getNamespace('settings'), []);
+        $form  = $builder->getForm();
+        $addon = $form->getEntry();
+
+        /**
+         * Get the fields from the configuration system.
+         */
+        if (!$fields = $this->config->get($addon->getNamespace('settings.fields'))) {
+            $fields = $this->config->get($addon->getNamespace('settings'), []);
+        }
+
+        /**
+         * Finish each field.
+         */
+        foreach ($fields as $slug => &$field) {
+            $field['label']        = trans($addon->getNamespace('setting.' . $slug . '.label'));
+            $field['placeholder']  = trans($addon->getNamespace('setting.' . $slug . '.placeholder'));
+            $field['instructions'] = trans($addon->getNamespace('setting.' . $slug . '.instructions'));
+
+            $field['value'] = $settings->get($addon->getNamespace($slug));
         }
 
         return $fields;

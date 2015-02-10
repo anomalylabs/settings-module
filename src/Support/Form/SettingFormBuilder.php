@@ -3,17 +3,30 @@
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
+/**
+ * Class SettingFormBuilder
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\SettingsModule\Support\Form
+ */
 class SettingFormBuilder extends FormBuilder
 {
 
-    protected $actions = [
-        'save',
-    ];
+    /**
+     * The form actions handler.
+     *
+     * @var string
+     */
+    protected $actions = 'Anomaly\SettingsModule\Support\Form\SettingFormActions@handle';
 
-    protected $buttons = [
-        'cancel',
-        'delete',
-    ];
+    /**
+     * The form buttons handler.
+     *
+     * @var string
+     */
+    protected $buttons = 'Anomaly\SettingsModule\Support\Form\SettingFormButtons@handle';
 
     /**
      * The form fields handler.
@@ -30,8 +43,8 @@ class SettingFormBuilder extends FormBuilder
     public function __construct(Form $form)
     {
         $form->setOption(
-            'handler',
-            'Anomaly\SettingsModule\Support\Form\SettingFormHandler@handle'
+            'repository',
+            'Anomaly\SettingsModule\Support\Form\SettingFormRepository'
         );
 
         parent::__construct($form);

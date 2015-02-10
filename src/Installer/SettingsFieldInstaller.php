@@ -19,16 +19,10 @@ class SettingsFieldInstaller extends FieldInstaller
      * @var array
      */
     protected $fields = [
-        'addon_type' => [
+        'key'   => [
             'type' => 'text',
         ],
-        'addon_slug' => [
-            'type' => 'text',
-        ],
-        'key'        => [
-            'type' => 'text',
-        ],
-        'value'      => [
+        'value' => [
             'type' => 'textarea',
         ],
     ];

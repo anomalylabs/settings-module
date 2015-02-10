@@ -10,7 +10,7 @@ use Illuminate\Config\Repository;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\Setting
  */
-class SettingRepository
+class SettingRepository implements \Anomaly\SettingsModule\Setting\Contract\SettingRepository
 {
 
     /**
@@ -48,12 +48,36 @@ class SettingRepository
      */
     public function get($key, $default = null)
     {
-        $setting = $this->model->where('key', $key)->find();
+        $setting = $this->model->where('key', $key)->first();
 
         if (!$setting) {
             return $this->config->get($key, $default);
         }
 
         return $setting->value;
+    }
+
+    /**
+     * Set a setting value.
+     *
+     * @param $key
+     * @param $value
+     * @return $this
+     */
+    public function set($key, $value)
+    {
+        $setting = $this->model->where('key', $key)->first();
+
+        if (!$setting) {
+            $setting = $this->model->newInstance();
+
+            $setting->key = $key;
+        }
+
+        $setting->value = $value;
+
+        $setting->save();
+
+        return $this;
     }
 }
