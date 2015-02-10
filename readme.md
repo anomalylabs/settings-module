@@ -1,3 +1,3 @@
-#Users Module
+# Settings Module
 
 Settings management. 
