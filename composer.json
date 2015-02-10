@@ -1,13 +1,26 @@
 {
     "name": "anomaly/settings-module",
     "type": "streams-addon",
-    "description": "Settings module.",
+    "description": "Settings management.",
+    "keywords": [
+        "streams-addon",
+        "settings",
+        "pyrocms",
+        "laravel"
+    ],
+    "homepage": "http://anomaly.is/",
+    "license": "MIT",
     "authors": [
         {
-            "name": "AnomalyLabs",
-            "email": "hello@anomaly.is"
+            "name": "AnomalyLabs, Inc.",
+            "email": "hello@anomaly.is",
+            "homepage": "http://anomaly.is/",
+            "role": "Owner"
         }
     ],
+    "support": {
+        "email": "support@anomaly.is"
+    },
     "autoload": {
         "psr-4": {
             "Anomaly\\SettingsModule\\": "src/"

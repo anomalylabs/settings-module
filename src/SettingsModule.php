@@ -13,8 +13,18 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 class SettingsModule extends Module
 {
 
+    /**
+     * The module navigation.
+     *
+     * @var string
+     */
     protected $navigation = 'streams::navigation.system';
 
+    /**
+     * The module sections.
+     *
+     * @var array
+     */
     protected $sections = [
         'settings'
     ];

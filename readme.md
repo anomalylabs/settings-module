@@ -1,4 +1,3 @@
-setting-module
-============
+#Users Module
 
-Settings management for the Streams Platform.
+Settings management. 

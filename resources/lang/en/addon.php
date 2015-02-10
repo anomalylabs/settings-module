@@ -2,8 +2,5 @@
 
 return [
     'name'        => 'Settings',
-    'description' => 'Settings module.',
-    'section'     => [
-        'settings' => 'Settings',
-    ],
+    'description' => 'Settings management.'
 ];
