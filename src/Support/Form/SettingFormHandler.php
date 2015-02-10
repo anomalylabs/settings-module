@@ -1,4 +1,4 @@
-<?php namespace Anomaly\SettingsModule\Form;
+<?php namespace Anomaly\SettingsModule\Support\Form;
 
 use Anomaly\SettingsModule\Setting\SettingModel;
 use Illuminate\Http\Request;
