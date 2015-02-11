@@ -52,9 +52,19 @@ class SettingFormFields
          * Finish each field.
          */
         foreach ($fields as $slug => &$field) {
-            $field['label']        = trans($addon->getNamespace('setting.' . $slug . '.label'));
-            $field['placeholder']  = trans($addon->getNamespace('setting.' . $slug . '.placeholder'));
-            $field['instructions'] = trans($addon->getNamespace('setting.' . $slug . '.instructions'));
+            $field['label'] = trans($addon->getNamespace('setting.' . $slug . '.label'));
+
+            $placeholder = $addon->getNamespace('setting.' . $slug . '.placeholder');
+
+            if ($placeholder != ($translated = trans($placeholder))) {
+                $field['placeholder'] = $translated;
+            }
+
+            $instructions = $addon->getNamespace('setting.' . $slug . '.instructions');
+
+            if ($instructions != ($translated = trans($instructions))) {
+                $field['instructions'] = $translated;
+            }
 
             $field['value'] = $settings->get($addon->getNamespace($slug));
         }

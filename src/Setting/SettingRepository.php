@@ -80,4 +80,17 @@ class SettingRepository implements \Anomaly\SettingsModule\Setting\Contract\Sett
 
         return $this;
     }
+
+    /**
+     * Get all settings for a namespace.
+     *
+     * @param $getNamespace
+     * @return SettingCollection
+     */
+    public function getAll($namespace)
+    {
+        $settings = $this->model->where('key', 'LIKE', $namespace . '::%')->get();
+
+        return new SettingCollection($settings->lists('value', 'key'));
+    }
 }

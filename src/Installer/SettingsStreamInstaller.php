@@ -20,7 +20,7 @@ class SettingsStreamInstaller extends StreamInstaller
      */
     protected $stream = [
         'slug'   => 'settings',
-        'locked' => true,
+        'locked' => true
     ];
 
     /**
@@ -30,7 +30,7 @@ class SettingsStreamInstaller extends StreamInstaller
      */
     protected $assignments = [
         'key'   => ['required' => true, 'unique' => true],
-        'value' => [],
+        'value' => []
     ];
 
 }
