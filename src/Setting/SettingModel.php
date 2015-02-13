@@ -13,4 +13,11 @@ use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
 class SettingModel extends SettingsSettingsEntryModel
 {
 
+    /**
+     * The cache minutes.
+     *
+     * @var int
+     */
+    protected $cacheMinutes = 30;
+
 }
