@@ -18,7 +18,9 @@ class SettingsModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->make('twig')->addExtension($this->app->make('\Anomaly\SettingsModule\SettingModulePlugin'));
+        if (INSTALLED) {
+            $this->app->make('twig')->addExtension($this->app->make('\Anomaly\SettingsModule\SettingModulePlugin'));
+        }
     }
 
     /**
