@@ -19,14 +19,18 @@ class SettingFormBuilder extends FormBuilder
      *
      * @var string
      */
-    protected $actions = 'Anomaly\SettingsModule\Support\Form\SettingFormActions@handle';
+    protected $actions = [
+        'save'
+    ];
 
     /**
      * The form buttons handler.
      *
      * @var string
      */
-    protected $buttons = 'Anomaly\SettingsModule\Support\Form\SettingFormButtons@handle';
+    protected $buttons = [
+        'cancel'
+    ];
 
     /**
      * The form fields handler.
