@@ -12,14 +12,16 @@ class SettingFormActions
 {
 
     /**
-     * Return the form actions.
+     * Handle form actions.
      *
-     * @return array
+     * @param SettingFormBuilder $builder
      */
-    public function handle()
+    public function handle(SettingFormBuilder $builder)
     {
-        return [
-            'save'
-        ];
+        $builder->setActions(
+            [
+                'save'
+            ]
+        );
     }
 }

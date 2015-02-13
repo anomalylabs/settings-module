@@ -69,6 +69,6 @@ class SettingFormFields
             $field['value'] = $settings->get($addon->getNamespace($slug));
         }
 
-        return $fields;
+        $builder->setFields($fields);
     }
 }

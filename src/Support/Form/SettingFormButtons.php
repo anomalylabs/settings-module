@@ -12,14 +12,16 @@ class SettingFormButtons
 {
 
     /**
-     * Return the form actions.
+     * Handle form buttons.
      *
-     * @return array
+     * @param SettingFormBuilder $builder
      */
-    public function handle()
+    public function handle(SettingFormBuilder $builder)
     {
-        return [
-            'cancel'
-        ];
+        $builder->setButtons(
+            [
+                'cancel'
+            ]
+        );
     }
 }
