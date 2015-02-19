@@ -43,7 +43,7 @@ class SettingFormFields
         $addon = $form->getEntry();
 
         if ($addon instanceof Addon) {
-            $namespace = $addon->getNamespace();
+            $namespace = $addon->getNamespace() . '::';
         } else {
             $namespace = $addon . '::';
         }
@@ -60,12 +60,23 @@ class SettingFormFields
          */
         foreach ($fields as $slug => &$field) {
 
-            $field['label'] = trans($namespace . 'setting.' . $slug . '.label');
+            /**
+             * Force an array. This is done later
+             * too in normalization but we need it NOW.
+             */
+            if (is_string($field)) {
+                $field = [
+                    'type' => $field
+                ];
+            }
+
+            $field['config'] = array_get($field, 'config', []);
+            $field['label']  = trans($namespace . 'setting.' . $slug . '.label');
 
             $placeholder = $namespace . 'setting.' . $slug . '.placeholder';
 
             if ($placeholder != ($translated = trans($placeholder))) {
-                $field['placeholder'] = $translated;
+                $field['config']['placeholder'] = $translated;
             }
 
             $instructions = $namespace . 'setting.' . $slug . '.instructions';
@@ -74,7 +85,7 @@ class SettingFormFields
                 $field['instructions'] = $translated;
             }
 
-            $field['value'] = $settings->get($namespace . $slug);
+            $field['value'] = $settings->get($namespace . $slug, array_get($field['config'], 'default_value'));
         }
 
         $builder->setFields($fields);

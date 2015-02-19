@@ -22,5 +22,6 @@ class SettingRouteProvider extends RouteServiceProvider
     public function map(Router $router)
     {
         $router->any('admin/settings', 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@edit');
+        $router->any('admin/settings/system', 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@edit');
     }
 }

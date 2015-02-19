@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Support\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepository;
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Illuminate\Container\Container;
@@ -68,9 +69,15 @@ class SettingFormRepository implements FormRepository
         $addon   = $form->getEntry();
         $request = $form->getRequest();
 
+        if ($addon instanceof Addon) {
+            $namespace = $addon->getNamespace() . '::';
+        } else {
+            $namespace = $addon . '::';
+        }
+
         foreach ($form->getFields() as $field) {
             $this->settings->set(
-                $addon->getNamespace($field->getField()),
+                $namespace . $field->getField(),
                 $request->get($field->getInputName())
             );
         }
