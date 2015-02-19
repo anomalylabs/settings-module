@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Setting
+ * @package       Anomaly\SettingsModule\SettingInterface
  */
 class SettingCollection extends Collection
 {

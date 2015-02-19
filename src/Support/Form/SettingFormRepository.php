@@ -1,6 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Support\Form;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepository;
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepository;
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Illuminate\Container\Container;
@@ -19,7 +19,7 @@ class SettingFormRepository implements FormRepository
     /**
      * The settings repository.
      *
-     * @var SettingRepository
+     * @var SettingRepositoryInterface
      */
     protected $settings;
 
@@ -33,10 +33,10 @@ class SettingFormRepository implements FormRepository
     /**
      * Create a new SettingFormRepository instance.
      *
-     * @param Container         $container
-     * @param SettingRepository $settings
+     * @param Container                  $container
+     * @param SettingRepositoryInterface $settings
      */
-    public function __construct(Container $container, SettingRepository $settings)
+    public function __construct(Container $container, SettingRepositoryInterface $settings)
     {
         $this->settings  = $settings;
         $this->container = $container;
@@ -50,6 +50,10 @@ class SettingFormRepository implements FormRepository
      */
     public function findOrNew($id)
     {
+        if ($id == 'streams') {
+            return $id;
+        }
+
         return $this->container->make($id);
     }
 

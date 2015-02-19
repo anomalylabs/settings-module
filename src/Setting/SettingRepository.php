@@ -1,16 +1,17 @@
 <?php namespace Anomaly\SettingsModule\Setting;
 
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Config\Repository;
 
 /**
- * Class SettingRepository
+ * Class SettingRepositoryInterface
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Setting
+ * @package       Anomaly\SettingsModule\SettingInterface
  */
-class SettingRepository implements \Anomaly\SettingsModule\Setting\Contract\SettingRepository
+class SettingRepository implements SettingRepositoryInterface
 {
 
     /**
@@ -28,7 +29,7 @@ class SettingRepository implements \Anomaly\SettingsModule\Setting\Contract\Sett
     protected $config;
 
     /**
-     * Create a new SettingRepository instance.
+     * Create a new SettingRepositoryInterface instance.
      *
      * @param SettingModel $model
      * @param Repository   $config

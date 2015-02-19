@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Support\Form;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepository;
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Addon\Addon;
 use Illuminate\Config\Repository;
 
 /**
@@ -36,37 +37,44 @@ class SettingFormFields
      *
      * @param SettingFormBuilder $builder
      */
-    public function handle(SettingFormBuilder $builder, SettingRepository $settings)
+    public function handle(SettingFormBuilder $builder, SettingRepositoryInterface $settings)
     {
         $form  = $builder->getForm();
         $addon = $form->getEntry();
 
+        if ($addon instanceof Addon) {
+            $namespace = $addon->getNamespace();
+        } else {
+            $namespace = $addon . '::';
+        }
+
         /**
          * Get the fields from the configuration system.
          */
-        if (!$fields = $this->config->get($addon->getNamespace('settings.fields'))) {
-            $fields = $this->config->get($addon->getNamespace('settings'), []);
+        if (!$fields = $this->config->get($namespace . 'settings.fields')) {
+            $fields = $this->config->get($namespace . 'settings', []);
         }
 
         /**
          * Finish each field.
          */
         foreach ($fields as $slug => &$field) {
-            $field['label'] = trans($addon->getNamespace('setting.' . $slug . '.label'));
 
-            $placeholder = $addon->getNamespace('setting.' . $slug . '.placeholder');
+            $field['label'] = trans($namespace . 'setting.' . $slug . '.label');
+
+            $placeholder = $namespace . 'setting.' . $slug . '.placeholder';
 
             if ($placeholder != ($translated = trans($placeholder))) {
                 $field['placeholder'] = $translated;
             }
 
-            $instructions = $addon->getNamespace('setting.' . $slug . '.instructions');
+            $instructions = $namespace . 'setting.' . $slug . '.instructions';
 
             if ($instructions != ($translated = trans($instructions))) {
                 $field['instructions'] = $translated;
             }
 
-            $field['value'] = $settings->get($addon->getNamespace($slug));
+            $field['value'] = $settings->get($namespace . $slug);
         }
 
         $builder->setFields($fields);

@@ -3,14 +3,14 @@
 use Anomaly\SettingsModule\Setting\SettingCollection;
 
 /**
- * Interface SettingRepository
+ * Interface SettingRepositoryInterface
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Setting\Contract
+ * @package       Anomaly\SettingsModule\SettingInterface\Contract
  */
-interface SettingRepository
+interface SettingRepositoryInterface
 {
 
     /**
