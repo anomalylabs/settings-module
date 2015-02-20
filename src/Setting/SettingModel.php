@@ -19,6 +19,6 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
      *
      * @var int
      */
-    protected $cacheMinutes = 30;
+    protected $cacheMinutes = 99999;
 
 }
