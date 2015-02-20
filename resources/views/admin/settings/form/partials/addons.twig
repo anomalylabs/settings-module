@@ -8,8 +8,8 @@
         </option>
     </optgroup>
 
-    <optgroup label="{{ trans('streams::addon.extensions') }}">
-        {% for addon in extensions %}
+    <optgroup label="{{ trans('streams::addon.modules') }}">
+        {% for addon in modules %}
             <option value="{{ addon.namespace }}" {{ request_segment(3) == addon.namespace ? 'selected' }}>
                 {{ trans(addon.name) }}
             </option>
@@ -18,6 +18,38 @@
 
     <optgroup label="{{ trans('streams::addon.themes') }}">
         {% for addon in themes %}
+            <option value="{{ addon.namespace }}" {{ request_segment(3) == addon.namespace ? 'selected' }}>
+                {{ trans(addon.name) }}
+            </option>
+        {% endfor %}
+    </optgroup>
+
+    <optgroup label="{{ trans('streams::addon.extensions') }}">
+        {% for addon in extensions %}
+            <option value="{{ addon.namespace }}" {{ request_segment(3) == addon.namespace ? 'selected' }}>
+                {{ trans(addon.name) }}
+            </option>
+        {% endfor %}
+    </optgroup>
+
+    <optgroup label="{{ trans('streams::addon.plugins') }}">
+        {% for addon in plugins %}
+            <option value="{{ addon.namespace }}" {{ request_segment(3) == addon.namespace ? 'selected' }}>
+                {{ trans(addon.name) }}
+            </option>
+        {% endfor %}
+    </optgroup>
+
+    <optgroup label="{{ trans('streams::addon.distributions') }}">
+        {% for addon in distributions %}
+            <option value="{{ addon.namespace }}" {{ request_segment(3) == addon.namespace ? 'selected' }}>
+                {{ trans(addon.name) }}
+            </option>
+        {% endfor %}
+    </optgroup>
+
+    <optgroup label="{{ trans('streams::addon.field_types') }}">
+        {% for addon in field_types %}
             <option value="{{ addon.namespace }}" {{ request_segment(3) == addon.namespace ? 'selected' }}>
                 {{ trans(addon.name) }}
             </option>
