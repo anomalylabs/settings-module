@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
 use Illuminate\Config\Repository;
 
 /**
@@ -91,7 +92,12 @@ class SettingFormFields
             );
 
             // Get the value defaulting to the default value.
-            $field['value'] = $modifier->restore($settings->get($namespace . $slug, array_get($field['config'], 'default_value')));
+            $field['value'] = $settings->get($namespace . $slug, array_get($field['config'], 'default_value'));
+
+            // Restore the value with the modifier.
+            if ($modifier instanceof FieldTypeModifier) {
+                $field['value'] = $modifier->restore($field['value']);
+            }
         }
 
         $builder->setFields($fields);
