@@ -39,8 +39,7 @@ class SettingFormFields
      */
     public function handle(SettingFormBuilder $builder, SettingRepositoryInterface $settings)
     {
-        $form  = $builder->getForm();
-        $addon = $form->getEntry();
+        $addon = $builder->getFormEntry();
 
         if ($addon instanceof Addon) {
             $namespace = $addon->getNamespace() . '::';
@@ -75,15 +74,11 @@ class SettingFormFields
 
             $placeholder = $namespace . 'setting.' . $slug . '.placeholder';
 
-            if ($placeholder != ($translated = trans($placeholder))) {
-                $field['config']['placeholder'] = $translated;
-            }
+            $field['config']['placeholder'] = array_get($field['config'], 'placeholder', $placeholder);
 
             $instructions = $namespace . 'setting.' . $slug . '.instructions';
 
-            if ($instructions != ($translated = trans($instructions))) {
-                $field['instructions'] = $translated;
-            }
+            $field['instructions'] = array_get($field, 'instructions', $instructions);
 
             $field['value'] = $settings->get($namespace . $slug, array_get($field['config'], 'default_value'));
         }
