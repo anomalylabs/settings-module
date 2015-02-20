@@ -30,6 +30,7 @@ class SettingsModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register('Anomaly\SettingsModule\SettingsModuleRouteProvider');
         $this->app->register('Anomaly\SettingsModule\Setting\SettingServiceProvider');
     }
 }
