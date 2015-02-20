@@ -29,5 +29,7 @@ class SettingServiceProvider extends ServiceProvider
             'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface',
             'Anomaly\SettingsModule\Setting\SettingRepository'
         );
+
+        $this->app->register('Anomaly\SettingsModule\Setting\SettingRouteProvider');
     }
 }

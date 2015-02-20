@@ -1,4 +1,4 @@
-<?php namespace Anomaly\SettingsModule\Support\Form;
+<?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Addon;
@@ -10,7 +10,7 @@ use Illuminate\Config\Repository;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Support\Form
+ * @package       Anomaly\SettingsModule\Setting\Form
  */
 class SettingFormFields
 {
@@ -45,7 +45,7 @@ class SettingFormFields
         if ($addon instanceof Addon) {
             $namespace = $addon->getNamespace() . '::';
         } else {
-            $namespace = $addon . '::';
+            $namespace = 'streams::';
         }
 
         /**

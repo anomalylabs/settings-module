@@ -1,6 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Http\Controller\Admin;
 
-use Anomaly\SettingsModule\Support\Form\SettingFormBuilder;
+use Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -15,13 +15,13 @@ class SettingsController extends AdminController
 {
 
     /**
-     * Return a form for editing streams settings.
+     * Return a form for editing settings.
      *
      * @param SettingFormBuilder $form
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
-    public function edit(SettingFormBuilder $form)
+    public function edit(SettingFormBuilder $form, $addon)
     {
-        return $form->render('streams');
+        return $form->render($addon);
     }
 }

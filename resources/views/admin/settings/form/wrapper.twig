@@ -1,0 +1,21 @@
+{% extends "streams::blank" %}
+
+{% block content %}
+
+    <div class="row">
+
+        <div class="col-lg-24">
+            {% include "anomaly.module.settings::admin/settings/form/partials/addons" %}
+        </div>
+
+    </div>
+
+    <div class="row top-buffer">
+
+        <div class="col-lg-24">
+            {{ content|raw }}
+        </div>
+
+    </div>
+
+{% endblock %}

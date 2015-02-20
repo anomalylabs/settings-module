@@ -26,8 +26,7 @@ class SettingsModule extends Module
      * @var array
      */
     protected $sections = [
-        'system',
-        'integrations'
+        'settings'
     ];
 
 }

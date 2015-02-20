@@ -1,17 +1,17 @@
-<?php namespace Anomaly\SettingsModule;
+<?php namespace Anomaly\SettingsModule\Setting;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Routing\Router;
 
 /**
- * Class SettingsModuleRouteProvider
+ * Class SettingRouteProvider
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\Setting
  */
-class SettingsModuleRouteProvider extends RouteServiceProvider
+class SettingRouteProvider extends RouteServiceProvider
 {
 
     /**
@@ -29,13 +29,8 @@ class SettingsModuleRouteProvider extends RouteServiceProvider
         );
 
         $router->any(
-            'admin/settings/system',
+            'admin/settings/{addon}',
             'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@edit'
-        );
-
-        $router->any(
-            'admin/settings/integrations',
-            'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@integrations'
         );
     }
 }

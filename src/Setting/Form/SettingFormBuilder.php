@@ -1,4 +1,4 @@
-<?php namespace Anomaly\SettingsModule\Support\Form;
+<?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
@@ -9,7 +9,7 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Support\Form
+ * @package       Anomaly\SettingsModule\Setting\Form
  */
 class SettingFormBuilder extends FormBuilder
 {
@@ -37,7 +37,7 @@ class SettingFormBuilder extends FormBuilder
      *
      * @var string
      */
-    protected $fields = 'Anomaly\SettingsModule\Support\Form\SettingFormFields@handle';
+    protected $fields = 'Anomaly\SettingsModule\Setting\Form\SettingFormFields@handle';
 
     /**
      * Create a new SettingFormBuilder instance.
@@ -46,10 +46,13 @@ class SettingFormBuilder extends FormBuilder
      */
     public function __construct(Form $form)
     {
-        $form->setOption(
-            'repository',
-            'Anomaly\SettingsModule\Support\Form\SettingFormRepository'
-        );
+        /**
+         * Set these explicitly so extending forms won't
+         * break automation with normal defaulting patterns.
+         */
+        $form->setOption('data', 'Anomaly\SettingsModule\Setting\Form\SettingFormData@handle');
+        $form->setOption('repository', 'Anomaly\SettingsModule\Setting\Form\SettingFormRepository');
+        $form->setOption('wrapper_view', 'anomaly.module.settings::admin/settings/form/wrapper');
 
         parent::__construct($form);
     }

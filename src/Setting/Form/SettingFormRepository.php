@@ -1,4 +1,4 @@
-<?php namespace Anomaly\SettingsModule\Support\Form;
+<?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Addon;
@@ -12,7 +12,7 @@ use Illuminate\Container\Container;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Support\Form
+ * @package       Anomaly\SettingsModule\Setting\Form
  */
 class SettingFormRepository implements FormRepository
 {
@@ -51,7 +51,7 @@ class SettingFormRepository implements FormRepository
      */
     public function findOrNew($id)
     {
-        if ($id == 'streams') {
+        if ($id == 'system') {
             return $id;
         }
 
@@ -72,7 +72,7 @@ class SettingFormRepository implements FormRepository
         if ($addon instanceof Addon) {
             $namespace = $addon->getNamespace() . '::';
         } else {
-            $namespace = $addon . '::';
+            $namespace = 'streams::';
         }
 
         foreach ($form->getFields() as $field) {

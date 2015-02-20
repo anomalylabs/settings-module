@@ -1,0 +1,27 @@
+<label>{{ trans('anomaly.module.settings::admin.edit_settings_for') }}:</label>
+
+<select class="select2 form-control" onchange="window.location = '{{ url_to('admin/settings') }}/'+this.value;">
+
+    <optgroup label="{{ setting_get('streams::name', trans('distribution::name')) }}">
+        <option value="system" {{ request_segment(3) == 'system' ? 'selected' }}>
+            {{ trans('anomaly.module.settings::admin.system') }}
+        </option>
+    </optgroup>
+
+    <optgroup label="{{ trans('streams::addon.extensions') }}">
+        {% for addon in extensions %}
+            <option value="{{ addon.namespace }}" {{ request_segment(3) == addon.namespace ? 'selected' }}>
+                {{ trans(addon.name) }}
+            </option>
+        {% endfor %}
+    </optgroup>
+
+    <optgroup label="{{ trans('streams::addon.themes') }}">
+        {% for addon in themes %}
+            <option value="{{ addon.namespace }}" {{ request_segment(3) == addon.namespace ? 'selected' }}>
+                {{ trans(addon.name) }}
+            </option>
+        {% endfor %}
+    </optgroup>
+
+</select>
