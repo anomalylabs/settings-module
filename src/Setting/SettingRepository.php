@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting;
 
+use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Config\Repository;
 
@@ -38,6 +39,24 @@ class SettingRepository implements SettingRepositoryInterface
     {
         $this->model  = $model;
         $this->config = $config;
+    }
+
+    /**
+     * Find a setting by it's key
+     * or return a new instance.
+     *
+     * @param $key
+     * @return SettingInterface
+     */
+    public function findOrNew($key)
+    {
+        $setting = $this->model->where('key', $key)->first();
+
+        if (!$setting) {
+            return $this->model->newInstance();
+        }
+
+        return $setting;
     }
 
     /**

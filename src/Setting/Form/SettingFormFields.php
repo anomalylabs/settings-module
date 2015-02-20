@@ -1,7 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\Streams\Platform\Addon\Addon;
 use Illuminate\Config\Repository;
 
 /**
@@ -39,20 +38,12 @@ class SettingFormFields
      */
     public function handle(SettingFormBuilder $builder, SettingRepositoryInterface $settings)
     {
-        $addon = $builder->getFormEntry();
-
-        if ($addon instanceof Addon) {
-            $namespace = $addon->getNamespace() . '::';
-        } else {
-            $namespace = 'streams::';
-        }
+        $namespace = $builder->getFormEntry() . '::';
 
         /**
          * Get the fields from the configuration system.
          */
-        if (!$fields = $this->config->get($namespace . 'settings.fields')) {
-            $fields = $this->config->get($namespace . 'settings', []);
-        }
+        $fields = $this->config->get($namespace . 'settings', []);
 
         /**
          * Finish each field.
@@ -61,7 +52,9 @@ class SettingFormFields
 
             /**
              * Force an array. This is done later
-             * too in normalization but we need it NOW.
+             * too in normalization but we need it now
+             * because we are normalizing / guessing our
+             * own parameters somewhat.
              */
             if (is_string($field)) {
                 $field = [
@@ -69,18 +62,36 @@ class SettingFormFields
                 ];
             }
 
+            $type = app($field['type']);
+
+            $modifier = $type->getModifier();
+
+            // Make sure we have a config property.
             $field['config'] = array_get($field, 'config', []);
-            $field['label']  = trans($namespace . 'setting.' . $slug . '.label');
 
-            $placeholder = $namespace . 'setting.' . $slug . '.placeholder';
+            // Default the label.
+            $field['label'] = array_get(
+                $field,
+                'label',
+                $namespace . 'setting.' . $slug . '.label'
+            );
 
-            $field['config']['placeholder'] = array_get($field['config'], 'placeholder', $placeholder);
+            // Default the placeholder.
+            $field['config']['placeholder'] = array_get(
+                $field['config'],
+                'placeholder',
+                $namespace . 'setting.' . $slug . '.placeholder'
+            );
 
-            $instructions = $namespace . 'setting.' . $slug . '.instructions';
+            // Default the instructions.
+            $field['instructions'] = array_get(
+                $field,
+                'instructions',
+                $namespace . 'setting.' . $slug . '.instructions'
+            );
 
-            $field['instructions'] = array_get($field, 'instructions', $instructions);
-
-            $field['value'] = $settings->get($namespace . $slug, array_get($field['config'], 'default_value'));
+            // Get the value defaulting to the default value.
+            $field['value'] = $modifier->restore($settings->get($namespace . $slug, array_get($field['config'], 'default_value')));
         }
 
         $builder->setFields($fields);

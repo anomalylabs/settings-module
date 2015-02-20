@@ -1,9 +1,10 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\Streams\Platform\Addon\Addon;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepository;
 use Anomaly\Streams\Platform\Ui\Form\Form;
+use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 
 /**
@@ -16,6 +17,13 @@ use Illuminate\Container\Container;
  */
 class SettingFormRepository implements FormRepository
 {
+
+    /**
+     * The config repository.
+     *
+     * @var Repository
+     */
+    protected $config;
 
     /**
      * The settings repository.
@@ -34,11 +42,13 @@ class SettingFormRepository implements FormRepository
     /**
      * Create a new SettingFormRepository instance.
      *
+     * @param Repository                 $config
      * @param Container                  $container
      * @param SettingRepositoryInterface $settings
      */
-    public function __construct(Container $container, SettingRepositoryInterface $settings)
+    public function __construct(Repository $config, Container $container, SettingRepositoryInterface $settings)
     {
+        $this->config    = $config;
         $this->settings  = $settings;
         $this->container = $container;
     }
@@ -47,15 +57,11 @@ class SettingFormRepository implements FormRepository
      * Find an entry or return a new one.
      *
      * @param $id
-     * @return mixed
+     * @return string
      */
     public function findOrNew($id)
     {
-        if ($id == 'system') {
-            return $id;
-        }
-
-        return $this->container->make($id);
+        return $id;
     }
 
     /**
@@ -66,19 +72,20 @@ class SettingFormRepository implements FormRepository
      */
     public function save(Form $form)
     {
-        $addon   = $form->getEntry();
-        $request = $form->getRequest();
-
-        if ($addon instanceof Addon) {
-            $namespace = $addon->getNamespace() . '::';
-        } else {
-            $namespace = 'streams::';
-        }
+        $request   = $form->getRequest();
+        $namespace = $form->getEntry() . '::';
 
         foreach ($form->getFields() as $field) {
+
+            if (!$field instanceof FieldType) {
+                continue;
+            }
+
+            $modifier = $field->getModifier();
+
             $this->settings->set(
                 $namespace . $field->getField(),
-                $request->get($field->getInputName())
+                $modifier->modify($request->get($field->getInputName()))
             );
         }
     }

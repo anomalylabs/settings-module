@@ -14,6 +14,15 @@ interface SettingRepositoryInterface
 {
 
     /**
+     * Find a setting by it's key
+     * or return a new instance.
+     *
+     * @param $key
+     * @return SettingInterface
+     */
+    public function findOrNew($key);
+
+    /**
      * Get a setting value.
      *
      * @param      $key

@@ -24,7 +24,7 @@ class SettingRouteProvider extends RouteServiceProvider
         $router->any(
             'admin/settings',
             function () {
-                return redirect('admin/settings/system');
+                return redirect('admin/settings/streams');
             }
         );
 
