@@ -20,10 +20,10 @@ class SettingsFieldInstaller extends FieldInstaller
      */
     protected $fields = [
         'key'   => [
-            'type' => 'text'
+            'type' => 'anomaly.field_type.text'
         ],
         'value' => [
-            'type' => 'textarea'
+            'type' => 'anomaly.field_type.textarea'
         ]
     ];
 
