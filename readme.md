@@ -1,3 +1,0 @@
-# Settings Module
-
-Settings management. 
