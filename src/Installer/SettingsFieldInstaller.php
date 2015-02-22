@@ -24,12 +24,6 @@ class SettingsFieldInstaller extends FieldInstaller
         ],
         'value' => [
             'type' => 'anomaly.field_type.textarea'
-        ],
-        'type'  => [
-            'type'   => 'anomaly.field_type.addon',
-            'config' => [
-                'type' => 'field_type'
-            ]
         ]
     ];
 

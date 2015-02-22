@@ -75,13 +75,17 @@ class SettingRepository implements SettingRepositoryInterface
             return $this->config->get($key, $default);
         }
 
-        $modifier = $setting->type->getModifier();
+        $field = str_replace('::', '::settings.', $key);
 
-        if (!$modifier instanceof FieldTypeModifier) {
-            return $setting->value;
+        $type = app(config($field . '.type', config($field)));
+
+        $modifier = $type->getModifier();
+
+        if ($modifier instanceof FieldTypeModifier) {
+            return $modifier->restore($setting->value);
         }
 
-        return $modifier->restore($setting->value);
+        return $setting->value;
     }
 
     /**
@@ -104,7 +108,13 @@ class SettingRepository implements SettingRepositoryInterface
 
         $field = str_replace('::', '::settings.', $key);
 
-        $setting->type = app(config($field . '.type', config($field)));
+        $type = app(config($field . '.type', config($field)));
+
+        $modifier = $type->getModifier();
+
+        if ($modifier instanceof FieldTypeModifier) {
+            $value = $modifier->modify($value);
+        }
 
         $setting->value = $value;
 

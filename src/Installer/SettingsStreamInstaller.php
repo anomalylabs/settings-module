@@ -33,9 +33,6 @@ class SettingsStreamInstaller extends StreamInstaller
             'required' => true,
             'unique'   => true
         ],
-        'type'  => [
-            'required' => true
-        ],
         'value' => []
     ];
 
