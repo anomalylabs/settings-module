@@ -45,11 +45,11 @@ class SettingFormFields
          * Get the fields from the config system. Sections are
          * optionally defined the same way.
          */
-        if (!$fields = $this->config->get($namespace . 'settings.fields')) {
+        if (!$fields = $this->config->get($namespace . 'settings/settings')) {
             $fields = $fields = $this->config->get($namespace . 'settings', []);
         }
 
-        if ($sections = $this->config->get($namespace . 'settings.sections')) {
+        if ($sections = $this->config->get($namespace . 'settings/sections')) {
             $builder->setFormOption('sections', $sections);
         }
 
