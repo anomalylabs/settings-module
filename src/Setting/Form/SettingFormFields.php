@@ -72,8 +72,6 @@ class SettingFormFields
 
             $type = app($field['type']);
 
-            $modifier = $type->getModifier();
-
             // Make sure we have a config property.
             $field['config'] = array_get($field, 'config', []);
 
@@ -100,11 +98,6 @@ class SettingFormFields
 
             // Get the value defaulting to the default value.
             $field['value'] = $settings->get($namespace . $slug, array_get($field['config'], 'default_value'));
-
-            // Restore the value with the modifier.
-            if ($modifier instanceof FieldTypeModifier) {
-                $field['value'] = $modifier->restore($field['value']);
-            }
         }
 
         $builder->setFields($fields);
