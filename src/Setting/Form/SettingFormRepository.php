@@ -2,20 +2,20 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepository;
+use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 
 /**
- * Class SettingFormRepository
+ * Class SettingFormRepositoryInterface
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\Setting\Form
  */
-class SettingFormRepository implements FormRepository
+class SettingFormRepository implements FormRepositoryInterface
 {
 
     /**
@@ -40,7 +40,7 @@ class SettingFormRepository implements FormRepository
     protected $container;
 
     /**
-     * Create a new SettingFormRepository instance.
+     * Create a new SettingFormRepositoryInterface instance.
      *
      * @param Repository                 $config
      * @param Container                  $container
