@@ -1,7 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
 use Illuminate\Config\Repository;
 
 /**
