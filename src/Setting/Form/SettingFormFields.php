@@ -69,8 +69,6 @@ class SettingFormFields
                 ];
             }
 
-            $type = app($field['type']);
-
             // Make sure we have a config property.
             $field['config'] = array_get($field, 'config', []);
 
