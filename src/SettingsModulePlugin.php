@@ -4,14 +4,14 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 
 /**
- * Class SettingModulePlugin
+ * Class SettingsModulePlugin
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule
  */
-class SettingModulePlugin extends Plugin
+class SettingsModulePlugin extends Plugin
 {
 
     /**
@@ -22,7 +22,7 @@ class SettingModulePlugin extends Plugin
     protected $settings;
 
     /**
-     * Create a new SettingModulePlugin instance.
+     * Create a new SettingsModulePlugin instance.
      *
      * @param SettingRepositoryInterface $settings
      */
