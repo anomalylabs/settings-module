@@ -71,13 +71,12 @@ class SettingFormRepository implements FormRepositoryInterface
      */
     public function save(Form $form)
     {
-        $request   = $form->getRequest();
         $namespace = $form->getEntry() . '::';
 
         foreach ($form->getFields() as $field) {
             $this->settings->set(
                 $namespace . $field->getField(),
-                $request->get($field->getInputName())
+                $form->getValue($field->getInputName())
             );
         }
     }
