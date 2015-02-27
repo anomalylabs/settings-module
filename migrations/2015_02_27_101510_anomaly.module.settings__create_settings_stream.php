@@ -1,16 +1,15 @@
-<?php namespace Anomaly\SettingsModule\Installer;
+<?php
 
-use Anomaly\Streams\Platform\Stream\StreamInstaller;
+use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class SettingsStreamInstaller
+ * Class AnomalyModuleSettingsCreateSettingsStream
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\Settings\Module\Installer
  */
-class SettingsStreamInstaller extends StreamInstaller
+class AnomalyModuleSettingsCreateSettingsStream extends Migration
 {
 
     /**
