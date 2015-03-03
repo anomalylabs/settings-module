@@ -2,6 +2,7 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
 use Illuminate\Config\Repository;
 
@@ -75,9 +76,15 @@ class SettingRepository implements SettingRepositoryInterface
             return $this->config->get($key, $default);
         }
 
-        $field = str_replace('::', '::settings.', $key);
+        if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
+            $field = config(str_replace('::', '::settings.', $key));
+        }
 
-        $type = app(config($field . '.type', config($field)));
+        $type = app(array_get($field, 'type'));
+
+        if (!$type instanceof FieldType) {
+            return null;
+        }
 
         $modifier = $type->getModifier();
 
