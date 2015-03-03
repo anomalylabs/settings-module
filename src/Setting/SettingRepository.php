@@ -80,6 +80,12 @@ class SettingRepository implements SettingRepositoryInterface
             $field = config(str_replace('::', '::settings.', $key));
         }
 
+        if (is_string($field)) {
+            $field = [
+                'type' => $field
+            ];
+        }
+
         $type = app(array_get($field, 'type'));
 
         if (!$type instanceof FieldType) {
@@ -115,6 +121,12 @@ class SettingRepository implements SettingRepositoryInterface
 
         if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
             $field = config(str_replace('::', '::settings.', $key));
+        }
+
+        if (is_string($field)) {
+            $field = [
+                'type' => $field
+            ];
         }
 
         $type = app(array_get($field, 'type'));
