@@ -113,9 +113,11 @@ class SettingRepository implements SettingRepositoryInterface
             $setting->key = $key;
         }
 
-        $field = str_replace('::', '::settings.', $key);
+        if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
+            $field = config(str_replace('::', '::settings.', $key));
+        }
 
-        $type = app(config($field . '.type', config($field)));
+        $type = app(array_get($field, 'type'));
 
         $modifier = $type->getModifier();
 
