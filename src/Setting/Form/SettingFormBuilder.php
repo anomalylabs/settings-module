@@ -46,13 +46,8 @@ class SettingFormBuilder extends FormBuilder
      */
     public function __construct(Form $form)
     {
-        /**
-         * Set these explicitly so extending forms won't
-         * break automation with normal defaulting patterns.
-         */
         $form->setOption('data', 'Anomaly\SettingsModule\Setting\Form\SettingFormData@handle');
         $form->setOption('repository', 'Anomaly\SettingsModule\Setting\Form\SettingFormRepository');
-        $form->setOption('wrapper_view', 'anomaly.module.settings::admin/settings/form/wrapper');
 
         parent::__construct($form);
     }

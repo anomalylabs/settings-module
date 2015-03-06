@@ -20,8 +20,8 @@ class SettingsController extends AdminController
      * @param SettingFormBuilder $form
      * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
-    public function edit(SettingFormBuilder $form, $addon)
+    public function edit(SettingFormBuilder $form)
     {
-        return $form->render($addon);
+        return $form->render('streams');
     }
 }

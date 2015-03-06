@@ -23,13 +23,6 @@ class SettingRouteProvider extends RouteServiceProvider
     {
         $router->any(
             'admin/settings',
-            function () {
-                return redirect('admin/settings/streams');
-            }
-        );
-
-        $router->any(
-            'admin/settings/{addon}',
             'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@edit'
         );
     }
