@@ -19,7 +19,7 @@ class SettingsModuleEventProvider extends EventServiceProvider
      * @var array
      */
     protected $listen = [
-        'Anomaly\Streams\Platform\Application\Event\ApplicationHasBooted' => [
+        'Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded' => [
             'Anomaly\PreferencesModule\Listener\AddPreferencesPlugin',
             'Anomaly\SettingsModule\Listener\ConfigureStreams'
         ]
