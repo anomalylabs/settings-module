@@ -1,8 +1,5 @@
 <?php namespace Anomaly\SettingsModule;
 
-use Anomaly\SettingsModule\Command\AddSettingsPlugin;
-use Anomaly\SettingsModule\Command\ConfigureStreams;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -16,19 +13,6 @@ use Illuminate\Support\ServiceProvider;
 class SettingsModuleServiceProvider extends ServiceProvider
 {
 
-    use DispatchesCommands;
-
-    /**
-     * Boot the service provider.
-     */
-    public function boot()
-    {
-        if (env('INSTALLED')) {
-            $this->dispatch(new AddSettingsPlugin());
-            $this->dispatch(new ConfigureStreams());
-        }
-    }
-
     /**
      * Register the service provider.
      *
@@ -36,6 +20,7 @@ class SettingsModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register('Anomaly\SettingsModule\SettingsModuleEventProvider');
         $this->app->register('Anomaly\SettingsModule\Setting\SettingServiceProvider');
     }
 }
