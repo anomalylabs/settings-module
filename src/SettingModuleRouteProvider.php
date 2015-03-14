@@ -1,21 +1,21 @@
-<?php namespace Anomaly\SettingsModule\Setting;
+<?php namespace Anomaly\SettingsModule;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Routing\Router;
 
 /**
- * Class SettingRouteProvider
+ * Class SettingModuleRouteProvider
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Setting
+ * @package       Anomaly\SettingsModule
  */
-class SettingRouteProvider extends RouteServiceProvider
+class SettingModuleRouteProvider extends RouteServiceProvider
 {
 
     /**
-     * Map the system setting routes.
+     * Map the routes.
      *
      * @param Router $router
      */

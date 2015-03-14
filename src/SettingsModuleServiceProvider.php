@@ -20,10 +20,21 @@ class SettingsModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Setting services.
+        $this->app->bind(
+            'Anomaly\SettingsModule\Setting\SettingModel',
+            'Anomaly\SettingsModule\Setting\SettingModel'
+        );
+
+        $this->app->singleton(
+            'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface',
+            'Anomaly\SettingsModule\Setting\SettingRepository'
+        );
+
         if (env('INSTALLED')) {
             $this->app->register('Anomaly\SettingsModule\SettingsModuleEventProvider');
         }
 
-        $this->app->register('Anomaly\SettingsModule\Setting\SettingServiceProvider');
+        $this->app->register('Anomaly\SettingsModule\SettingModuleRouteProvider');
     }
 }
