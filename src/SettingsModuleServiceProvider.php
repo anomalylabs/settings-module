@@ -1,6 +1,6 @@
 <?php namespace Anomaly\SettingsModule;
 
-use Illuminate\Support\ServiceProvider;
+use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 
 /**
  * Class SettingsModuleServiceProvider
@@ -10,31 +10,46 @@ use Illuminate\Support\ServiceProvider;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule
  */
-class SettingsModuleServiceProvider extends ServiceProvider
+class SettingsModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
-     * Register the service provider.
+     * The class bindings.
      *
-     * @return void
+     * @var array
      */
-    public function register()
-    {
-        // Setting services.
-        $this->app->bind(
-            'Anomaly\SettingsModule\Setting\SettingModel',
-            'Anomaly\SettingsModule\Setting\SettingModel'
-        );
+    protected $bindings = [
+        'Anomaly\SettingsModule\Setting\SettingModel' => 'Anomaly\SettingsModule\Setting\SettingModel'
+    ];
 
-        $this->app->singleton(
-            'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface',
-            'Anomaly\SettingsModule\Setting\SettingRepository'
-        );
+    /**
+     * The singleton bindings.
+     *
+     * @var array
+     */
+    protected $singletons = [
+        'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface' => 'Anomaly\SettingsModule\Setting\SettingRepository'
+    ];
 
-        if (env('INSTALLED')) {
-            $this->app->register('Anomaly\SettingsModule\SettingsModuleEventProvider');
-        }
+    /**
+     * The addon listeners.
+     *
+     * @var array
+     */
+    protected $listeners = [
+        'Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded' => [
+            'Anomaly\SettingsModule\Listener\AddSettingsPlugin',
+            'Anomaly\SettingsModule\Listener\ConfigureStreams'
+        ]
+    ];
 
-        $this->app->register('Anomaly\SettingsModule\SettingModuleRouteProvider');
-    }
+    /**
+     * The addon routes.
+     *
+     * @var array
+     */
+    protected $routes = [
+        'admin/settings' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@edit'
+    ];
+
 }
