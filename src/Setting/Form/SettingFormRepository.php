@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\Form;
 use Illuminate\Config\Repository;
@@ -73,6 +74,7 @@ class SettingFormRepository implements FormRepositoryInterface
     {
         $namespace = $form->getEntry() . '::';
 
+        /* @var FieldType $field */
         foreach ($form->getFields() as $field) {
             $this->settings->set(
                 $namespace . $field->getField(),
