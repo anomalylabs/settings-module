@@ -38,7 +38,7 @@ class SettingFormFields
      */
     public function handle(SettingFormBuilder $builder, SettingRepositoryInterface $settings)
     {
-        $namespace = $builder->getFormEntry() . '::';
+        $namespace = $builder->getEntry() . '::';
 
         /**
          * Get the fields from the config system. Sections are
