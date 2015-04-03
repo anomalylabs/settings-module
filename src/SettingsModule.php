@@ -14,11 +14,11 @@ class SettingsModule extends Module
 {
 
     /**
-     * The module navigation.
+     * The module icon.
      *
      * @var string
      */
-    protected $navigation = 'streams::navigation.system';
+    protected $icon = 'cog';
 
     /**
      * The module sections.
