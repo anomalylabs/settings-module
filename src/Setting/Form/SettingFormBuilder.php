@@ -1,6 +1,5 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
-use Anomaly\Streams\Platform\Ui\Form\Form;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
 /**
@@ -13,6 +12,13 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
  */
 class SettingFormBuilder extends FormBuilder
 {
+
+    /**
+     * The form fields handler.
+     *
+     * @var string
+     */
+    protected $fields = 'Anomaly\SettingsModule\Setting\Form\SettingFormFields@handle';
 
     /**
      * The form actions handler.
@@ -33,26 +39,10 @@ class SettingFormBuilder extends FormBuilder
     ];
 
     /**
-     * The form fields handler.
-     *
-     * @var string
+     * Fire at the beginning of the build process.
      */
-    protected $fields = 'Anomaly\SettingsModule\Setting\Form\SettingFormFields@handle';
-
-    /**
-     * Create a new SettingFormBuilder instance.
-     *
-     * @param Form $form
-     */
-    public function __construct(Form $form)
+    public function onReady()
     {
-        $form->on(
-            'building',
-            function (Form $form) {
-                $form->setOption('permission', $this->entry . '::settings');
-            }
-        );
-
-        parent::__construct($form);
+        $this->form->setOption('permission', $this->entry . '::settings');
     }
 }
