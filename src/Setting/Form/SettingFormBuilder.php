@@ -43,6 +43,8 @@ class SettingFormBuilder extends FormBuilder
      */
     public function onReady()
     {
-        $this->form->setOption('permission', $this->entry . '::settings');
+        $this->setOption('permission', $this->entry . '::settings');
+        $this->setOption('permission', $this->entry . '::settings');
+        $this->setOption('breadcrumb', 'anomaly.module.settings::breadcrumb.settings', '#');
     }
 }
