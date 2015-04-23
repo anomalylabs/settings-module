@@ -2,6 +2,8 @@
 
 use Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Illuminate\Config\Repository;
+use Illuminate\Routing\Redirector;
 
 /**
  * Class SettingsController
@@ -15,13 +17,46 @@ class SettingsController extends AdminController
 {
 
     /**
-     * Return a form for editing settings.
+     * Redirect to system settings.
      *
-     * @param SettingFormBuilder $form
-     * @return \Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     * @param Redirector $redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function edit(SettingFormBuilder $form)
+    public function index(Redirector $redirector)
     {
-        return $form->render('streams');
+        return $redirector->to('admin/settings/system');
+    }
+
+    /**
+     * Return the system settings form.
+     *
+     * @param SettingFormBuilder $settings
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function system(SettingFormBuilder $settings)
+    {
+        return $settings->setOption('breadcrumb', null)->render('streams');
+    }
+
+    /**
+     * Return the admin settings form.
+     *
+     * @param SettingFormBuilder $settings
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function admin(SettingFormBuilder $settings, Repository $config)
+    {
+        return $settings->setOption('breadcrumb', null)->render($config->get('streams.admin_theme'));
+    }
+
+    /**
+     * Return the theme settings form.
+     *
+     * @param SettingFormBuilder $settings
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function theme(SettingFormBuilder $settings, Repository $config)
+    {
+        return $settings->setOption('breadcrumb', null)->render($config->get('streams.standard_theme'));
     }
 }

@@ -26,7 +26,9 @@ class SettingsModule extends Module
      * @var array
      */
     protected $sections = [
-        'settings'
+        'settings',
+        'admin',
+        'theme'
     ];
 
 }

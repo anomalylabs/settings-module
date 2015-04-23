@@ -39,12 +39,20 @@ class SettingFormBuilder extends FormBuilder
     ];
 
     /**
+     * The form options.
+     *
+     * @var array
+     */
+    protected $options = [
+        'breadcrumb' => 'anomaly.module.settings::breadcrumb.settings'
+    ];
+
+    /**
      * Fire at the beginning of the build process.
      */
     public function onReady()
     {
         $this->setOption('permission', $this->entry . '::settings');
         $this->setOption('permission', $this->entry . '::settings');
-        $this->setOption('breadcrumb', 'anomaly.module.settings::breadcrumb.settings', '#');
     }
 }

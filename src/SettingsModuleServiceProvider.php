@@ -28,7 +28,8 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        'Anomaly\SettingsModule\Setting\SettingModel' => 'Anomaly\SettingsModule\Setting\SettingModel'
+        'Anomaly\SettingsModule\Setting\SettingModel'                        => 'Anomaly\SettingsModule\Setting\SettingModel',
+        'Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel' => 'Anomaly\SettingsModule\Setting\SettingModel'
     ];
 
     /**
@@ -57,7 +58,10 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'admin/settings' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@edit'
+        'admin/settings'        => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@index',
+        'admin/settings/system' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@system',
+        'admin/settings/admin'  => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@admin',
+        'admin/settings/theme'  => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@theme'
     ];
 
 }
