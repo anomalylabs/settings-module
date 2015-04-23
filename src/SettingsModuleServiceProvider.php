@@ -14,12 +14,15 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
-     * The addon plugins.
+     * The addon routes.
      *
      * @var array
      */
-    protected $plugins = [
-        'Anomaly\SettingsModule\SettingsModulePlugin'
+    protected $routes = [
+        'admin/settings'        => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@index',
+        'admin/settings/system' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@system',
+        'admin/settings/admin'  => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@admin',
+        'admin/settings/theme'  => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@theme'
     ];
 
     /**
@@ -53,15 +56,12 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
-     * The addon routes.
+     * The addon plugins.
      *
      * @var array
      */
-    protected $routes = [
-        'admin/settings'        => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@index',
-        'admin/settings/system' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@system',
-        'admin/settings/admin'  => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@admin',
-        'admin/settings/theme'  => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@theme'
+    protected $plugins = [
+        'Anomaly\SettingsModule\SettingsModulePlugin'
     ];
 
 }

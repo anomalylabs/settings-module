@@ -48,11 +48,11 @@ class SettingFormBuilder extends FormBuilder
     ];
 
     /**
-     * Fire at the beginning of the build process.
+     * Fire at the very beginning
+     * of the build process.
      */
     public function onReady()
     {
-        $this->setOption('permission', $this->entry . '::settings');
         $this->setOption('permission', $this->entry . '::settings');
     }
 }
