@@ -2,6 +2,8 @@
     "name": "anomaly/settings-module",
     "type": "streams-addon",
     "description": "Settings management.",
+    "version": "1.0.0",
+    "license": "MIT",
     "keywords": [
         "streams-addon",
         "settings",
@@ -9,7 +11,6 @@
         "laravel"
     ],
     "homepage": "http://anomaly.is/",
-    "license": "MIT",
     "authors": [
         {
             "name": "AnomalyLabs, Inc.",
