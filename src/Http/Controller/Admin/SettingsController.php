@@ -1,8 +1,10 @@
 <?php namespace Anomaly\SettingsModule\Http\Controller\Admin;
 
 use Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
+use Anomaly\Streams\Platform\Addon\Theme\Theme;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Illuminate\Config\Repository;
+use Illuminate\Container\Container;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -42,21 +44,31 @@ class SettingsController extends AdminController
      * Return the admin settings form.
      *
      * @param SettingFormBuilder $settings
+     * @param Container          $container
+     * @param Repository         $config
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function admin(SettingFormBuilder $settings, Repository $config)
+    public function admin(SettingFormBuilder $settings, Container $container, Repository $config)
     {
-        return $settings->setOption('breadcrumb', null)->render($config->get('streams.admin_theme'));
+        /* @var Theme $theme */
+        $theme = $container->make($config->get('streams.admin_theme'));
+
+        return $settings->setOption('breadcrumb', null)->render($theme->getNamespace());
     }
 
     /**
      * Return the theme settings form.
      *
      * @param SettingFormBuilder $settings
+     * @param Container          $container
+     * @param Repository         $config
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function theme(SettingFormBuilder $settings, Repository $config)
+    public function theme(SettingFormBuilder $settings, Container $container, Repository $config)
     {
-        return $settings->setOption('breadcrumb', null)->render($config->get('streams.standard_theme'));
+        /* @var Theme $theme */
+        $theme = $container->make($config->get('streams.standard_theme'));
+
+        return $settings->setOption('breadcrumb', null)->render($theme->getNamespace());
     }
 }
