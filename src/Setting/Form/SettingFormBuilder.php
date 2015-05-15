@@ -44,7 +44,7 @@ class SettingFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'breadcrumb' => 'anomaly.module.settings::breadcrumb.settings'
+        'breadcrumb' => false
     ];
 
     /**
