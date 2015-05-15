@@ -49,7 +49,7 @@ class SettingFormFields
         }
 
         if ($sections = $this->config->get($namespace . 'settings/sections')) {
-            $builder->setFormOption('sections', $sections);
+            $builder->setSections($sections);
         }
 
         /**
