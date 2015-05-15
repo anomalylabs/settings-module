@@ -50,7 +50,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $listeners = [
-        'Anomaly\Streams\Platform\Application\Event\ApplicationHasLoaded' => [
+        'Anomaly\Streams\Platform\Addon\Event\AddonsRegistered' => [
             'Anomaly\SettingsModule\Listener\ConfigureStreams'
         ]
     ];

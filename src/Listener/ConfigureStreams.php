@@ -47,17 +47,27 @@ class ConfigureStreams
     {
         $this->config->set(
             'streams.force_https',
-            $this->settings->get('force_https', $this->config->get('streams.force_https'))
+            $this->settings->get('streams::force_https', $this->config->get('streams.force_https'))
         );
 
         $this->config->set(
             'streams.site_enabled',
-            $this->settings->get('site_enabled', $this->config->get('streams.site_enabled'))
+            $this->settings->get('streams::site_enabled', $this->config->get('streams.site_enabled'))
         );
 
         $this->config->set(
             'streams.ip_whitelist',
-            $this->settings->get('ip_whitelist', $this->config->get('streams.ip_whitelist'))
+            $this->settings->get('streams::ip_whitelist', $this->config->get('streams.ip_whitelist'))
+        );
+
+        $this->config->set(
+            'streams.standard_theme',
+            $this->settings->get('streams::standard_theme', $this->config->get('streams.standard_theme'))
+        );
+
+        $this->config->set(
+            'streams.admin_theme',
+            $this->settings->get('streams::admin_theme', $this->config->get('streams.admin_theme'))
         );
     }
 }
