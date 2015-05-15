@@ -51,7 +51,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      */
     protected $listeners = [
         'Anomaly\Streams\Platform\Addon\Event\AddonsRegistered' => [
-            'Anomaly\SettingsModule\Listener\ConfigureStreams'
+            'Anomaly\SettingsModule\Listener\ConfigureStreams' => 10
         ]
     ];
 
