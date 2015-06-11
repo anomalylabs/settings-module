@@ -51,7 +51,7 @@ class SettingsController extends AdminController
     public function admin(SettingFormBuilder $settings, Container $container, Repository $config)
     {
         /* @var Theme $theme */
-        $theme = $container->make($config->get('streams.admin_theme'));
+        $theme = $container->make($config->get('streams::themes.active.admin'));
 
         return $settings->setOption('breadcrumb', null)->render($theme->getNamespace());
     }
@@ -67,7 +67,7 @@ class SettingsController extends AdminController
     public function theme(SettingFormBuilder $settings, Container $container, Repository $config)
     {
         /* @var Theme $theme */
-        $theme = $container->make($config->get('streams.standard_theme'));
+        $theme = $container->make($config->get('streams::themes.active.standard'));
 
         return $settings->setOption('breadcrumb', null)->render($theme->getNamespace());
     }

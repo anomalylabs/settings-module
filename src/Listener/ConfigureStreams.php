@@ -61,13 +61,13 @@ class ConfigureStreams
         );
 
         $this->config->set(
-            'streams.standard_theme',
-            $this->settings->get('streams::standard_theme', $this->config->get('streams.standard_theme'))
+            'streams::themes.active.standard',
+            $this->settings->get('streams::standard_theme', $this->config->get('streams::themes.active.standard'))
         );
 
         $this->config->set(
-            'streams.admin_theme',
-            $this->settings->get('streams::admin_theme', $this->config->get('streams.admin_theme'))
+            'streams::themes.active.admin',
+            $this->settings->get('streams::admin_theme', $this->config->get('streams::themes.active.admin'))
         );
     }
 }
