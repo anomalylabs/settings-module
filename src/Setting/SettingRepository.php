@@ -92,12 +92,6 @@ class SettingRepository implements SettingRepositoryInterface
             return null;
         }
 
-        $modifier = $type->getModifier();
-
-        if ($modifier instanceof FieldTypeModifier) {
-            return $modifier->restore($setting->value);
-        }
-
         return $setting->value;
     }
 
