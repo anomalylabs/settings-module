@@ -4,8 +4,6 @@ return [
     'name'        => 'Configuración',
     'description' => 'Administración de configuraciones.',
     'section'     => [
-        'settings' => 'Sistema',
-        'admin'    => 'Administración',
-        'theme'    => 'Plantilla'
+        'settings' => 'Sistema'
     ]
 ];

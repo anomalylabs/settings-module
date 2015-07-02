@@ -18,7 +18,7 @@ class SettingsModule extends Module
      *
      * @var string
      */
-    protected $icon = 'cog';
+    protected $icon = 'cogs';
 
     /**
      * The module sections.
@@ -26,9 +26,7 @@ class SettingsModule extends Module
      * @var array
      */
     protected $sections = [
-        'settings',
-        'admin',
-        'theme'
+        'settings'
     ];
 
 }

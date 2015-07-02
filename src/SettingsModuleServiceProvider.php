@@ -19,10 +19,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'admin/settings'        => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@index',
-        'admin/settings/system' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@system',
-        'admin/settings/admin'  => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@admin',
-        'admin/settings/theme'  => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@theme'
+        'admin/settings' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@index'
     ];
 
     /**
