@@ -59,15 +59,5 @@ class ConfigureStreams
             'streams.ip_whitelist',
             $this->settings->get('streams::ip_whitelist', $this->config->get('streams.ip_whitelist'))
         );
-
-        $this->config->set(
-            'streams::themes.active.standard',
-            $this->settings->get('streams::standard_theme', $this->config->get('streams::themes.active.standard'))
-        );
-
-        $this->config->set(
-            'streams::themes.active.admin',
-            $this->settings->get('streams::admin_theme', $this->config->get('streams::themes.active.admin'))
-        );
     }
 }
