@@ -59,5 +59,10 @@ class ConfigureStreams
             'streams.ip_whitelist',
             $this->settings->get('streams::ip_whitelist', $this->config->get('streams.ip_whitelist'))
         );
+
+        $this->config->set(
+            'streams::locales.enabled',
+            $this->settings->get('streams::enabled_locales', $this->config->get('streams::locales.enabled'))
+        );
     }
 }
