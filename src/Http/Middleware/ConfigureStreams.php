@@ -3,7 +3,7 @@
 use Anomaly\SettingsModule\Http\Middleware\Command\SetAccess;
 use Anomaly\SettingsModule\Http\Middleware\Command\SetDatetime;
 use Anomaly\SettingsModule\Http\Middleware\Command\SetLocales;
-use Anomaly\SettingsModule\Http\Middleware\Command\SetTheme;
+use Anomaly\SettingsModule\Http\Middleware\Command\SetThemes;
 use Closure;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Http\Request;
@@ -31,7 +31,7 @@ class ConfigureStreams
      */
     public function handle(Request $request, Closure $next)
     {
-        $this->dispatch(new SetTheme());
+        $this->dispatch(new SetThemes());
         $this->dispatch(new SetAccess());
         $this->dispatch(new SetLocales());
         $this->dispatch(new SetDatetime());

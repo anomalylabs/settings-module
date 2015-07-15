@@ -7,14 +7,14 @@ use Illuminate\Config\Repository;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
- * Class SetTheme
+ * Class SetThemes
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\Http\Middleware\Command
  */
-class SetTheme implements SelfHandling
+class SetThemes implements SelfHandling
 {
 
     /**
