@@ -28,8 +28,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        'Anomaly\SettingsModule\Setting\SettingModel'                        => 'Anomaly\SettingsModule\Setting\SettingModel',
-        'Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel' => 'Anomaly\SettingsModule\Setting\SettingModel'
+        'Anomaly\SettingsModule\Setting\SettingModel' => 'Anomaly\SettingsModule\Setting\SettingModel'
     ];
 
     /**
@@ -42,23 +41,21 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
-     * The addon listeners.
-     *
-     * @var array
-     */
-    protected $listeners = [
-        'Anomaly\Streams\Platform\Addon\Event\AddonsRegistered' => [
-            'Anomaly\SettingsModule\Listener\ConfigureStreams' => 10
-        ]
-    ];
-
-    /**
      * The addon plugins.
      *
      * @var array
      */
     protected $plugins = [
         'Anomaly\SettingsModule\SettingsModulePlugin'
+    ];
+
+    /**
+     * The addon middleware.
+     *
+     * @var array
+     */
+    protected $middleware = [
+        'Anomaly\SettingsModule\Http\Middleware\ConfigureStreams'
     ];
 
 }
