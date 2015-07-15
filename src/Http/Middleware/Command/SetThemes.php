@@ -31,6 +31,8 @@ class SetThemes implements SelfHandling
          */
         if ($theme = $themes->get($settings->get('streams::admin_theme'))) {
             $theme->setActive(true);
+        } elseif ($theme = $themes->admin()->first()) {
+            $theme->setActive(true);
         }
 
         /**
@@ -39,6 +41,8 @@ class SetThemes implements SelfHandling
          * @var Theme $theme
          */
         if ($theme = $themes->get($settings->get('streams::public_theme'))) {
+            $theme->setActive(true);
+        } elseif ($theme = $themes->standard()->first()) {
             $theme->setActive(true);
         }
     }
