@@ -3,7 +3,6 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Theme\Theme;
 use Anomaly\Streams\Platform\Addon\Theme\ThemeCollection;
-use Illuminate\Config\Repository;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
@@ -20,11 +19,10 @@ class SetThemes implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Repository                 $config
      * @param ThemeCollection            $themes
      * @param SettingRepositoryInterface $settings
      */
-    function handle(Repository $config, ThemeCollection $themes, SettingRepositoryInterface $settings)
+    function handle(ThemeCollection $themes, SettingRepositoryInterface $settings)
     {
         /**
          * Set the active admin theme.

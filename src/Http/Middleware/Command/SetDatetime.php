@@ -23,6 +23,11 @@ class SetDatetime implements SelfHandling
      */
     function handle(Repository $config, SettingRepositoryInterface $settings)
     {
+        // Set the timezone.
+        if ($timezone = $settings->get('streams::default_timezone')) {
+            $config->set('app.timezone', $timezone);
+        }
+
         // Set the date format.
         if ($format = $settings->get('streams::date_format')) {
             $config->set('streams::datetime.date_format', $format);
