@@ -4,6 +4,7 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
+use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Illuminate\Config\Repository;
 
 /**
@@ -53,6 +54,23 @@ class SettingRepository implements SettingRepositoryInterface
     }
 
     /**
+     * Return all setting values in a namespace.
+     *
+     * @param $namespace
+     * @return EntryCollection
+     */
+    public function all($namespace)
+    {
+        $settings = $this->model->where('key', 'like', $namespace . '::%')->get();
+
+        foreach ($settings as $setting) {
+            $setting->value = $this->restore($setting->key, $setting->value);
+        }
+
+        return $settings;
+    }
+
+    /**
      * Get a setting value.
      *
      * @param      $key
@@ -69,41 +87,11 @@ class SettingRepository implements SettingRepositoryInterface
 
         if (!$setting) {
             return $default;
+        } else {
+            $value = $setting->value;
         }
 
-        /**
-         * Next try and find the field definition
-         * from the settings.php configuration file.
-         */
-        if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
-            $field = config(str_replace('::', '::settings.', $key));
-        }
-
-        if (is_string($field)) {
-            $field = [
-                'type' => $field
-            ];
-        }
-
-        /**
-         * Try and get the field type that
-         * the setting uses. If no exists then
-         * just return the value as is.
-         */
-        $type = $this->fieldTypes->get(array_get($field, 'type'));
-
-        if (!$type instanceof FieldType) {
-            return $setting->value;
-        }
-
-        /**
-         * If the type CAN be determined then
-         * get the modifier and restore the value
-         * before returning it.
-         */
-        $modifier = $type->getModifier();
-
-        return $modifier->restore($setting->value);
+        return $this->restore($key, $value);
     }
 
     /**
@@ -169,5 +157,49 @@ class SettingRepository implements SettingRepositoryInterface
         $setting->save();
 
         return $this;
+    }
+
+    /**
+     * Run restore modification on a setting's value.
+     *
+     * @param $key
+     * @param $value
+     * @return mixed
+     */
+    protected function restore($key, $value)
+    {
+        /**
+         * Next try and find the field definition
+         * from the settings.php configuration file.
+         */
+        if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
+            $field = config(str_replace('::', '::settings.', $key));
+        }
+
+        if (is_string($field)) {
+            $field = [
+                'type' => $field
+            ];
+        }
+
+        /**
+         * Try and get the field type that
+         * the setting uses. If no exists then
+         * just return the value as is.
+         */
+        $type = $this->fieldTypes->get(array_get($field, 'type'));
+
+        if (!$type instanceof FieldType) {
+            return $value;
+        }
+
+        /**
+         * If the type CAN be determined then
+         * get the modifier and restore the value
+         * before returning it.
+         */
+        $modifier = $type->getModifier();
+
+        return $modifier->restore($value);
     }
 }
