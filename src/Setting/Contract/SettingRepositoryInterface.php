@@ -1,7 +1,5 @@
 <?php namespace Anomaly\SettingsModule\Setting\Contract;
 
-use Anomaly\SettingsModule\Setting\SettingCollection;
-
 /**
  * Interface SettingRepositoryInterface
  *
@@ -12,15 +10,6 @@ use Anomaly\SettingsModule\Setting\SettingCollection;
  */
 interface SettingRepositoryInterface
 {
-
-    /**
-     * Find a setting by it's key
-     * or return a new instance.
-     *
-     * @param $key
-     * @return SettingInterface
-     */
-    public function findOrNew($key);
 
     /**
      * Get a setting value.
@@ -39,12 +28,4 @@ interface SettingRepositoryInterface
      * @return $this
      */
     public function set($key, $value);
-
-    /**
-     * Get all settings for a namespace.
-     *
-     * @param $getNamespace
-     * @return SettingCollection
-     */
-    public function getAll($namespace);
 }

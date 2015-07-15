@@ -1,8 +1,8 @@
 <?php namespace Anomaly\SettingsModule\Setting;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
 use Illuminate\Config\Repository;
 
@@ -32,33 +32,24 @@ class SettingRepository implements SettingRepositoryInterface
     protected $config;
 
     /**
-     * Create a new SettingRepositoryInterface instance.
+     * The field type collection.
      *
-     * @param SettingModel $model
-     * @param Repository   $config
+     * @var FieldTypeCollection
      */
-    public function __construct(SettingModel $model, Repository $config)
-    {
-        $this->model  = $model;
-        $this->config = $config;
-    }
+    protected $fieldTypes;
 
     /**
-     * Find a setting by it's key
-     * or return a new instance.
+     * Create a new SettingRepositoryInterface instance.
      *
-     * @param $key
-     * @return SettingInterface
+     * @param SettingModel        $model
+     * @param Repository          $config
+     * @param FieldTypeCollection $fieldTypes
      */
-    public function findOrNew($key)
+    public function __construct(SettingModel $model, Repository $config, FieldTypeCollection $fieldTypes)
     {
-        $setting = $this->model->where('key', $key)->first();
-
-        if (!$setting) {
-            return $this->model->newInstance();
-        }
-
-        return $setting;
+        $this->model      = $model;
+        $this->config     = $config;
+        $this->fieldTypes = $fieldTypes;
     }
 
     /**
@@ -70,12 +61,20 @@ class SettingRepository implements SettingRepositoryInterface
      */
     public function get($key, $default = null)
     {
+        /**
+         * First get the setting value from
+         * the database or return the default.
+         */
         $setting = $this->model->where('key', $key)->first();
 
         if (!$setting) {
-            return $this->config->get($key, $default);
+            return $default;
         }
 
+        /**
+         * Next try and find the field definition
+         * from the settings.php configuration file.
+         */
         if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
             $field = config(str_replace('::', '::settings.', $key));
         }
@@ -86,14 +85,22 @@ class SettingRepository implements SettingRepositoryInterface
             ];
         }
 
-        if ($type = array_get($field, 'type')) {
-            $type = app($type);
-        }
+        /**
+         * Try and get the field type that
+         * the setting uses. If no exists then
+         * just return the value as is.
+         */
+        $type = $this->fieldTypes->get(array_get($field, 'type'));
 
         if (!$type instanceof FieldType) {
             return $setting->value;
         }
 
+        /**
+         * If the type CAN be determined then
+         * get the modifier and restore the value
+         * before returning it.
+         */
         $modifier = $type->getModifier();
 
         return $modifier->restore($setting->value);
@@ -108,6 +115,14 @@ class SettingRepository implements SettingRepositoryInterface
      */
     public function set($key, $value)
     {
+        /**
+         * First get the entry from the database
+         * if one exists. We'll want to set the value
+         * on that rather than a duplicate entry.
+         *
+         * If no entry is found simply spin up a new
+         * instance and use that.
+         */
         $setting = $this->model->where('key', $key)->first();
 
         if (!$setting) {
@@ -117,6 +132,10 @@ class SettingRepository implements SettingRepositoryInterface
             $setting->key = $key;
         }
 
+        /**
+         * Next try and find the field definition
+         * from the settings.php configuration file.
+         */
         if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
             $field = config(str_replace('::', '::settings.', $key));
         }
@@ -127,9 +146,14 @@ class SettingRepository implements SettingRepositoryInterface
             ];
         }
 
-        if ($type = array_get($field, 'type')) {
-            $type = app($type);
-        }
+        /**
+         * Try and get the field type that
+         * the setting uses. If no exists then
+         * just save the value as it is. If a
+         * field type is found then modify the
+         * value for storage in the database.
+         */
+        $type = $this->fieldTypes->get(array_get($field, 'type'));
 
         if ($type instanceof FieldType) {
 
@@ -145,18 +169,5 @@ class SettingRepository implements SettingRepositoryInterface
         $setting->save();
 
         return $this;
-    }
-
-    /**
-     * Get all settings for a namespace.
-     *
-     * @param $getNamespace
-     * @return SettingCollection
-     */
-    public function getAll($namespace)
-    {
-        $settings = $this->model->where('key', 'LIKE', $namespace . '::%')->get();
-
-        return new SettingCollection($settings->lists('value', 'key'));
     }
 }
