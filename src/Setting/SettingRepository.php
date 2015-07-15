@@ -86,10 +86,12 @@ class SettingRepository implements SettingRepositoryInterface
             ];
         }
 
-        $type = app(array_get($field, 'type'));
+        if ($type = array_get($field, 'type')) {
+            $type = app($type);
+        }
 
         if (!$type instanceof FieldType) {
-            return null;
+            return $setting->value;
         }
 
         $modifier = $type->getModifier();
@@ -125,12 +127,17 @@ class SettingRepository implements SettingRepositoryInterface
             ];
         }
 
-        $type = app(array_get($field, 'type'));
+        if ($type = array_get($field, 'type')) {
+            $type = app($type);
+        }
 
-        $modifier = $type->getModifier();
+        if ($type instanceof FieldType) {
 
-        if ($modifier instanceof FieldTypeModifier) {
-            $value = $modifier->modify($value);
+            $modifier = $type->getModifier();
+
+            if ($modifier instanceof FieldTypeModifier) {
+                $value = $modifier->modify($value);
+            }
         }
 
         $setting->value = $value;
