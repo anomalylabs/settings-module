@@ -29,7 +29,7 @@ class SetAccess implements SelfHandling
         }
 
         // Set frontend status.
-        if ($status = $settings->get('streams::site_enabled')) {
+        if (($status = $settings->get('streams::site_enabled')) !== null) {
             $config->set('streams::access.site_enabled', $status);
         }
 
