@@ -39,7 +39,7 @@ class SettingsModulePlugin extends Plugin
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('setting_get', [$this->settings, 'get'])
+            new \Twig_SimpleFunction('settings_get', [$this->settings, 'get'])
         ];
     }
 }
