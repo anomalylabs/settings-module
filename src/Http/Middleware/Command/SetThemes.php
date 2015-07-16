@@ -52,7 +52,7 @@ class SetThemes implements SelfHandling
          * Set the current theme based on
          * where we are at in the application.
          */
-        if ($admin && $request->segment(1) === 'admin') {
+        if ($admin && in_array($request->segment(1), ['admin', 'installer'])) {
             $admin->setCurrent(true);
         } elseif ($standard) {
             $standard->setCurrent(true);
