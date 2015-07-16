@@ -2,6 +2,7 @@
 
 use Anomaly\SettingsModule\Http\Middleware\Command\SetAccess;
 use Anomaly\SettingsModule\Http\Middleware\Command\SetDatetime;
+use Anomaly\SettingsModule\Http\Middleware\Command\SetDistribution;
 use Anomaly\SettingsModule\Http\Middleware\Command\SetEmail;
 use Anomaly\SettingsModule\Http\Middleware\Command\SetLocales;
 use Anomaly\SettingsModule\Http\Middleware\Command\SetThemes;
@@ -37,6 +38,7 @@ class ConfigureStreams
         $this->dispatch(new SetAccess());
         $this->dispatch(new SetLocales());
         $this->dispatch(new SetDatetime());
+        $this->dispatch(new SetDistribution());
 
         return $next($request);
     }
