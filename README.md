@@ -5,6 +5,6 @@
 [![Code Quality](http://img.shields.io/scrutinizer/g/anomalylabs/settings-module.svg)](https://scrutinizer-ci.com/g/anomalylabs/settings-module/)
 [![Total Downloads](http://img.shields.io/packagist/dt/anomaly/settings-module.svg)](https://packagist.org/packages/anomaly/settings-module)
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/36aca85736aca857-a877-439d-8edd-0cbc42924133/small.png)](https://insight.sensiolabs.com/projects/36aca857-a877-439d-8edd-0cbc42924133)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/-a877-439d-8edd-0cbc42924133/small.png)](https://insight.sensiolabs.com/projects/36aca857-a877-439d-8edd-0cbc42924133)
 
 A settings management utility. 
