@@ -1,17 +1,17 @@
-<?php namespace Anomaly\SettingsModule;
+<?php namespace Anomaly\SettingsModule\Setting;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 
 /**
- * Class SettingsModulePlugin
+ * Class SettingPlugin
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule
+ * @package       Anomaly\SettingsModule\Setting
  */
-class SettingsModulePlugin extends Plugin
+class SettingPlugin extends Plugin
 {
 
     /**
@@ -22,7 +22,7 @@ class SettingsModulePlugin extends Plugin
     protected $settings;
 
     /**
-     * Create a new SettingsModulePlugin instance.
+     * Create a new SettingPlugin instance.
      *
      * @param SettingRepositoryInterface $settings
      */
