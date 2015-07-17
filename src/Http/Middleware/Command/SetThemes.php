@@ -3,6 +3,7 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Theme\Theme;
 use Anomaly\Streams\Platform\Addon\Theme\ThemeCollection;
+use Illuminate\Config\Repository;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Http\Request;
 
@@ -21,10 +22,11 @@ class SetThemes implements SelfHandling
      * Handle the command.
      *
      * @param ThemeCollection            $themes
+     * @param Repository                 $config
      * @param Request                    $request
      * @param SettingRepositoryInterface $settings
      */
-    function handle(ThemeCollection $themes, Request $request, SettingRepositoryInterface $settings)
+    function handle(ThemeCollection $themes, Repository $config, Request $request, SettingRepositoryInterface $settings)
     {
         /**
          * Set the active admin theme.
@@ -32,20 +34,32 @@ class SetThemes implements SelfHandling
          * @var Theme $admin
          */
         if ($admin = $themes->get($settings->get('streams::admin_theme'))) {
+
             $admin->setActive(true);
+            $config->set('streams::themes.active.admin', $admin->getNamespace());
+
         } elseif ($admin = $themes->admin()->first()) {
+
             $admin->setActive(true);
+            $config->set('streams::themes.active.admin', $admin->getNamespace());
+
         }
 
         /**
-         * Set the active admin theme.
+         * Set the active public theme.
          *
          * @var Theme $standard
          */
         if ($standard = $themes->get($settings->get('streams::public_theme'))) {
+
             $standard->setActive(true);
+            $config->set('streams::themes.active.standard', $standard->getNamespace());
+
         } elseif ($standard = $themes->standard()->first()) {
+
             $standard->setActive(true);
+            $config->set('streams::themes.active.standard', $standard->getNamespace());
+
         }
 
         /**
