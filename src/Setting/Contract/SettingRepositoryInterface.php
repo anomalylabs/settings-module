@@ -1,6 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting\Contract;
 
-use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 
 /**
  * Interface SettingRepositoryInterface
@@ -10,16 +10,8 @@ use Anomaly\Streams\Platform\Entry\EntryCollection;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\SettingInterface\Contract
  */
-interface SettingRepositoryInterface
+interface SettingRepositoryInterface extends EntryRepositoryInterface
 {
-
-    /**
-     * Return all setting values in a namespace.
-     *
-     * @param $namespace
-     * @return EntryCollection
-     */
-    public function all($namespace);
 
     /**
      * Get a setting value.

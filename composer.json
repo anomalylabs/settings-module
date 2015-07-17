@@ -1,16 +1,15 @@
 {
     "name": "anomaly/settings-module",
     "type": "streams-addon",
-    "description": "Settings management.",
-    "version": "1.0.0",
-    "license": "MIT",
+    "description": "A settings management utility.",
     "keywords": [
-        "streams-addon",
-        "settings",
-        "pyrocms",
-        "laravel"
+        "streams module",
+        "streams addon",
+        "module"
     ],
     "homepage": "http://anomaly.is/",
+    "version": "1.0.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "AnomalyLabs, Inc.",
@@ -29,8 +28,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-1.0/master": "1.0.x-dev"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

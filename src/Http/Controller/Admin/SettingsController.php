@@ -15,13 +15,13 @@ class SettingsController extends AdminController
 {
 
     /**
-     * Return the system settings form.
+     * Return the form for editing streams settings.
      *
-     * @param SettingFormBuilder $settings
+     * @param SettingFormBuilder $form
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(SettingFormBuilder $settings)
+    public function edit(SettingFormBuilder $form)
     {
-        return $settings->setOption('breadcrumb', null)->render('streams');
+        return $form->render('streams');
     }
 }

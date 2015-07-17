@@ -7,7 +7,7 @@ use Anomaly\SettingsModule\Http\Middleware\Command\SetEmail;
 use Anomaly\SettingsModule\Http\Middleware\Command\SetLocales;
 use Anomaly\SettingsModule\Http\Middleware\Command\SetThemes;
 use Closure;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -22,7 +22,7 @@ use Illuminate\Http\Response;
 class ConfigureStreams
 {
 
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     /**
      * Configure streams with setting values.

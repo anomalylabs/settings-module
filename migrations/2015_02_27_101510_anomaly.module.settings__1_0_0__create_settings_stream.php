@@ -13,26 +13,25 @@ class AnomalyModuleSettings_1_0_0_CreateSettingsStream extends Migration
 {
 
     /**
-     * Stream information.
+     * The stream definition.
      *
      * @var array
      */
     protected $stream = [
-        'slug'   => 'settings',
-        'locked' => true
+        'slug' => 'settings'
     ];
 
     /**
-     * Stream field assignments.
+     * The stream assignments.
      *
      * @var array
      */
     protected $assignments = [
-        'key'   => [
+        'key' => [
             'required' => true,
             'unique'   => true
         ],
-        'value' => []
+        'value'
     ];
 
 }

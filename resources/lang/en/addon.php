@@ -2,7 +2,7 @@
 
 return [
     'name'        => 'Settings',
-    'description' => 'Settings management.',
+    'description' => 'A settings management utility.',
     'section'     => [
         'settings' => 'System Settings'
     ]

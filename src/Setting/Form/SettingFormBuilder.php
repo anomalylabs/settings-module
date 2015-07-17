@@ -47,12 +47,4 @@ class SettingFormBuilder extends FormBuilder
         'breadcrumb' => false
     ];
 
-    /**
-     * Fire at the very beginning
-     * of the build process.
-     */
-    public function onReady()
-    {
-        $this->setOption('permission', $this->entry . '::settings');
-    }
 }

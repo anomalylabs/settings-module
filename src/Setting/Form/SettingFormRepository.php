@@ -26,18 +26,18 @@ class SettingFormRepository implements FormRepositoryInterface
     protected $config;
 
     /**
-     * The settings repository.
-     *
-     * @var SettingRepositoryInterface
-     */
-    protected $settings;
-
-    /**
      * The application container.
      *
      * @var Container
      */
     protected $container;
+
+    /**
+     * The settings repository.
+     *
+     * @var SettingRepositoryInterface
+     */
+    protected $settings;
 
     /**
      * Create a new SettingFormRepositoryInterface instance.

@@ -14,33 +14,6 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
-     * The addon routes.
-     *
-     * @var array
-     */
-    protected $routes = [
-        'admin/settings' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@edit'
-    ];
-
-    /**
-     * The class bindings.
-     *
-     * @var array
-     */
-    protected $bindings = [
-        'Anomaly\SettingsModule\Setting\SettingModel' => 'Anomaly\SettingsModule\Setting\SettingModel'
-    ];
-
-    /**
-     * The singleton bindings.
-     *
-     * @var array
-     */
-    protected $singletons = [
-        'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface' => 'Anomaly\SettingsModule\Setting\SettingRepository'
-    ];
-
-    /**
      * The addon plugins.
      *
      * @var array
@@ -56,6 +29,24 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      */
     protected $middleware = [
         'Anomaly\SettingsModule\Http\Middleware\ConfigureStreams'
+    ];
+
+    /**
+     * The addon routes.
+     *
+     * @var array
+     */
+    protected $routes = [
+        'admin/settings' => 'Anomaly\SettingsModule\Http\Controller\Admin\SettingsController@edit'
+    ];
+
+    /**
+     * The singleton bindings.
+     *
+     * @var array
+     */
+    protected $singletons = [
+        'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface' => 'Anomaly\SettingsModule\Setting\SettingRepository'
     ];
 
 }

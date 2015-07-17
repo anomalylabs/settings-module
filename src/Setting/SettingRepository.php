@@ -1,10 +1,11 @@
 <?php namespace Anomaly\SettingsModule\Setting;
 
+use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
-use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\Streams\Platform\Entry\EntryRepository;
 use Illuminate\Config\Repository;
 
 /**
@@ -15,7 +16,7 @@ use Illuminate\Config\Repository;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\SettingInterface
  */
-class SettingRepository implements SettingRepositoryInterface
+class SettingRepository extends EntryRepository implements SettingRepositoryInterface
 {
 
     /**
@@ -54,23 +55,6 @@ class SettingRepository implements SettingRepositoryInterface
     }
 
     /**
-     * Return all setting values in a namespace.
-     *
-     * @param $namespace
-     * @return EntryCollection
-     */
-    public function all($namespace)
-    {
-        $settings = $this->model->where('key', 'like', $namespace . '::%')->get();
-
-        foreach ($settings as $setting) {
-            $setting->value = $this->restore($setting->key, $setting->value);
-        }
-
-        return $settings;
-    }
-
-    /**
      * Get a setting value.
      *
      * @param      $key
@@ -82,13 +66,15 @@ class SettingRepository implements SettingRepositoryInterface
         /**
          * First get the setting value from
          * the database or return the default.
+         *
+         * @var SettingInterface $setting
          */
         $setting = $this->model->where('key', $key)->first();
 
         if (!$setting) {
-            return $default;
+            return $this->config->get($key, $default);
         } else {
-            $value = $setting->value;
+            $value = $setting->getValue();
         }
 
         return $this->restore($key, $value);
@@ -110,14 +96,13 @@ class SettingRepository implements SettingRepositoryInterface
          *
          * If no entry is found simply spin up a new
          * instance and use that.
+         *
+         * @var SettingInterface $setting
          */
         $setting = $this->model->where('key', $key)->first();
 
-        if (!$setting) {
-
-            $setting = $this->model->newInstance();
-
-            $setting->key = $key;
+        if (!$setting && $setting = $this->model->newInstance()) {
+            $setting->setKey($key);
         }
 
         /**
@@ -152,9 +137,9 @@ class SettingRepository implements SettingRepositoryInterface
             }
         }
 
-        $setting->value = $value;
+        $setting->setValue($value);
 
-        $setting->save();
+        $this->save($setting);
 
         return $this;
     }

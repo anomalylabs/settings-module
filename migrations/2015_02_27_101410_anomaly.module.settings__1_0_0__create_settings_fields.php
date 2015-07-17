@@ -13,17 +13,13 @@ class AnomalyModuleSettings_1_0_0_CreateSettingsFields extends Migration
 {
 
     /**
-     * Fields to install.
+     * The addon fields.
      *
      * @var array
      */
     protected $fields = [
-        'key'   => [
-            'type' => 'anomaly.field_type.text'
-        ],
-        'value' => [
-            'type' => 'anomaly.field_type.textarea'
-        ]
+        'key'   => 'anomaly.field_type.text',
+        'value' => 'anomaly.field_type.textarea'
     ];
 
 }
