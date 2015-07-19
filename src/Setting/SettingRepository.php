@@ -72,7 +72,7 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         $setting = $this->model->where('key', $key)->first();
 
         if (!$setting) {
-            return $this->config->get($key, $default);
+            return $default;
         } else {
             $value = $setting->getValue();
         }
