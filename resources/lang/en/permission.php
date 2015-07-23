@@ -3,6 +3,6 @@
 return [
     'settings' => [
         'title' => 'Settings',
-        'write' => 'Can edit settings?'
+        'write' => 'Can manage system settings?'
     ]
 ];
