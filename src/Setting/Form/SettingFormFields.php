@@ -72,32 +72,50 @@ class SettingFormFields
             // Make sure we have a config property.
             $field['config'] = array_get($field, 'config', []);
 
+
+            if (trans()->has(
+                $label = array_get(
+                    $field,
+                    'label',
+                    $namespace . 'setting.' . $slug . '.label'
+                )
+            )
+            ) {
+                $field['label'] = trans($label);
+            }
+
             // Default the label.
             $field['label'] = trans(
                 array_get(
                     $field,
                     'label',
-                    $namespace . 'setting.' . $slug . '.label'
+                    $namespace . 'setting.' . $slug . '.name'
                 )
             );
 
             // Default the placeholder.
-            $field['config']['placeholder'] = trans(
-                array_get(
-                    $field['config'],
+            if (trans()->has(
+                $placeholder = array_get(
+                    $field,
                     'placeholder',
                     $namespace . 'setting.' . $slug . '.placeholder'
                 )
-            );
+            )
+            ) {
+                $field['placeholder'] = trans($placeholder);
+            }
 
             // Default the instructions.
-            $field['instructions'] = trans(
-                array_get(
+            if (trans()->has(
+                $instructions = array_get(
                     $field,
                     'instructions',
                     $namespace . 'setting.' . $slug . '.instructions'
                 )
-            );
+            )
+            ) {
+                $field['instructions'] = trans($instructions);
+            }
 
             // Get the value defaulting to the default value.
             $field['value'] = $settings->get($namespace . $slug, array_get($field['config'], 'default_value'));

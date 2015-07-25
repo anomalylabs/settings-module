@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'name'        => 'Settings',
+    'title'       => 'Settings',
+    'name'        => 'Settings Module',
     'description' => 'A settings management utility.',
     'section'     => [
         'settings' => 'System Settings'
