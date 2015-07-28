@@ -5,6 +5,7 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 use Illuminate\Config\Repository;
 
@@ -55,13 +56,25 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     }
 
     /**
-     * Get a setting value.
+     * Get the setting value.
      *
      * @param      $key
      * @param null $default
-     * @return mixed
+     * @return string
      */
     public function get($key, $default = null)
+    {
+        return (string)$this->field($key, $default);
+    }
+
+    /**
+     * Get a decorated setting value.
+     *
+     * @param      $key
+     * @param null $default
+     * @return FieldTypePresenter
+     */
+    public function field($key, $default = null)
     {
         /**
          * First get the setting value from
@@ -77,7 +90,43 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
             $value = $setting->getValue();
         }
 
-        return $this->restore($key, $value);
+        /**
+         * Next try and find the field definition
+         * from the settings.php configuration file.
+         */
+        if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
+            $field = config(str_replace('::', '::settings.', $key));
+        }
+
+        if (is_string($field)) {
+            $field = [
+                'type' => $field
+            ];
+        }
+
+        /**
+         * Try and get the field type that
+         * the setting uses. If no exists then
+         * just return the value as is.
+         */
+        $type = $this->fieldTypes->get(array_get($field, 'type'));
+
+        if (!$type instanceof FieldType) {
+            return $value;
+        }
+
+        $type->setEntry($setting);
+
+        /**
+         * If the type CAN be determined then
+         * get the modifier and restore the value
+         * before returning it.
+         */
+        $modifier = $type->getModifier();
+
+        $type->setValue($modifier->restore($value));
+
+        return $type->getPresenter();
     }
 
     /**
@@ -142,49 +191,5 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         $this->save($setting);
 
         return $this;
-    }
-
-    /**
-     * Run restore modification on a setting's value.
-     *
-     * @param $key
-     * @param $value
-     * @return mixed
-     */
-    protected function restore($key, $value)
-    {
-        /**
-         * Next try and find the field definition
-         * from the settings.php configuration file.
-         */
-        if (!$field = config(str_replace('::', '::settings/settings.', $key))) {
-            $field = config(str_replace('::', '::settings.', $key));
-        }
-
-        if (is_string($field)) {
-            $field = [
-                'type' => $field
-            ];
-        }
-
-        /**
-         * Try and get the field type that
-         * the setting uses. If no exists then
-         * just return the value as is.
-         */
-        $type = $this->fieldTypes->get(array_get($field, 'type'));
-
-        if (!$type instanceof FieldType) {
-            return $value;
-        }
-
-        /**
-         * If the type CAN be determined then
-         * get the modifier and restore the value
-         * before returning it.
-         */
-        $modifier = $type->getModifier();
-
-        return $modifier->restore($value);
     }
 }
