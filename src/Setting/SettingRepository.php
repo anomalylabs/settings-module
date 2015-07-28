@@ -64,7 +64,13 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
      */
     public function get($key, $default = null)
     {
-        return $this->field($key, $default)->getObject()->getValue();
+        $value = $this->field($key, $default);
+
+        if ($value instanceof FieldTypePresenter) {
+            return $value->getObject()->getValue();
+        }
+
+        return $value;
     }
 
     /**
