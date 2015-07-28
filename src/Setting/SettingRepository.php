@@ -60,11 +60,11 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
      *
      * @param      $key
      * @param null $default
-     * @return string
+     * @return mixed
      */
     public function get($key, $default = null)
     {
-        return (string)$this->field($key, $default);
+        return $this->field($key, $default)->getObject()->getValue();
     }
 
     /**
