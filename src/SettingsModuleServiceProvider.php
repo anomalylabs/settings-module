@@ -27,8 +27,10 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      *
      * @var array
      */
-    protected $middleware = [
-        'Anomaly\SettingsModule\Http\Middleware\ConfigureStreams'
+    protected $listeners = [
+        'Anomaly\Streams\Platform\Addon\Event\AddonsRegistered' => [
+            'Anomaly\SettingsModule\Listener\ConfigureStreams',
+        ]
     ];
 
     /**

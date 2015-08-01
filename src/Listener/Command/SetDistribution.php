@@ -1,4 +1,4 @@
-<?php namespace Anomaly\SettingsModule\Http\Middleware\Command;
+<?php namespace Anomaly\SettingsModule\Listener\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Config\Repository;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Http\Middleware\Command
+ * @package       Anomaly\SettingsModule\Listener\Command
  */
 class SetDistribution implements SelfHandling
 {
