@@ -36,12 +36,12 @@ class SetThemes implements SelfHandling
         if ($admin = $themes->get($settings->get('streams::admin_theme'))) {
 
             $admin->setActive(true);
-            $config->set('streams::themes.active.admin', $admin->getNamespace());
+            $config->set('streams::themes.admin.active', $admin->getNamespace());
 
         } elseif ($admin = $themes->admin()->first()) {
 
             $admin->setActive(true);
-            $config->set('streams::themes.active.admin', $admin->getNamespace());
+            $config->set('streams::themes.admin.active', $admin->getNamespace());
 
         }
 
@@ -53,12 +53,12 @@ class SetThemes implements SelfHandling
         if ($standard = $themes->get($settings->get('streams::public_theme'))) {
 
             $standard->setActive(true);
-            $config->set('streams::themes.active.standard', $standard->getNamespace());
+            $config->set('streams::themes.standard.active', $standard->getNamespace());
 
         } elseif ($standard = $themes->standard()->first()) {
 
             $standard->setActive(true);
-            $config->set('streams::themes.active.standard', $standard->getNamespace());
+            $config->set('streams::themes.standard.active', $standard->getNamespace());
 
         }
 
