@@ -23,7 +23,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
-     * The addon middleware.
+     * The addon listeners.
      *
      * @var array
      */
