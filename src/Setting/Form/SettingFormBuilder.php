@@ -14,11 +14,18 @@ class SettingFormBuilder extends FormBuilder
 {
 
     /**
+     * No model needed.
+     *
+     * @var bool
+     */
+    protected $model = false;
+
+    /**
      * The form fields handler.
      *
      * @var string
      */
-    protected $fields = 'Anomaly\SettingsModule\Setting\Form\SettingFormFields@handle';
+    protected $fields = SettingFormFields::class;
 
     /**
      * The form actions handler.

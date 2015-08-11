@@ -2,6 +2,7 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Config\Repository;
+use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
  * Class SettingFormFields
@@ -11,7 +12,7 @@ use Illuminate\Config\Repository;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\Setting\Form
  */
-class SettingFormFields
+class SettingFormFields implements SelfHandling
 {
 
     /**
