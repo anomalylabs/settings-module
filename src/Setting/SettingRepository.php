@@ -122,6 +122,8 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         }
 
         $type->setEntry($setting);
+        $type->mergeRules(array_get($field, 'rules', []));
+        $type->mergeConfig(array_get($field, 'config', []));
 
         /**
          * If the type CAN be determined then
