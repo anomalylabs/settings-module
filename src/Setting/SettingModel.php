@@ -35,6 +35,16 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     }
 
     /**
+     * Get the key.
+     *
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
      * Get the value.
      *
      * @return mixed
