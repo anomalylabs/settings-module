@@ -27,4 +27,16 @@ class SettingCollection extends EntryCollection
         }
     }
 
+    /**
+     * Get an item out of the collection, identified by $key
+     * $key might be "double colon separated", so convert that to a dot-notation the collection can work with
+     *
+     * @param string $key
+     * @param mixed $default
+     */
+    public function get($key, $default = null)
+    {
+        // convert the db keyname to a collection compatible keyname
+        return parent::get(str_replace('::', '.', $key), $default);
+    }
 }
