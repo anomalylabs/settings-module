@@ -23,7 +23,7 @@ class SettingCollection extends EntryCollection
     {
         /* @var SettingInterface $item */
         foreach ($items as $item) {
-            $this->items[str_replace('::', '.', $item->getKey())] = $item;
+            $this->items[$item->getKey()] = $item;
         }
     }
 
