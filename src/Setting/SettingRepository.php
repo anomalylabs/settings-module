@@ -35,6 +35,13 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     protected $config;
 
     /**
+     * The setting collection.
+     *
+     * @var SettingCollection
+     */
+    protected $collection;
+
+    /**
      * The field type collection.
      *
      * @var FieldTypeCollection
@@ -53,7 +60,20 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         $this->model      = $model;
         $this->config     = $config;
         $this->fieldTypes = $fieldTypes;
+
+        $this->collection = $model->all();
     }
+
+    /**
+     * Return all settings.
+     *
+     * @return SettingCollection
+     */
+    public function all()
+    {
+        return $this->collection;
+    }
+
 
     /**
      * Get the setting value.
@@ -88,7 +108,7 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
          *
          * @var SettingInterface $setting
          */
-        $setting = $this->model->where('key', $key)->first();
+        $setting = $this->collection->get($key);
 
         if (!$setting) {
             return $default;
@@ -156,10 +176,13 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
          *
          * @var SettingInterface $setting
          */
-        $setting = $this->model->where('key', $key)->first();
+        $setting = $this->collection->get($key);
 
         if (!$setting && $setting = $this->model->newInstance()) {
+
             $setting->setKey($key);
+
+            $this->collection->put($key, $setting);
         }
 
         /**
