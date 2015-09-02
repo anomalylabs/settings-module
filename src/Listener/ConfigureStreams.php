@@ -31,6 +31,5 @@ class ConfigureStreams
         $this->dispatch(new SetAccess());
         $this->dispatch(new SetLocales());
         $this->dispatch(new SetDatetime());
-        $this->dispatch(new SetDistribution());
     }
 }
