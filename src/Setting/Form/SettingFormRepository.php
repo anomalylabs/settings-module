@@ -78,10 +78,14 @@ class SettingFormRepository implements FormRepositoryInterface
 
         /* @var FieldType $field */
         foreach ($form->getFields() as $field) {
-            $this->settings->set(
-                $namespace . $field->getField(),
-                $form->getValue($field->getInputName())
-            );
+
+            $key     = $namespace . $field->getField();
+            $value   = $form->getValue($field->getInputName());
+            $setting = $this->settings->findByKeyOrNew($key);
+
+            $setting->fill(compact('key', 'value'));
+
+            $this->settings->save($setting);
         }
     }
 }

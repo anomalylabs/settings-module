@@ -1,6 +1,9 @@
 <?php namespace Anomaly\SettingsModule\Setting;
 
+use Anomaly\SettingsModule\Setting\Command\GetValuePresenter;
+use Anomaly\SettingsModule\Setting\Command\ModifyValue;
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
 
 /**
@@ -22,19 +25,6 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     protected $cacheMinutes = 99999;
 
     /**
-     * Set the key.
-     *
-     * @param $key
-     * @return $this
-     */
-    public function setKey($key)
-    {
-        $this->key = $key;
-
-        return $this;
-    }
-
-    /**
      * Get the key.
      *
      * @return string
@@ -47,7 +37,7 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     /**
      * Get the value.
      *
-     * @return mixed
+     * @return string
      */
     public function getValue()
     {
@@ -60,10 +50,21 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
      * @param $value
      * @return $this
      */
-    public function setValue($value)
+    protected function setValueAttribute($value)
     {
-        $this->value = $value;
+        $this->attributes['value'] = $this->dispatch(new ModifyValue($this, $value));
 
         return $this;
+    }
+
+    /**
+     * Return the related value
+     * field type presenter.
+     *
+     * @return FieldTypePresenter
+     */
+    public function value()
+    {
+        return $this->dispatch(new GetValuePresenter($this));
     }
 }

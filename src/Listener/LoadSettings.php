@@ -1,6 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Listener;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\SettingsModule\Setting\SettingCollection;
 use Anomaly\Streams\Platform\Support\Decorator;
 use Anomaly\Streams\Platform\View\Event\TemplateDataIsLoading;
 
@@ -18,7 +18,7 @@ class LoadSettings
     /**
      * The settings repository.
      *
-     * @var SettingRepositoryInterface
+     * @var SettingCollection
      */
     private $settings;
 
@@ -32,10 +32,10 @@ class LoadSettings
     /**
      * Create a new LoadSettings instance.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param Decorator                  $decorator
+     * @param SettingCollection $settings
+     * @param Decorator         $decorator
      */
-    public function __construct(SettingRepositoryInterface $settings, Decorator $decorator)
+    public function __construct(SettingCollection $settings, Decorator $decorator)
     {
         $this->settings  = $settings;
         $this->decorator = $decorator;
@@ -50,6 +50,6 @@ class LoadSettings
     {
         $template = $event->getTemplate();
 
-        $template->put('settings', $this->decorator->decorate($this->settings->all()));
+        $template->put('settings', $this->decorator->decorate($this->settings));
     }
 }

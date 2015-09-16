@@ -26,5 +26,4 @@ class SettingCollection extends EntryCollection
             $this->items[$item->getKey()] = $item;
         }
     }
-
 }

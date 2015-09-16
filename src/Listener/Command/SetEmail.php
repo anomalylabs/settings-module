@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Listener\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Support\Decorator;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Bus\SelfHandling;
 
@@ -25,22 +26,22 @@ class SetEmail implements SelfHandling
     {
         // Set email driver.
         if ($driver = $settings->get('streams::mail_driver')) {
-            $config->set('mail.driver', $driver);
+            $config->set('mail.driver', $driver->getValue());
         }
 
         // Set SMTP host.
         if ($host = $settings->get('streams::mail_host')) {
-            $config->set('mail.host', $host);
+            $config->set('mail.host', $host->getValue());
         }
 
         // Set SMTP port.
         if ($port = $settings->get('streams::mail_port')) {
-            $config->set('mail.port', $port);
+            $config->set('mail.port', $port->getValue());
         }
 
         // Set SMTP username.
         if ($username = $settings->get('streams::mail_username')) {
-            $config->set('mail.username', $username);
+            $config->set('mail.username', $username->getValue());
         }
 
         // Set SMTP password.

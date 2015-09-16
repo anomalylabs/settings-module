@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting\Contract;
 
+use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 
 /**
@@ -21,14 +22,6 @@ interface SettingInterface extends EntryInterface
     public function getKey();
 
     /**
-     * Set the key.
-     *
-     * @param $key
-     * @return $this
-     */
-    public function setKey($key);
-
-    /**
      * Get the value.
      *
      * @return mixed
@@ -36,10 +29,10 @@ interface SettingInterface extends EntryInterface
     public function getValue();
 
     /**
-     * Set the value.
+     * Return the related value
+     * field type presenter.
      *
-     * @param $value
-     * @return $this
+     * @return FieldTypePresenter
      */
-    public function setValue($value);
+    public function value();
 }

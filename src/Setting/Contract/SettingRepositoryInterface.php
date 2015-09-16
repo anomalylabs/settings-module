@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting\Contract;
 
+use Anomaly\SettingsModule\Setting\SettingModel;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 
@@ -15,29 +16,27 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
-     * Get the setting value.
-     *
-     * @param      $key
-     * @param null $default
-     * @return string
-     */
-    public function get($key, $default = null);
-
-    /**
-     * Get a decorated setting value.
-     *
-     * @param      $key
-     * @param null $default
-     * @return FieldTypePresenter
-     */
-    public function field($key, $default = null);
-
-    /**
-     * Set a setting value.
+     * Get a setting.
      *
      * @param $key
-     * @param $value
-     * @return $this
+     * @return null|SettingInterface|SettingModel
      */
-    public function set($key, $value);
+    public function get($key);
+
+    /**
+     * Get a setting value presenter instance.
+     *
+     * @param $key
+     * @return null|FieldTypePresenter
+     */
+    public function value($key);
+
+    /**
+     * Find a setting by it's key
+     * or return a new instance.
+     *
+     * @param $key
+     * @return SettingInterface
+     */
+    public function findByKeyOrNew($key);
 }
