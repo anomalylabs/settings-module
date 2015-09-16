@@ -25,12 +25,12 @@ class SetLocales implements SelfHandling
     {
         // Set default locale.
         if ($locale = $settings->get('streams::default_locale')) {
-            $config->set('app.fallback_locale', $locale);
+            $config->set('app.fallback_locale', $locale->getValue());
         }
 
         // Set enabled locales.
         if ($locales = $settings->get('streams::enabled_locales')) {
-            $config->set('streams::locales.enabled', $locales);
+            $config->set('streams::locales.enabled', $locales->getValue());
         }
     }
 }

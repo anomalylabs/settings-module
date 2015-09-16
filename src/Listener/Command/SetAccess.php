@@ -25,17 +25,17 @@ class SetAccess implements SelfHandling
     {
         // Set HTTPS behavior.
         if ($https = $settings->get('streams::force_https')) {
-            $config->set('streams::access.force_https', $https);
+            $config->set('streams::access.force_https', $https->getValue());
         }
 
         // Set frontend status.
-        if (($status = $settings->get('streams::site_enabled')) !== null) {
-            $config->set('streams::access.site_enabled', $status);
+        if ($status = $settings->get('streams::site_enabled')) {
+            $config->set('streams::access.site_enabled', $status->getValue());
         }
 
         // Set the IP whitelist for disabled frontend.
         if ($whitelist = $settings->get('streams::ip_whitelist')) {
-            $config->set('streams::access.ip_whitelist', $whitelist);
+            $config->set('streams::access.ip_whitelist', $whitelist->getValue());
         }
     }
 }
