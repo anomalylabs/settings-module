@@ -19,7 +19,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $plugins = [
-        'Anomaly\SettingsModule\Setting\SettingPlugin'
+        'Anomaly\SettingsModule\SettingsModulePlugin'
     ];
 
     /**
@@ -28,11 +28,8 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $listeners = [
-        'Anomaly\Streams\Platform\Addon\Event\AddonsHaveRegistered' => [
+        'Anomaly\Streams\Platform\Event\Ready' => [
             'Anomaly\SettingsModule\Listener\ConfigureStreams'
-        ],
-        'Anomaly\Streams\Platform\View\Event\TemplateDataIsLoading' => [
-            'Anomaly\SettingsModule\Listener\LoadSettings'
         ]
     ];
 

@@ -1,28 +1,28 @@
-<?php namespace Anomaly\SettingsModule\Setting;
+<?php namespace Anomaly\SettingsModule;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 
 /**
- * Class SettingPlugin
+ * Class SettingsModulePlugin
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Setting
+ * @package       Anomaly\SettingsModule
  */
-class SettingPlugin extends Plugin
+class SettingsModulePlugin extends Plugin
 {
 
     /**
-     * The settings repository.
+     * The setting repository.
      *
      * @var SettingRepositoryInterface
      */
     protected $settings;
 
     /**
-     * Create a new SettingPlugin instance.
+     * Create a new SettingsModulePlugin instance.
      *
      * @param SettingRepositoryInterface $settings
      */
@@ -39,7 +39,8 @@ class SettingPlugin extends Plugin
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('settings_get', [$this->settings, 'get'])
+            new \Twig_SimpleFunction('settings_get', [$this->settings, 'get']),
+            new \Twig_SimpleFunction('settings_value', [$this->settings, 'value'])
         ];
     }
 }

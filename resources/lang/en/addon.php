@@ -3,7 +3,7 @@
 return [
     'title'       => 'Settings',
     'name'        => 'Settings Module',
-    'description' => 'A settings management utility.',
+    'description' => 'System settings management.',
     'section'     => [
         'settings' => 'System Settings'
     ]
