@@ -22,11 +22,27 @@ interface SettingInterface extends EntryInterface
     public function getKey();
 
     /**
+     * Set the key.
+     *
+     * @param $key
+     * @return $this
+     */
+    public function setKey($key);
+
+    /**
      * Get the value.
      *
      * @return mixed
      */
     public function getValue();
+
+    /**
+     * Set the value.
+     *
+     * @param $value
+     * @return $this
+     */
+    public function setValue($value);
 
     /**
      * Return the related value

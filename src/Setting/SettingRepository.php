@@ -2,7 +2,6 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
@@ -59,6 +58,22 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     }
 
     /**
+     * Set a settings value.
+     *
+     * @param $key
+     * @param $value
+     * @return bool
+     */
+    public function set($key, $value)
+    {
+        $setting = $this->findByKeyOrNew($key);
+
+        $setting->setValue($value);
+
+        return $this->save($setting);
+    }
+
+    /**
      * Get a setting value presenter instance.
      *
      * @param $key
@@ -83,7 +98,10 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     public function findByKeyOrNew($key)
     {
         if (!$setting = $this->model->where('key', $key)->first()) {
-            $setting = $this->newInstance();
+
+            $setting = $this->model->newInstance();
+
+            $setting->setKey($key);
         }
 
         return $setting;

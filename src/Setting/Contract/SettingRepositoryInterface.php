@@ -24,6 +24,15 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
     public function get($key);
 
     /**
+     * Set a settings value.
+     *
+     * @param $key
+     * @param $value
+     * @return bool
+     */
+    public function set($key, $value);
+
+    /**
      * Get a setting value presenter instance.
      *
      * @param $key

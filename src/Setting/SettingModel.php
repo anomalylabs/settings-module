@@ -35,6 +35,19 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     }
 
     /**
+     * Set the key.
+     *
+     * @param $key
+     * @return $this
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+
+        return $this;
+    }
+
+    /**
      * Get the value.
      *
      * @return string
@@ -42,6 +55,19 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * Set the value.
+     *
+     * @param $value
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     /**
