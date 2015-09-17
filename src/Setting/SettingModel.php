@@ -1,8 +1,10 @@
 <?php namespace Anomaly\SettingsModule\Setting;
 
+use Anomaly\SettingsModule\Setting\Command\GetValueFieldType;
 use Anomaly\SettingsModule\Setting\Command\GetValuePresenter;
 use Anomaly\SettingsModule\Setting\Command\ModifyValue;
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
 
@@ -58,7 +60,7 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     }
 
     /**
-     * Set the value.
+     * Set the value attribute.
      *
      * @param $value
      * @return $this
@@ -81,6 +83,19 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
         $this->attributes['value'] = $this->dispatch(new ModifyValue($this, $value));
 
         return $this;
+    }
+
+    /**
+     * Get the value attribute.
+     *
+     * @return mixed
+     */
+    protected function getValueAttribute()
+    {
+        /* @var FieldType $type */
+        $type = $this->dispatch(new GetValueFieldType($this));
+
+        return $type->getValue();
     }
 
     /**
