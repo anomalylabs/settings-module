@@ -46,12 +46,12 @@ class SetEmail implements SelfHandling
 
         // Set SMTP password.
         if ($password = $settings->get('streams::mail_password')) {
-            $config->set('mail.password', $password);
+            $config->set('mail.password', $password->getValue());
         }
 
         // Set SMTP debug mode.
-        if (($password = $settings->get('streams::mail_debug')) !== null) {
-            $config->set('mail.pretend', $password);
+        if (($debug = $settings->get('streams::mail_debug'))) {
+            $config->set('mail.pretend', $debug->getValue());
         }
     }
 }
