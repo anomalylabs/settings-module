@@ -1,7 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting\Plugin\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\Streams\Platform\Support\Decorator;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
@@ -36,10 +35,9 @@ class GetSetting implements SelfHandling
      * Handle the command.
      *
      * @param SettingRepositoryInterface $settings
-     * @param Decorator                     $decorator
      * @return mixed
      */
-    public function handle(SettingRepositoryInterface $settings, Decorator $decorator)
+    public function handle(SettingRepositoryInterface $settings)
     {
         return $settings->value($this->key);
     }
