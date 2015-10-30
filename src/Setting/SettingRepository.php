@@ -74,15 +74,32 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     }
 
     /**
-     * Get a setting value presenter instance.
+     * Get a setting value.
      *
-     * @param $key
-     * @return null|FieldTypePresenter
+     * @param      $key
+     * @param null $default
+     * @return mixed|null
      */
-    public function value($key)
+    public function value($key, $default = null)
     {
         if ($setting = $this->get($key)) {
-            return $setting->value();
+            return $setting->getValue();
+        }
+
+        return $default;
+    }
+
+    /**
+     * Return the field type
+     * presenter for a setting.
+     *
+     * @param $key
+     * @return FieldTypePresenter|null
+     */
+    public function presenter($key)
+    {
+        if ($setting = $this->get($key)) {
+            return $setting->getFieldTypePresenter('value');
         }
 
         return null;

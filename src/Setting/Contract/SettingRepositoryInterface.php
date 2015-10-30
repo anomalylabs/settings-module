@@ -33,12 +33,22 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
     public function set($key, $value);
 
     /**
-     * Get a setting value presenter instance.
+     * Get a setting value.
+     *
+     * @param      $key
+     * @param null $default
+     * @return mixed|null
+     */
+    public function value($key, $default = null);
+
+    /**
+     * Return the field type
+     * presenter for a setting.
      *
      * @param $key
-     * @return null|FieldTypePresenter
+     * @return FieldTypePresenter|null
      */
-    public function value($key);
+    public function presenter($key);
 
     /**
      * Find a setting by it's key

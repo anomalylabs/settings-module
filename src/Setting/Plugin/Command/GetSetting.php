@@ -39,6 +39,6 @@ class GetSetting implements SelfHandling
      */
     public function handle(SettingRepositoryInterface $settings)
     {
-        return $settings->value($this->key);
+        return $settings->presenter($this->key);
     }
 }
