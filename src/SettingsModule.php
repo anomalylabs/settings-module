@@ -26,7 +26,11 @@ class SettingsModule extends Module
      * @var array
      */
     protected $sections = [
-        'settings'
+        'system',
+        'modules',
+        'extensions',
+        'field_types',
+        'plugins'
     ];
 
 }

@@ -4,18 +4,18 @@ use Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
- * Class SettingsController
+ * Class SystemController
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\Http\Controller\Admin
  */
-class SettingsController extends AdminController
+class SystemController extends AdminController
 {
 
     /**
-     * Return the form for editing streams settings.
+     * Return the form for editing settings.
      *
      * @param SettingFormBuilder $form
      * @return \Symfony\Component\HttpFoundation\Response

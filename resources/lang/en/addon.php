@@ -5,6 +5,10 @@ return [
     'name'        => 'Settings Module',
     'description' => 'System settings management.',
     'section'     => [
-        'settings' => 'System Settings'
+        'system'      => 'System',
+        'plugins'     => 'Plugins',
+        'modules'     => 'Modules',
+        'extensions'  => 'Extensions',
+        'field_types' => 'Field Types'
     ]
 ];
