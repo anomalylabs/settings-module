@@ -94,6 +94,18 @@ class SettingFormFields implements SelfHandling
                 )
             );
 
+            // Default the warning.
+            if (trans()->has(
+                $warning = array_get(
+                    $field,
+                    'warning',
+                    $namespace . 'setting.' . $slug . '.warning'
+                )
+            )
+            ) {
+                $field['warning'] = trans($warning);
+            }
+
             // Default the placeholder.
             if (trans()->has(
                 $placeholder = array_get(
