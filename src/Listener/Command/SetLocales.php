@@ -3,6 +3,7 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Foundation\Application;
 
 /**
  * Class SetLocales
@@ -21,11 +22,12 @@ class SetLocales implements SelfHandling
      * @param Repository                 $config
      * @param SettingRepositoryInterface $settings
      */
-    function handle(Repository $config, SettingRepositoryInterface $settings)
+    function handle(Application $app, Repository $config, SettingRepositoryInterface $settings)
     {
         // Set default locale.
         if ($locale = $settings->get('streams::default_locale')) {
-            $config->set('app.fallback_locale', $locale->getValue());
+            $app->setLocale($locale->getValue());
+            $config->set('app.locale', $locale->getValue());
         }
 
         // Set enabled locales.
