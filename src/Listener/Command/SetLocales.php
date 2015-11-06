@@ -25,7 +25,7 @@ class SetLocales implements SelfHandling
     function handle(Application $app, Repository $config, SettingRepositoryInterface $settings)
     {
         // Set default locale.
-        if ($locale = $settings->get('streams::default_locale')) {
+        if (!defined('LOCALE') && $locale = $settings->get('streams::default_locale')) {
             $app->setLocale($locale->getValue());
             $config->set('app.locale', $locale->getValue());
         }
