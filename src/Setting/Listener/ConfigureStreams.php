@@ -1,11 +1,11 @@
-<?php namespace Anomaly\SettingsModule\Listener;
+<?php namespace Anomaly\SettingsModule\Setting\Listener;
 
-use Anomaly\SettingsModule\Listener\Command\SetAccess;
-use Anomaly\SettingsModule\Listener\Command\SetDatetime;
-use Anomaly\SettingsModule\Listener\Command\SetDistribution;
-use Anomaly\SettingsModule\Listener\Command\SetEmail;
-use Anomaly\SettingsModule\Listener\Command\SetLocales;
-use Anomaly\SettingsModule\Listener\Command\SetThemes;
+use Anomaly\SettingsModule\Setting\Listener\Command\SetAccess;
+use Anomaly\SettingsModule\Setting\Listener\Command\SetDatetime;
+use Anomaly\SettingsModule\Setting\Listener\Command\SetDistribution;
+use Anomaly\SettingsModule\Setting\Listener\Command\SetEmail;
+use Anomaly\SettingsModule\Setting\Listener\Command\SetLocales;
+use Anomaly\SettingsModule\Setting\Listener\Command\SetThemes;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -14,7 +14,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Listener
+ * @package       Anomaly\SettingsModule\Setting\Listener
  */
 class ConfigureStreams
 {

@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting\Contract;
 
+use Anomaly\SettingsModule\Setting\SettingCollection;
 use Anomaly\SettingsModule\Setting\SettingModel;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
@@ -58,4 +59,12 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
      * @return SettingInterface
      */
     public function findByKeyOrNew($key);
+
+    /**
+     * Find all settings with namespace.
+     *
+     * @param $namespace
+     * @return SettingCollection
+     */
+    public function findAllByNamespace($namespace);
 }

@@ -1,4 +1,4 @@
-<?php namespace Anomaly\SettingsModule\Listener\Command;
+<?php namespace Anomaly\SettingsModule\Setting\Listener\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Theme\Theme;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Listener\Command
+ * @package       Anomaly\SettingsModule\Setting\Listener\Command
  */
 class SetThemes implements SelfHandling
 {

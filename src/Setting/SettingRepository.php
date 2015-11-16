@@ -123,4 +123,15 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
 
         return $setting;
     }
+
+    /**
+     * Find all settings with namespace.
+     *
+     * @param $namespace
+     * @return SettingCollection
+     */
+    public function findAllByNamespace($namespace)
+    {
+        return $this->model->where('key', 'LIKE', $namespace . '%')->get();
+    }
 }
