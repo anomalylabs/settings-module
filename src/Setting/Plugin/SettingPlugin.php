@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Setting\Plugin;
 
 use Anomaly\SettingsModule\Setting\Plugin\Command\GetSetting;
+use Anomaly\SettingsModule\Setting\Plugin\Command\GetSettingValue;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 
 /**
@@ -26,6 +27,12 @@ class SettingPlugin extends Plugin
                 'setting',
                 function ($key) {
                     return $this->dispatch(new GetSetting($key));
+                }
+            ),
+            new \Twig_SimpleFunction(
+                'setting_value',
+                function ($key, $default) {
+                    return $this->dispatch(new GetSettingValue($key, $default));
                 }
             )
         ];
