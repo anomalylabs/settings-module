@@ -28,9 +28,6 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $listeners = [
-        'Anomaly\Streams\Platform\Event\Ready'                                   => [
-            'Anomaly\SettingsModule\Setting\Listener\ConfigureStreams'
-        ],
         'Anomaly\Streams\Platform\Addon\Module\Event\ModuleWasUninstalled'       => [
             'Anomaly\SettingsModule\Setting\Listener\DeleteModuleSettings'
         ],
