@@ -1,4 +1,4 @@
-<?php namespace Anomaly\SettingsModule\Setting\Plugin\Command;
+<?php namespace Anomaly\SettingsModule\Setting\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;

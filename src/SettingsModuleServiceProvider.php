@@ -19,7 +19,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $plugins = [
-        'Anomaly\SettingsModule\Setting\Plugin\SettingPlugin'
+        'Anomaly\SettingsModule\SettingsModulePlugin'
     ];
 
     /**

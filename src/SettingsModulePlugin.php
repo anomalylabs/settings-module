@@ -1,18 +1,17 @@
-<?php namespace Anomaly\SettingsModule\Setting\Plugin;
+<?php namespace Anomaly\SettingsModule;
 
-use Anomaly\SettingsModule\Setting\Plugin\Command\GetSetting;
-use Anomaly\SettingsModule\Setting\Plugin\Command\GetSettingValue;
+use Anomaly\SettingsModule\Setting\Command\GetSettingValue;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 
 /**
- * Class SettingPlugin
+ * Class SettingsModulePlugin
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\SettingsModule\Setting\Plugin
+ * @package       Anomaly\SettingsModule
  */
-class SettingPlugin extends Plugin
+class SettingsModulePlugin extends Plugin
 {
 
     /**
