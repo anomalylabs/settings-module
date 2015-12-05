@@ -48,6 +48,15 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
+     * The class bindings.
+     *
+     * @var array
+     */
+    protected $bindings = [
+        'Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel' => 'Anomaly\SettingsModule\Setting\SettingModel'
+    ];
+
+    /**
      * The singleton bindings.
      *
      * @var array

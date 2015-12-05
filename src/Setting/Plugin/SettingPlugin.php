@@ -24,14 +24,8 @@ class SettingPlugin extends Plugin
     {
         return [
             new \Twig_SimpleFunction(
-                'setting',
-                function ($key) {
-                    return $this->dispatch(new GetSetting($key));
-                }
-            ),
-            new \Twig_SimpleFunction(
                 'setting_value',
-                function ($key, $default) {
+                function ($key, $default = null) {
                     return $this->dispatch(new GetSettingValue($key, $default));
                 }
             )
