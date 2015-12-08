@@ -4,14 +4,14 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
- * Class GetSetting
+ * Class GetSettingValueFieldType
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\SettingsModule\Setting\Plugin\Command
  */
-class GetSetting implements SelfHandling
+class GetSettingValueFieldType implements SelfHandling
 {
 
     /**
@@ -22,7 +22,7 @@ class GetSetting implements SelfHandling
     protected $key;
 
     /**
-     * Create a new GetSetting instance.
+     * Create a new GetSettingValueFieldType instance.
      *
      * @param      $key
      */
@@ -35,10 +35,14 @@ class GetSetting implements SelfHandling
      * Handle the command.
      *
      * @param SettingRepositoryInterface $settings
-     * @return \Anomaly\SettingsModule\Setting\Contract\SettingInterface|null
+     * @return \Anomaly\Streams\Platform\Addon\FieldType\FieldType|null
      */
     public function handle(SettingRepositoryInterface $settings)
     {
-        return $settings->get($this->key);
+        if (!$setting = $settings->get($this->key)) {
+            return null;
+        }
+
+        return $setting->getFieldType('value');
     }
 }
