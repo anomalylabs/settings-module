@@ -1,7 +1,8 @@
 <?php namespace Anomaly\SettingsModule;
 
+use Anomaly\SettingsModule\Setting\Command\GetSetting;
 use Anomaly\SettingsModule\Setting\Command\GetSettingValue;
-use Anomaly\SettingsModule\Setting\Command\GetValueFieldType;
+use Anomaly\SettingsModule\Setting\Command\GetValuePresenter;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 
 /**
@@ -26,7 +27,7 @@ class SettingsModulePlugin extends Plugin
             new \Twig_SimpleFunction(
                 'setting',
                 function ($key) {
-                    return $this->dispatch(new GetValueFieldType($key));
+                    return $this->dispatch(new GetValuePresenter($this->dispatch(new GetSetting($key))));
                 }
             ),
             new \Twig_SimpleFunction(
