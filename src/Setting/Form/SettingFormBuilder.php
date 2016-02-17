@@ -28,24 +28,6 @@ class SettingFormBuilder extends FormBuilder
     protected $fields = SettingFormFields::class;
 
     /**
-     * The form actions handler.
-     *
-     * @var string
-     */
-    protected $actions = [
-        'save'
-    ];
-
-    /**
-     * The form buttons handler.
-     *
-     * @var string
-     */
-    protected $buttons = [
-        'cancel'
-    ];
-
-    /**
      * The form options.
      *
      * @var array
