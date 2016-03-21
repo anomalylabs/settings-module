@@ -49,12 +49,14 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     /**
      * Get a setting.
      *
-     * @param $key
-     * @return null|SettingInterface
+     * @param      $key
+     * @param null $default
+     * @return null|SettingInterface|SettingModel
      */
-    public function get($key)
+    public function get($key, $default = null)
     {
-        return $this->settings->get($key);
+        $setting = $this->settings->get($key);
+        return ($setting)? $setting : $default;
     }
 
     /**
