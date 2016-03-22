@@ -19,10 +19,11 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
     /**
      * Get a setting.
      *
-     * @param $key
+     * @param      $key
+     * @param null $default
      * @return null|SettingInterface|SettingModel
      */
-    public function get($key);
+    public function get($key, $default = null);
 
     /**
      * Set a settings value.
