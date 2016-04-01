@@ -1,6 +1,8 @@
 <?php namespace Anomaly\SettingsModule\Setting\Table;
 
 use Anomaly\Streams\Platform\Addon\AddonCollection;
+use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
+use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
 
 /**
  * Class AddonTableEntries
@@ -21,8 +23,13 @@ class AddonTableEntries
      */
     public function handle(AddonTableBuilder $builder, AddonCollection $addons)
     {
-        $builder->setTableEntries(
-            $addons->{$builder->getType()}->withAnyConfig(['settings', 'settings/settings'])
-        );
+        /* @var AddonCollection|ModuleCollection|ExtensionCollection $entries */
+        $entries = $addons->{$builder->getType()}->withAnyConfig(['settings', 'settings/settings']);
+
+        if (in_array($builder->getType(), ['modules', 'extensions'])) {
+            $entries = $entries->enabled();
+        }
+
+        $builder->setTableEntries($entries);
     }
 }
