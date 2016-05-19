@@ -47,6 +47,16 @@ class ConfigureStreams implements SelfHandling
         $config->set('streams::maintenance.auth', $settings->value('streams::basic_auth', false));
         $config->set('streams::maintenance.ip_whitelist', $settings->value('streams::ip_whitelist', []));
 
-        $config->set('streams::ui.per_page', $settings->value('streams::per_page', 15));
+        $config->set('streams::system.per_page', $settings->value('streams::per_page', 15));
+
+        $config->set('mail.from.name', $settings->value('streams::sender', $config->get('streams::system.name')));
+        $config->set('mail.from.address', $settings->value('streams::email', env('ADMIN_EMAIL')));
+
+        $config->set('mail.driver', $settings->value('streams::mail_driver', $config->get('mail.driver')));
+        $config->set('mail.host', $settings->value('streams::mail_host', $config->get('mail.host')));
+        $config->set('mail.port', $settings->value('streams::mail_port', $config->get('mail.port')));
+        $config->set('mail.username', $settings->value('streams::mail_username', $config->get('mail.username')));
+        $config->set('mail.password', $settings->value('streams::mail_password', $config->get('mail.password')));
+        $config->set('mail.pretend', $settings->value('streams::mail_debug', $config->get('mail.pretend')));
     }
 }
