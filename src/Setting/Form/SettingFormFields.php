@@ -82,16 +82,14 @@ class SettingFormFields implements SelfHandling
                 )
             )
             ) {
-                $field['label'] = trans($label);
+                $field['label'] = $label;
             }
 
             // Default the label.
-            $field['label'] = trans(
-                array_get(
-                    $field,
-                    'label',
-                    $namespace . 'setting.' . $slug . '.name'
-                )
+            $field['label'] = array_get(
+                $field,
+                'label',
+                $namespace . 'setting.' . $slug . '.name'
             );
 
             // Default the warning.
@@ -103,7 +101,7 @@ class SettingFormFields implements SelfHandling
                 )
             )
             ) {
-                $field['warning'] = trans($warning);
+                $field['warning'] = $warning;
             }
 
             // Default the placeholder.
@@ -115,7 +113,7 @@ class SettingFormFields implements SelfHandling
                 )
             )
             ) {
-                $field['placeholder'] = trans($placeholder);
+                $field['placeholder'] = $placeholder;
             }
 
             // Default the instructions.
@@ -127,7 +125,7 @@ class SettingFormFields implements SelfHandling
                 )
             )
             ) {
-                $field['instructions'] = trans($instructions);
+                $field['instructions'] = $instructions;
             }
 
             // Get the value defaulting to the default value.
