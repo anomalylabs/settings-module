@@ -1,6 +1,6 @@
 <?php namespace Anomaly\SettingsModule;
 
-use Anomaly\SettingsModule\Setting\Command\ConfigureStreams;
+use Anomaly\SettingsModule\Setting\Command\ConfigureSystem;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Application\Application;
 
@@ -78,7 +78,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
             return;
         }
 
-        $this->dispatch(new ConfigureStreams());
+        $this->dispatch(new ConfigureSystem());
     }
 
 }

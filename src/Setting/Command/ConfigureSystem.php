@@ -6,14 +6,14 @@ use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
 
 /**
- * Class ConfigureStreams
+ * Class ConfigureSystem
  *
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\SettingsModule\Setting\Command
  */
-class ConfigureStreams implements SelfHandling
+class ConfigureSystem implements SelfHandling
 {
 
     /**
