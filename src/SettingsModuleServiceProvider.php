@@ -1,6 +1,8 @@
 <?php namespace Anomaly\SettingsModule;
 
+use Anomaly\SettingsModule\Setting\Command\ConfigureStreams;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Anomaly\Streams\Platform\Application\Application;
 
 /**
  * Class SettingsModuleServiceProvider
@@ -64,5 +66,19 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     protected $singletons = [
         'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface' => 'Anomaly\SettingsModule\Setting\SettingRepository'
     ];
+
+    /**
+     * Configure Streams.
+     *
+     * @param Application $application
+     */
+    public function boot(Application $application)
+    {
+        if (!$application->isInstalled()) {
+            return;
+        }
+
+        $this->dispatch(new ConfigureStreams());
+    }
 
 }
