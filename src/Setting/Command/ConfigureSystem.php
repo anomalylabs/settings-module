@@ -17,6 +17,31 @@ class ConfigureSystem implements SelfHandling
 {
 
     /**
+     * Configuration to setting map.
+     *
+     * @var array
+     */
+    protected $settings = [
+        'app.debug'                         => 'streams::debug',
+        'app.timezone'                      => 'streams::timezone',
+        'streams::locales.default'          => 'streams::default_locale',
+        'streams::locales.enabled'          => 'streams::enabled_locales',
+        'streams::themes.admin'             => 'streams::admin_theme',
+        'streams::themes.standard'          => 'streams::standard_theme',
+        'streams::maintenance.auth'         => 'streams::basic_auth',
+        'streams::maintenance.ip_whitelist' => 'streams::ip_whitelist',
+        'streams::system.per_page'          => 'streams::per_page',
+        'mail.from.name'                    => 'streams::sender',
+        'mail.from.address'                 => 'streams::email',
+        'mail.driver'                       => 'streams::mail_driver',
+        'mail.host'                         => 'streams::mail_host',
+        'mail.port'                         => 'streams::mail_port',
+        'mail.username'                     => 'streams::mail_username',
+        'mail.password'                     => 'streams::mail_password',
+        'mail.pretend'                      => 'streams::mail_debug'
+    ];
+
+    /**
      * Handle the command.
      *
      * @param SettingRepositoryInterface $settings
@@ -25,14 +50,9 @@ class ConfigureSystem implements SelfHandling
      */
     public function handle(SettingRepositoryInterface $settings, Application $application, Repository $config)
     {
-        $config->set('app.debug', $settings->value('streams::debug', false));
-        $config->set('app.timezone', $settings->value('streams::timezone', 'UTC'));
-
-        $config->set('streams::locales.default', $settings->value('streams::default_locale', 'en'));
-        $config->set('streams::locales.enabled', $settings->value('streams::enabled_locales', ['en']));
-
-        $config->set('streams::themes.admin', $settings->value('streams::admin_theme', env('ADMIN_THEME')));
-        $config->set('streams::themes.standard', $settings->value('streams::standard_theme', env('STANDARD_THEME')));
+        foreach ($this->settings as $key => $value) {
+            $config->set($key, $settings->value($value, $config->get($key)));
+        }
 
         $maintenance = $settings->value('streams::maintenance', false);
 
@@ -43,20 +63,5 @@ class ConfigureSystem implements SelfHandling
         if (!$maintenance && $application->isDownForMaintenance()) {
             unlink(storage_path('framework/down'));
         }
-
-        $config->set('streams::maintenance.auth', $settings->value('streams::basic_auth', false));
-        $config->set('streams::maintenance.ip_whitelist', $settings->value('streams::ip_whitelist', []));
-
-        $config->set('streams::system.per_page', $settings->value('streams::per_page', 15));
-
-        $config->set('mail.from.name', $settings->value('streams::sender', $config->get('streams::system.name')));
-        $config->set('mail.from.address', $settings->value('streams::email', env('ADMIN_EMAIL')));
-
-        $config->set('mail.driver', $settings->value('streams::mail_driver', $config->get('mail.driver')));
-        $config->set('mail.host', $settings->value('streams::mail_host', $config->get('mail.host')));
-        $config->set('mail.port', $settings->value('streams::mail_port', $config->get('mail.port')));
-        $config->set('mail.username', $settings->value('streams::mail_username', $config->get('mail.username')));
-        $config->set('mail.password', $settings->value('streams::mail_password', $config->get('mail.password')));
-        $config->set('mail.pretend', $settings->value('streams::mail_debug', $config->get('mail.pretend')));
     }
 }
