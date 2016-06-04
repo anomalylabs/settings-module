@@ -69,7 +69,7 @@ class ConfigureSystem implements SelfHandling
             }
         }
 
-        foreach ($config->get('streams::settings/settings') as $key => $setting) {
+        foreach ($config->get('streams::settings/settings', []) as $key => $setting) {
 
             if (isset($setting['env']) && env($setting['env']) !== null) {
                 continue;
