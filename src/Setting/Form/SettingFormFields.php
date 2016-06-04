@@ -73,7 +73,6 @@ class SettingFormFields implements SelfHandling
             // Make sure we have a config property.
             $field['config'] = array_get($field, 'config', []);
 
-
             if (trans()->has(
                 $label = array_get(
                     $field,
@@ -133,6 +132,16 @@ class SettingFormFields implements SelfHandling
                 $field['value'] = $value->getValue();
             } else {
                 $field['value'] = array_get($field['config'], 'default_value');
+            }
+
+            /**
+             * Disable the field if it
+             * has a set env value.
+             */
+            if (isset($field['env']) && ($value = env($field['env'])) !== null) {
+                $field['disabled'] = true;
+                $field['value']    = $value;
+                $field['warning']  = 'module::message.env_locked';
             }
         }
 

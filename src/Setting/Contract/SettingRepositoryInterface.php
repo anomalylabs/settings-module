@@ -17,6 +17,14 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
+     * Return if the key exists or not.
+     *
+     * @param $key
+     * @return bool
+     */
+    public function has($key);
+
+    /**
      * Get a setting.
      *
      * @param      $key

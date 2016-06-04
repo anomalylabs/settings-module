@@ -1,6 +1,8 @@
 <?php namespace Anomaly\SettingsModule\Setting\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\Streams\Platform\Addon\Addon;
+use Anomaly\Streams\Platform\Addon\AddonCollection;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
@@ -22,46 +24,80 @@ class ConfigureSystem implements SelfHandling
      * @var array
      */
     protected $settings = [
-        'app.debug'                         => 'streams::debug',
-        'app.timezone'                      => 'streams::timezone',
-        'streams::locales.default'          => 'streams::default_locale',
-        'streams::locales.enabled'          => 'streams::enabled_locales',
-        'streams::themes.admin'             => 'streams::admin_theme',
-        'streams::themes.standard'          => 'streams::standard_theme',
-        'streams::maintenance.auth'         => 'streams::basic_auth',
-        'streams::maintenance.ip_whitelist' => 'streams::ip_whitelist',
-        'streams::system.per_page'          => 'streams::per_page',
-        'mail.from.name'                    => 'streams::sender',
-        'mail.from.address'                 => 'streams::email',
-        'mail.driver'                       => 'streams::mail_driver',
-        'mail.host'                         => 'streams::mail_host',
-        'mail.port'                         => 'streams::mail_port',
-        'mail.username'                     => 'streams::mail_username',
-        'mail.password'                     => 'streams::mail_password',
-        'mail.pretend'                      => 'streams::mail_debug'
+        'mail.driver'   => 'streams::mail_driver',
+        'mail.host'     => 'streams::mail_host',
+        'mail.port'     => 'streams::mail_port',
+        'mail.username' => 'streams::mail_username',
+        'mail.password' => 'streams::mail_password',
+        'mail.pretend'  => 'streams::mail_debug'
     ];
 
     /**
      * Handle the command.
      *
      * @param SettingRepositoryInterface $settings
-     * @param Application                $application
+     * @param AddonCollection            $addons
      * @param Repository                 $config
      */
-    public function handle(SettingRepositoryInterface $settings, Application $application, Repository $config)
-    {
-        foreach ($this->settings as $key => $value) {
-            $config->set($key, $settings->value($value, $config->get($key)));
+    public function handle(
+        SettingRepositoryInterface $settings,
+        AddonCollection $addons,
+        Repository $config
+    ) {
+        /* @var Addon $addon */
+        foreach ($addons->withConfig('settings') as $addon) {
+            foreach ($config->get($addon->getNamespace('settings')) as $key => $setting) {
+
+                if (isset($setting['env']) && env($setting['env']) !== null) {
+                    continue;
+                }
+
+                if (!isset($setting['replace'])) {
+                    continue;
+                }
+
+                if (!$settings->has($key = $addon->getNamespace($key))) {
+                    continue;
+                }
+
+                $config->set($setting['replace'], $settings->value($key));
+            }
         }
 
-        $maintenance = $settings->value('streams::maintenance', false);
+        foreach ($addons->withConfig('settings/settings') as $addon) {
+            foreach ($config->get($addon->getNamespace('settings/settings')) as $key => $setting) {
 
-        if ($maintenance && !$application->isDownForMaintenance()) {
-            touch(storage_path('framework/down'));
+                if (isset($setting['env']) && env($setting['env']) !== null) {
+                    continue;
+                }
+
+                if (!isset($setting['replace'])) {
+                    continue;
+                }
+
+                if (!$settings->has($key = $addon->getNamespace($key))) {
+                    continue;
+                }
+
+                $config->set($setting['replace'], $settings->value($key));
+            }
         }
 
-        if (!$maintenance && $application->isDownForMaintenance()) {
-            unlink(storage_path('framework/down'));
+        foreach ($config->get('streams::settings/settings') as $key => $setting) {
+
+            if (isset($setting['env']) && env($setting['env']) !== null) {
+                continue;
+            }
+
+            if (!isset($setting['replace'])) {
+                continue;
+            }
+
+            if (!$settings->has($key = 'streams::' . $key)) {
+                continue;
+            }
+
+            $config->set($setting['replace'], $settings->value($key));
         }
     }
 }

@@ -47,6 +47,17 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     }
 
     /**
+     * Return if the key exists or not.
+     *
+     * @param $key
+     * @return bool
+     */
+    public function has($key)
+    {
+        return $this->settings->has($key);
+    }
+
+    /**
      * Get a setting.
      *
      * @param      $key
@@ -56,7 +67,8 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     public function get($key, $default = null)
     {
         $setting = $this->settings->get($key);
-        return ($setting)? $setting : $default;
+
+        return ($setting) ? $setting : $default;
     }
 
     /**
