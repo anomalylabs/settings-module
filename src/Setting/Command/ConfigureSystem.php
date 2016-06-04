@@ -52,7 +52,7 @@ class ConfigureSystem implements SelfHandling
                     continue;
                 }
 
-                if (!isset($setting['replace'])) {
+                if (!isset($setting['bind'])) {
                     continue;
                 }
 
@@ -60,7 +60,7 @@ class ConfigureSystem implements SelfHandling
                     continue;
                 }
 
-                $config->set($setting['replace'], $settings->value($key));
+                $config->set($setting['bind'], $settings->value($key));
             }
         }
 
@@ -71,7 +71,7 @@ class ConfigureSystem implements SelfHandling
                     continue;
                 }
 
-                if (!isset($setting['replace'])) {
+                if (!isset($setting['bind'])) {
                     continue;
                 }
 
@@ -79,7 +79,7 @@ class ConfigureSystem implements SelfHandling
                     continue;
                 }
 
-                $config->set($setting['replace'], $settings->value($key));
+                $config->set($setting['bind'], $settings->value($key));
             }
         }
 
@@ -89,7 +89,7 @@ class ConfigureSystem implements SelfHandling
                 continue;
             }
 
-            if (!isset($setting['replace'])) {
+            if (!isset($setting['bind'])) {
                 continue;
             }
 
@@ -97,7 +97,7 @@ class ConfigureSystem implements SelfHandling
                 continue;
             }
 
-            $config->set($setting['replace'], $settings->value($key));
+            $config->set($setting['bind'], $settings->value($key));
         }
     }
 }
