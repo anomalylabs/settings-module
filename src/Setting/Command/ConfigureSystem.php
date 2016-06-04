@@ -19,20 +19,6 @@ class ConfigureSystem implements SelfHandling
 {
 
     /**
-     * Configuration to setting map.
-     *
-     * @var array
-     */
-    protected $settings = [
-        'mail.driver'   => 'streams::mail_driver',
-        'mail.host'     => 'streams::mail_host',
-        'mail.port'     => 'streams::mail_port',
-        'mail.username' => 'streams::mail_username',
-        'mail.password' => 'streams::mail_password',
-        'mail.pretend'  => 'streams::mail_debug'
-    ];
-
-    /**
      * Handle the command.
      *
      * @param SettingRepositoryInterface $settings
