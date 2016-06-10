@@ -82,7 +82,7 @@ class SettingFormRepository implements FormRepositoryInterface
     /**
      * Save the form.
      *
-     * @param FormBuilder $builder
+     * @param FormBuilder|SettingFormBuilder $builder
      * @return bool|mixed
      */
     public function save(FormBuilder $builder)
@@ -100,6 +100,6 @@ class SettingFormRepository implements FormRepositoryInterface
             $this->settings->set($key, $value);
         }
 
-        $this->events->fire(new SettingsWereSaved($form->getEntry()));
+        $this->events->fire(new SettingsWereSaved($builder));
     }
 }

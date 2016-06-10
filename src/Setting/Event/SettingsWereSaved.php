@@ -1,5 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Setting\Event;
 
+use Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
+
 /**
  * Class SettingsWereSaved
  *
@@ -12,29 +14,29 @@ class SettingsWereSaved
 {
 
     /**
-     * The setting's namespace.
+     * The form builder.
      *
-     * @var string
+     * @var SettingFormBuilder
      */
-    protected $namespace;
+    protected $builder;
 
     /**
      * Create a new SettingsWereSaved instance.
      *
-     * @param string $namespace
+     * @param SettingFormBuilder $builder
      */
-    public function __construct($namespace)
+    public function __construct(SettingFormBuilder $builder)
     {
-        $this->namespace = $namespace;
+        $this->builder = $builder;
     }
 
     /**
-     * Get the namespace.
+     * Get the builder.
      *
-     * @return string
+     * @return SettingFormBuilder
      */
-    public function getNamespace()
+    public function getBuilder()
     {
-        return $this->namespace;
+        return $this->builder;
     }
 }

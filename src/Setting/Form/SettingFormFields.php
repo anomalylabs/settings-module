@@ -128,10 +128,8 @@ class SettingFormFields implements SelfHandling
             }
 
             // Get the value defaulting to the default value.
-            if ($value = $settings->get($namespace . $slug)) {
-                $field['value'] = $value->getValue();
-            } else {
-                $field['value'] = array_get($field['config'], 'default_value');
+            if (!isset($field['value'])) {
+                $field['value'] = $settings->value($namespace . $slug, array_get($field['config'], 'default_value'));
             }
 
             /**

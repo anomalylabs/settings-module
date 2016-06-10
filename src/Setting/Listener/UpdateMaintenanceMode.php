@@ -48,11 +48,13 @@ class UpdateMaintenanceMode
      */
     public function handle(SettingsWereSaved $event)
     {
-        if (!($namespace = $event->getNamespace()) == 'streams') {
+        $builder = $event->getBuilder();
+
+        if (!($namespace = $builder->getEntry()) == 'streams') {
             return;
         }
 
-        $maintenance = $this->settings->value('streams::maintenance', false);
+        $maintenance = $builder->getFormValue('maintenance');
 
         if ($maintenance && !$this->application->isDownForMaintenance()) {
             touch(storage_path('framework/down'));
