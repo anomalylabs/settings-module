@@ -10,9 +10,9 @@ use Illuminate\Config\Repository;
 /**
  * Class SettingRepositoryInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\SettingsModule\SettingInterface
  */
 class SettingRepository extends EntryRepository implements SettingRepositoryInterface
@@ -47,14 +47,28 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     }
 
     /**
-     * Get a setting.
+     * Return if the key exists or not.
      *
      * @param $key
-     * @return null|SettingInterface
+     * @return bool
      */
-    public function get($key)
+    public function has($key)
     {
-        return $this->settings->get($key);
+        return $this->settings->has($key);
+    }
+
+    /**
+     * Get a setting.
+     *
+     * @param      $key
+     * @param null $default
+     * @return null|SettingInterface|SettingModel
+     */
+    public function get($key, $default = null)
+    {
+        $setting = $this->settings->get($key);
+
+        return ($setting) ? $setting : $default;
     }
 
     /**

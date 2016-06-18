@@ -5,9 +5,9 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 /**
  * Class SettingFormBuilder
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\SettingsModule\Setting\Form
  */
 class SettingFormBuilder extends FormBuilder
@@ -26,24 +26,6 @@ class SettingFormBuilder extends FormBuilder
      * @var string
      */
     protected $fields = SettingFormFields::class;
-
-    /**
-     * The form actions handler.
-     *
-     * @var string
-     */
-    protected $actions = [
-        'save'
-    ];
-
-    /**
-     * The form buttons handler.
-     *
-     * @var string
-     */
-    protected $buttons = [
-        'cancel'
-    ];
 
     /**
      * The form options.

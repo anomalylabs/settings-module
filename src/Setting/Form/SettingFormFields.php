@@ -7,9 +7,9 @@ use Illuminate\Contracts\Bus\SelfHandling;
 /**
  * Class SettingFormFields
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\SettingsModule\Setting\Form
  */
 class SettingFormFields implements SelfHandling
@@ -73,7 +73,6 @@ class SettingFormFields implements SelfHandling
             // Make sure we have a config property.
             $field['config'] = array_get($field, 'config', []);
 
-
             if (trans()->has(
                 $label = array_get(
                     $field,
@@ -82,16 +81,14 @@ class SettingFormFields implements SelfHandling
                 )
             )
             ) {
-                $field['label'] = trans($label);
+                $field['label'] = $label;
             }
 
             // Default the label.
-            $field['label'] = trans(
-                array_get(
-                    $field,
-                    'label',
-                    $namespace . 'setting.' . $slug . '.name'
-                )
+            $field['label'] = array_get(
+                $field,
+                'label',
+                $namespace . 'setting.' . $slug . '.name'
             );
 
             // Default the warning.
@@ -103,7 +100,7 @@ class SettingFormFields implements SelfHandling
                 )
             )
             ) {
-                $field['warning'] = trans($warning);
+                $field['warning'] = $warning;
             }
 
             // Default the placeholder.
@@ -115,7 +112,7 @@ class SettingFormFields implements SelfHandling
                 )
             )
             ) {
-                $field['placeholder'] = trans($placeholder);
+                $field['placeholder'] = $placeholder;
             }
 
             // Default the instructions.
@@ -127,14 +124,22 @@ class SettingFormFields implements SelfHandling
                 )
             )
             ) {
-                $field['instructions'] = trans($instructions);
+                $field['instructions'] = $instructions;
             }
 
             // Get the value defaulting to the default value.
-            if ($value = $settings->get($namespace . $slug)) {
-                $field['value'] = $value->getValue();
-            } else {
-                $field['value'] = array_get($field['config'], 'default_value');
+            if (!isset($field['value'])) {
+                $field['value'] = $settings->value($namespace . $slug, array_get($field['config'], 'default_value'));
+            }
+
+            /**
+             * Disable the field if it
+             * has a set env value.
+             */
+            if (isset($field['env']) && isset($field['bind']) && env($field['env']) !== null) {
+                $field['disabled'] = true;
+                $field['warning']  = 'module::message.env_locked';
+                $field['value']    = $this->config->get($field['bind']);
             }
         }
 

@@ -8,21 +8,30 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 /**
  * Interface SettingRepositoryInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\SettingsModule\SettingInterface\Contract
  */
 interface SettingRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
-     * Get a setting.
+     * Return if the key exists or not.
      *
      * @param $key
+     * @return bool
+     */
+    public function has($key);
+
+    /**
+     * Get a setting.
+     *
+     * @param      $key
+     * @param null $default
      * @return null|SettingInterface|SettingModel
      */
-    public function get($key);
+    public function get($key, $default = null);
 
     /**
      * Set a settings value.

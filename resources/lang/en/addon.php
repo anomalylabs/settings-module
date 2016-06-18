@@ -6,6 +6,7 @@ return [
     'description' => 'System settings management.',
     'section'     => [
         'system'      => 'System',
+        'themes'      => 'Themes',
         'plugins'     => 'Plugins',
         'modules'     => 'Modules',
         'extensions'  => 'Extensions',

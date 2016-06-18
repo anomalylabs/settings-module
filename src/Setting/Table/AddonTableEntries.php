@@ -1,13 +1,15 @@
 <?php namespace Anomaly\SettingsModule\Setting\Table;
 
 use Anomaly\Streams\Platform\Addon\AddonCollection;
+use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
+use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
 
 /**
  * Class AddonTableEntries
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\SettingsModule\Setting\Table
  */
 class AddonTableEntries
@@ -21,8 +23,13 @@ class AddonTableEntries
      */
     public function handle(AddonTableBuilder $builder, AddonCollection $addons)
     {
-        $builder->setTableEntries(
-            $addons->{$builder->getType()}->withAnyConfig(['settings', 'settings/settings'])
-        );
+        /* @var AddonCollection|ModuleCollection|ExtensionCollection $entries */
+        $entries = $addons->{$builder->getType()}->withAnyConfig(['settings', 'settings/settings']);
+
+        if (in_array($builder->getType(), ['modules', 'extensions'])) {
+            $entries = $entries->enabled();
+        }
+
+        $builder->setTableEntries($entries);
     }
 }

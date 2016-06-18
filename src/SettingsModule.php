@@ -5,9 +5,9 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 /**
  * Class SettingsModule
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\Settings\Module
  */
 class SettingsModule extends Module
@@ -28,6 +28,7 @@ class SettingsModule extends Module
     protected $sections = [
         'system',
         'modules',
+        'themes',
         'extensions',
         'field_types',
         'plugins'

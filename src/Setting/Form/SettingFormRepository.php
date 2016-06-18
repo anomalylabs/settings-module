@@ -1,18 +1,20 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\SettingsModule\Setting\Event\SettingsWereSaved;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
+use Illuminate\Events\Dispatcher;
 
 /**
  * Class SettingFormRepositoryInterface
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\SettingsModule\Setting\Form
  */
 class SettingFormRepository implements FormRepositoryInterface
@@ -24,6 +26,13 @@ class SettingFormRepository implements FormRepositoryInterface
      * @var Repository
      */
     protected $config;
+
+    /**
+     * The event dispatcher.
+     *
+     * @var Dispatcher
+     */
+    protected $events;
 
     /**
      * The application container.
@@ -43,12 +52,18 @@ class SettingFormRepository implements FormRepositoryInterface
      * Create a new SettingFormRepositoryInterface instance.
      *
      * @param Repository                 $config
+     * @param Dispatcher                 $events
      * @param Container                  $container
      * @param SettingRepositoryInterface $settings
      */
-    public function __construct(Repository $config, Container $container, SettingRepositoryInterface $settings)
-    {
+    public function __construct(
+        Repository $config,
+        Dispatcher $events,
+        Container $container,
+        SettingRepositoryInterface $settings
+    ) {
         $this->config    = $config;
+        $this->events    = $events;
         $this->settings  = $settings;
         $this->container = $container;
     }
@@ -67,7 +82,7 @@ class SettingFormRepository implements FormRepositoryInterface
     /**
      * Save the form.
      *
-     * @param FormBuilder $builder
+     * @param FormBuilder|SettingFormBuilder $builder
      * @return bool|mixed
      */
     public function save(FormBuilder $builder)
@@ -84,5 +99,7 @@ class SettingFormRepository implements FormRepositoryInterface
 
             $this->settings->set($key, $value);
         }
+
+        $this->events->fire(new SettingsWereSaved($builder));
     }
 }

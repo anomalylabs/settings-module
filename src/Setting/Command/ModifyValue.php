@@ -9,9 +9,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 /**
  * Class ModifyValue
  *
- * @link          http://anomaly.is/streams-platform
- * @author        AnomalyLabs, Inc. <hello@anomaly.is>
- * @author        Ryan Thompson <ryan@anomaly.is>
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\SettingsModule\Setting\Command
  */
 class ModifyValue implements SelfHandling
