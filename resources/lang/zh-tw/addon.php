@@ -6,9 +6,10 @@ return [
     'description' => '管理系統的設定。',
     'section'     => [
         'system'      => '系統',
-        'plugins'     => '程式插件',
-        'modules'     => '程式模組',
-        'extensions'  => '程式擴充',
+        'themes'      => '佈景主題',
+        'plugins'     => '外掛',
+        'modules'     => '模組',
+        'extensions'  => '擴充功能',
         'field_types' => '欄位型別'
     ]
 ];
