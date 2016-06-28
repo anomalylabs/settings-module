@@ -50,7 +50,10 @@ class GetSettingDefaultValue implements SelfHandling
 
         $defaultValue = array_get($fields, $key . '.config.default_value', null);
 
-        if ($fields && is_callable($defaultValue)) {
+        /**
+         * If it is a closure, run it through the IoC container
+         */
+        if ($fields && ($defaultValue instanceof \Closure)) {
 
             return $container->call($defaultValue);
         }

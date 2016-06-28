@@ -71,10 +71,6 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     {
         $setting = $this->settings->get($key);
 
-        if (!$setting && !$default) {
-            $default = $this->dispatch(new GetSettingDefaultValue($key));
-        }
-
         return ($setting) ? $setting : $default;
     }
 
@@ -105,7 +101,15 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     {
         $setting = $this->get($key);
 
-        return ($setting) ? $setting : $default;
+        if($setting) {
+            return $setting->getValue();
+        }
+
+        if (!$setting && !$default) {
+            return $this->dispatch(new GetSettingDefaultValue($key));
+        }
+        
+        return $default;
     }
 
     /**
