@@ -1,11 +1,13 @@
 <?php namespace Anomaly\SettingsModule\Setting;
 
+use Anomaly\SettingsModule\Setting\Command\GetDefaultValue;
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 use Illuminate\Config\Repository;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class SettingRepositoryInterface
@@ -17,6 +19,8 @@ use Illuminate\Config\Repository;
  */
 class SettingRepository extends EntryRepository implements SettingRepositoryInterface
 {
+
+    use DispatchesJobs;
 
     /**
      * The setting model.
@@ -96,8 +100,14 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
      */
     public function value($key, $default = null)
     {
-        if ($setting = $this->get($key)) {
+        $setting = $this->get($key);
+
+        if ($setting) {
             return $setting->getValue();
+        }
+
+        if (!$setting && !$default) {
+            return $this->dispatch(new GetDefaultValue($key));
         }
 
         return $default;
