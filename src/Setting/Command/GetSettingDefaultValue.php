@@ -35,7 +35,8 @@ class GetSettingDefaultValue implements SelfHandling
      * Look for a default value from the config definition file. If it has one then return it, otherwise return null.
      *
      * @param Repository $config
-     * @return mixed|null
+     * @param Container  $container
+     * @return mixed
      */
     public function handle(Repository $config, Container $container)
     {
