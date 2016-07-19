@@ -46,7 +46,7 @@ class ConfigureSystem implements SelfHandling
                     continue;
                 }
 
-                $config->set($setting['bind'], $settings->value($key));
+                $config->set($setting['bind'], $settings->presenter($key)->__value());
             }
         }
 
@@ -65,7 +65,7 @@ class ConfigureSystem implements SelfHandling
                     continue;
                 }
 
-                $config->set($setting['bind'], $settings->value($key));
+                $config->set($setting['bind'], $settings->presenter($key)->__value());
             }
         }
 
@@ -83,7 +83,7 @@ class ConfigureSystem implements SelfHandling
                 continue;
             }
 
-            $config->set($setting['bind'], $settings->value($key));
+            $config->set($setting['bind'], $settings->presenter($key)->__value());
         }
     }
 }
