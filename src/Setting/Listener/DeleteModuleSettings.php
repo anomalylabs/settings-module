@@ -9,7 +9,6 @@ use Anomaly\Streams\Platform\Addon\Module\Event\ModuleWasUninstalled;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Listener
  */
 class DeleteModuleSettings
 {

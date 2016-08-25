@@ -3,7 +3,6 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Config\Repository;
 
 /**
@@ -12,9 +11,8 @@ use Illuminate\Contracts\Config\Repository;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Command
  */
-class GetValueFieldType implements SelfHandling
+class GetValueFieldType
 {
 
     /**
@@ -37,8 +35,8 @@ class GetValueFieldType implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param FieldTypeCollection $fieldTypes
-     * @param Repository          $config
+     * @param  FieldTypeCollection $fieldTypes
+     * @param  Repository          $config
      * @return FieldType
      */
     public function handle(FieldTypeCollection $fieldTypes, Repository $config)
@@ -57,11 +55,11 @@ class GetValueFieldType implements SelfHandling
         // Convert short syntax.
         if (is_string($field)) {
             $field = [
-                'type' => $field
+                'type' => $field,
             ];
         }
 
-        /**
+        /*
          * Try and get the field type that
          * the setting uses. If none exists
          * then just return the value as is.
@@ -77,7 +75,7 @@ class GetValueFieldType implements SelfHandling
         $type->mergeRules(array_get($field, 'rules', []));
         $type->mergeConfig(array_get($field, 'config', []));
 
-        /**
+        /*
          * If the type can be determined then
          * get the modifier and restore the value
          * before returning it.

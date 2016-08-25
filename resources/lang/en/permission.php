@@ -2,9 +2,9 @@
 
 return [
     'settings' => [
-        'name' => 'Settings',
+        'name'   => 'Settings',
         'option' => [
-            'write' => 'Can manage system settings?'
-        ]
-    ]
+            'write' => 'Can manage system settings?',
+        ],
+    ],
 ];

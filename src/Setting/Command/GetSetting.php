@@ -1,7 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Setting\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class GetSetting
@@ -9,9 +9,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Plugin\Command
  */
-class GetSetting implements SelfHandling
+class GetSetting
 {
 
     /**
@@ -43,7 +42,7 @@ class GetSetting implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param SettingRepositoryInterface $settings
+     * @param  SettingRepositoryInterface $settings
      * @return mixed
      */
     public function handle(SettingRepositoryInterface $settings)

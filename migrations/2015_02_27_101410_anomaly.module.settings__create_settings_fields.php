@@ -19,7 +19,7 @@ class AnomalyModuleSettingsCreateSettingsFields extends Migration
      */
     protected $fields = [
         'key'   => 'anomaly.field_type.text',
-        'value' => 'anomaly.field_type.textarea'
+        'value' => 'anomaly.field_type.textarea',
     ];
 
 }

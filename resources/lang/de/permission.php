@@ -3,6 +3,6 @@
 return [
     'settings' => [
         'title' => 'Einstellungen',
-        'write' => 'Kann Systemeinstellungen verwalten?'
-    ]
+        'write' => 'Kann Systemeinstellungen verwalten?',
+    ],
 ];

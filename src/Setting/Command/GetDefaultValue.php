@@ -3,16 +3,15 @@
 use Anomaly\Streams\Platform\Support\Resolver;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class GetDefaultValue
  *
  * @link          http://fritzandandre.com
  * @author        Brennon Loveless <brennon@fritzandandre.com>
- * @package       Anomaly\SettingsModule\Setting\Command
  */
-class GetDefaultValue implements SelfHandling
+class GetDefaultValue
 {
 
     /**
@@ -37,8 +36,8 @@ class GetDefaultValue implements SelfHandling
     /**
      * Look for a default value from the config definition file. If it has one then return it, otherwise return null.
      *
-     * @param Repository $config
-     * @param Resolver   $resolver
+     * @param  Repository $config
+     * @param  Resolver   $resolver
      * @return mixed
      */
     public function handle(Repository $config, Resolver $resolver)

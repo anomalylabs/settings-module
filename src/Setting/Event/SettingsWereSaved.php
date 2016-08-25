@@ -8,7 +8,6 @@ use Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Event
  */
 class SettingsWereSaved
 {

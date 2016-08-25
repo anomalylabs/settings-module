@@ -3,7 +3,7 @@
 return [
     'settings' => [
         'name' => 'Impostazioni',
-    'option' => [
+    'option'   => [
         'write' => 'Può gestire le impostazioni di sistema?',
     ],
     ],

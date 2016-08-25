@@ -2,6 +2,6 @@
 
 return [
     'settings' => [
-        'write'
-    ]
+        'write',
+    ],
 ];

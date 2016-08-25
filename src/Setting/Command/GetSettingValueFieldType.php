@@ -1,7 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Setting\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class GetSettingValueFieldType
@@ -9,9 +9,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Plugin\Command
  */
-class GetSettingValueFieldType implements SelfHandling
+class GetSettingValueFieldType
 {
 
     /**
@@ -24,7 +23,7 @@ class GetSettingValueFieldType implements SelfHandling
     /**
      * Create a new GetSettingValueFieldType instance.
      *
-     * @param      $key
+     * @param   $key
      */
     public function __construct($key)
     {
@@ -34,7 +33,7 @@ class GetSettingValueFieldType implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param SettingRepositoryInterface $settings
+     * @param  SettingRepositoryInterface                               $settings
      * @return \Anomaly\Streams\Platform\Addon\FieldType\FieldType|null
      */
     public function handle(SettingRepositoryInterface $settings)

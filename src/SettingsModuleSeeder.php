@@ -12,7 +12,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule
  */
 class SettingsModuleSeeder extends Seeder
 {
@@ -49,7 +48,7 @@ class SettingsModuleSeeder extends Seeder
             $this->settings->create(
                 [
                     'key'   => 'streams::timezone',
-                    'value' => $timezone
+                    'value' => $timezone,
                 ]
             );
         }
@@ -58,7 +57,7 @@ class SettingsModuleSeeder extends Seeder
             $this->settings->create(
                 [
                     'key'   => 'streams::default_locale',
-                    'value' => $locale
+                    'value' => $locale,
                 ]
             );
         }

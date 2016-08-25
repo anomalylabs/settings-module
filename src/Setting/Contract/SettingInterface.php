@@ -8,7 +8,6 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\SettingInterface\Contract
  */
 interface SettingInterface extends EntryInterface
 {

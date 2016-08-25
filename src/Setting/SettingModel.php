@@ -14,7 +14,6 @@ use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\SettingInterface
  */
 class SettingModel extends SettingsSettingsEntryModel implements SettingInterface
 {

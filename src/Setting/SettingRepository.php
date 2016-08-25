@@ -15,7 +15,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\SettingInterface
  */
 class SettingRepository extends EntryRepository implements SettingRepositoryInterface
 {
@@ -64,8 +63,8 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     /**
      * Get a setting.
      *
-     * @param      $key
-     * @param null $default
+     * @param                                     $key
+     * @param  null                               $default
      * @return null|SettingInterface|SettingModel
      */
     public function get($key, $default = null)
@@ -94,8 +93,8 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     /**
      * Get a setting value.
      *
-     * @param      $key
-     * @param null $default
+     * @param             $key
+     * @param  null       $default
      * @return mixed|null
      */
     public function value($key, $default = null)

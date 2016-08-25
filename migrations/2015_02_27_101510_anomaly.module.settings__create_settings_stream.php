@@ -18,7 +18,7 @@ class AnomalyModuleSettingsCreateSettingsStream extends Migration
      * @var array
      */
     protected $stream = [
-        'slug' => 'settings'
+        'slug' => 'settings',
     ];
 
     /**
@@ -29,9 +29,9 @@ class AnomalyModuleSettingsCreateSettingsStream extends Migration
     protected $assignments = [
         'key' => [
             'required' => true,
-            'unique'   => true
+            'unique'   => true,
         ],
-        'value'
+        'value',
     ];
 
 }

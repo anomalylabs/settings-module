@@ -2,7 +2,7 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Config\Repository;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class SettingFormFields
@@ -10,9 +10,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Form
  */
-class SettingFormFields implements SelfHandling
+class SettingFormFields
 {
 
     /**
@@ -41,7 +40,7 @@ class SettingFormFields implements SelfHandling
     {
         $namespace = $builder->getFormEntry() . '::';
 
-        /**
+        /*
          * Get the fields from the config system. Sections are
          * optionally defined the same way.
          */
@@ -53,12 +52,12 @@ class SettingFormFields implements SelfHandling
             $builder->setSections($sections);
         }
 
-        /**
+        /*
          * Finish each field.
          */
         foreach ($fields as $slug => &$field) {
 
-            /**
+            /*
              * Force an array. This is done later
              * too in normalization but we need it now
              * because we are normalizing / guessing our
@@ -66,7 +65,7 @@ class SettingFormFields implements SelfHandling
              */
             if (is_string($field)) {
                 $field = [
-                    'type' => $field
+                    'type' => $field,
                 ];
             }
 
@@ -132,7 +131,7 @@ class SettingFormFields implements SelfHandling
                 $field['value'] = $settings->value($namespace . $slug, array_get($field['config'], 'default_value'));
             }
 
-            /**
+            /*
              * Disable the field if it
              * has a set env value.
              */

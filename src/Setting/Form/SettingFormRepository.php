@@ -15,7 +15,6 @@ use Illuminate\Events\Dispatcher;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Form
  */
 class SettingFormRepository implements FormRepositoryInterface
 {
@@ -82,7 +81,7 @@ class SettingFormRepository implements FormRepositoryInterface
     /**
      * Save the form.
      *
-     * @param FormBuilder|SettingFormBuilder $builder
+     * @param  FormBuilder|SettingFormBuilder $builder
      * @return bool|mixed
      */
     public function save(FormBuilder $builder)

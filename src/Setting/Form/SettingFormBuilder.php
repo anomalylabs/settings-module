@@ -8,7 +8,6 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Form
  */
 class SettingFormBuilder extends FormBuilder
 {
@@ -33,7 +32,7 @@ class SettingFormBuilder extends FormBuilder
      * @var array
      */
     protected $options = [
-        'breadcrumb' => false
+        'breadcrumb' => false,
     ];
 
 }

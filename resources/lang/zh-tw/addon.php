@@ -10,6 +10,6 @@ return [
         'plugins'     => '外掛',
         'modules'     => '模組',
         'extensions'  => '擴充功能',
-        'field_types' => '欄位型別'
-    ]
+        'field_types' => '欄位型別',
+    ],
 ];

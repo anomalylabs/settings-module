@@ -2,9 +2,9 @@
 
 return [
     'name'        => [
-        'name' => '名稱'
+        'name' => '名稱',
     ],
     'description' => [
-        'name' => '說明'
-    ]
+        'name' => '說明',
+    ],
 ];

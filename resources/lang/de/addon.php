@@ -5,6 +5,6 @@ return [
     'name'        => 'Einstellungen Modul',
     'description' => 'Verwaltung der Einstellungen.',
     'section'     => [
-        'settings' => 'Systemeinstellungen'
-    ]
+        'settings' => 'Systemeinstellungen',
+    ],
 ];

@@ -10,7 +10,6 @@ use Anomaly\Streams\Platform\Application\Application;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule
  */
 class SettingsModuleServiceProvider extends AddonServiceProvider
 {
@@ -21,7 +20,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $plugins = [
-        'Anomaly\SettingsModule\SettingsModulePlugin'
+        'Anomaly\SettingsModule\SettingsModulePlugin',
     ];
 
     /**
@@ -31,14 +30,14 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      */
     protected $listeners = [
         'Anomaly\SettingsModule\Setting\Event\SettingsWereSaved'                 => [
-            'Anomaly\SettingsModule\Setting\Listener\UpdateMaintenanceMode'
+            'Anomaly\SettingsModule\Setting\Listener\UpdateMaintenanceMode',
         ],
         'Anomaly\Streams\Platform\Addon\Module\Event\ModuleWasUninstalled'       => [
-            'Anomaly\SettingsModule\Setting\Listener\DeleteModuleSettings'
+            'Anomaly\SettingsModule\Setting\Listener\DeleteModuleSettings',
         ],
         'Anomaly\Streams\Platform\Addon\Extension\Event\ExtensionWasUninstalled' => [
-            'Anomaly\SettingsModule\Setting\Listener\DeleteExtensionSettings'
-        ]
+            'Anomaly\SettingsModule\Setting\Listener\DeleteExtensionSettings',
+        ],
     ];
 
     /**
@@ -49,7 +48,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     protected $routes = [
         'admin/settings'                => 'Anomaly\SettingsModule\Http\Controller\Admin\SystemController@edit',
         'admin/settings/{type}'         => 'Anomaly\SettingsModule\Http\Controller\Admin\AddonsController@index',
-        'admin/settings/{type}/{addon}' => 'Anomaly\SettingsModule\Http\Controller\Admin\AddonsController@edit'
+        'admin/settings/{type}/{addon}' => 'Anomaly\SettingsModule\Http\Controller\Admin\AddonsController@edit',
     ];
 
     /**
@@ -58,7 +57,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        'Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel' => 'Anomaly\SettingsModule\Setting\SettingModel'
+        'Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel' => 'Anomaly\SettingsModule\Setting\SettingModel',
     ];
 
     /**
@@ -67,7 +66,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface' => 'Anomaly\SettingsModule\Setting\SettingRepository'
+        'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface' => 'Anomaly\SettingsModule\Setting\SettingRepository',
     ];
 
     /**

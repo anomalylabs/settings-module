@@ -10,7 +10,6 @@ use Illuminate\Contracts\Foundation\Application;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\Setting\Listener
  */
 class UpdateMaintenanceMode
 {

@@ -13,7 +13,6 @@ use Anomaly\Streams\Platform\Support\Decorator;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule
  */
 class SettingsModulePlugin extends Plugin
 {
@@ -43,7 +42,7 @@ class SettingsModulePlugin extends Plugin
 
                     return (new Decorator())->decorate($this->dispatch(new GetValueFieldType($setting)));
                 }
-            )
+            ),
         ];
     }
 }

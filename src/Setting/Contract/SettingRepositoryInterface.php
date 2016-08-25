@@ -11,7 +11,6 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\SettingsModule\SettingInterface\Contract
  */
 interface SettingRepositoryInterface extends EntryRepositoryInterface
 {
@@ -27,8 +26,8 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
     /**
      * Get a setting.
      *
-     * @param      $key
-     * @param null $default
+     * @param                                     $key
+     * @param  null                               $default
      * @return null|SettingInterface|SettingModel
      */
     public function get($key, $default = null);
@@ -45,8 +44,8 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
     /**
      * Get a setting value.
      *
-     * @param      $key
-     * @param null $default
+     * @param             $key
+     * @param  null       $default
      * @return mixed|null
      */
     public function value($key, $default = null);
