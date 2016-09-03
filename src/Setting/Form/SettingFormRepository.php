@@ -9,13 +9,6 @@ use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 use Illuminate\Events\Dispatcher;
 
-/**
- * Class SettingFormRepositoryInterface
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class SettingFormRepository implements FormRepositoryInterface
 {
 
@@ -92,7 +85,6 @@ class SettingFormRepository implements FormRepositoryInterface
 
         /* @var FieldType $field */
         foreach ($form->getFields() as $field) {
-
             $key   = $namespace . $field->getField();
             $value = $form->getValue($field->getInputName());
 

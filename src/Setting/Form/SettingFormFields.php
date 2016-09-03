@@ -3,7 +3,6 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Config\Repository;
 
-
 /**
  * Class SettingFormFields
  *

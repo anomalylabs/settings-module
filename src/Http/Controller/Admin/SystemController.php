@@ -4,13 +4,6 @@ use Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Support\Authorizer;
 
-/**
- * Class SystemController
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class SystemController extends AdminController
 {
 
@@ -26,7 +19,7 @@ class SystemController extends AdminController
         if (!$authorizer->authorize('anomaly.module.settings::settings.write')) {
             abort(403);
         }
-
+        
         return $form->render('streams');
     }
 }
