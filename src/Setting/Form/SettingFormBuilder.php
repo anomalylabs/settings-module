@@ -27,6 +27,15 @@ class SettingFormBuilder extends FormBuilder
     protected $fields = SettingFormFields::class;
 
     /**
+     * The form actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'update',
+    ];
+
+    /**
      * The form options.
      *
      * @var array
@@ -34,5 +43,4 @@ class SettingFormBuilder extends FormBuilder
     protected $options = [
         'breadcrumb' => false,
     ];
-
 }
