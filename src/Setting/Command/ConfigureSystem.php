@@ -3,8 +3,8 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Addon\AddonCollection;
+use Anomaly\Streams\Platform\Support\Evaluator;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Contracts\Foundation\Application;
 
 /**
  * Class ConfigureSystem
@@ -21,11 +21,13 @@ class ConfigureSystem
      *
      * @param SettingRepositoryInterface $settings
      * @param AddonCollection            $addons
+     * @param Evaluator                  $evaluator
      * @param Repository                 $config
      */
     public function handle(
         SettingRepositoryInterface $settings,
         AddonCollection $addons,
+        Evaluator $evaluator,
         Repository $config
     ) {
         /* @var Addon $addon */
@@ -40,11 +42,20 @@ class ConfigureSystem
                     continue;
                 }
 
-                if (!$settings->has($key = $addon->getNamespace($key))) {
+                $default = array_get($setting, 'config.default_value');
+
+                if (!$settings->has($key = $addon->getNamespace($key)) && !$default) {
                     continue;
                 }
 
-                $config->set($setting['bind'], $settings->presenter($key)->__value());
+                if ($presenter = $settings->presenter($key)) {
+
+                    $config->set($setting['bind'], $presenter->__value());
+
+                    continue;
+                }
+
+                $config->set($setting['bind'], $evaluator->evaluate($default));
             }
         }
 
@@ -59,11 +70,20 @@ class ConfigureSystem
                     continue;
                 }
 
-                if (!$settings->has($key = $addon->getNamespace($key))) {
+                $default = array_get($setting, 'config.default_value');
+
+                if (!$settings->has($key = $addon->getNamespace($key)) && !$default) {
                     continue;
                 }
 
-                $config->set($setting['bind'], $settings->presenter($key)->__value());
+                if ($presenter = $settings->presenter($key)) {
+
+                    $config->set($setting['bind'], $presenter->__value());
+
+                    continue;
+                }
+
+                $config->set($setting['bind'], $evaluator->evaluate($default));
             }
         }
 
@@ -77,11 +97,20 @@ class ConfigureSystem
                 continue;
             }
 
-            if (!$settings->has($key = 'streams::' . $key)) {
+            $default = array_get($setting, 'config.default_value');
+
+            if (!$settings->has($key = 'streams::' . $key) && !$default) {
                 continue;
             }
 
-            $config->set($setting['bind'], $settings->presenter($key)->__value());
+            if ($presenter = $settings->presenter($key)) {
+
+                $config->set($setting['bind'], $presenter->__value());
+
+                continue;
+            }
+
+            $config->set($setting['bind'], $evaluator->evaluate($default));
         }
     }
 }
