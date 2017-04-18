@@ -1,7 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Setting\Command;
 
 use Anomaly\Streams\Platform\Support\Resolver;
-use Illuminate\Config\Repository;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Container\Container;
 
 
