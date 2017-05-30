@@ -1,15 +1,25 @@
 <?php namespace Anomaly\SettingsModule;
 
 use Anomaly\SettingsModule\Setting\Command\ConfigureSystem;
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\SettingsModule\Setting\Event\SettingsWereSaved;
+use Anomaly\SettingsModule\Setting\Listener\DeleteExtensionSettings;
+use Anomaly\SettingsModule\Setting\Listener\DeleteModuleSettings;
+use Anomaly\SettingsModule\Setting\Listener\UpdateMaintenanceMode;
+use Anomaly\SettingsModule\Setting\SettingModel;
+use Anomaly\SettingsModule\Setting\SettingRepository;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Anomaly\Streams\Platform\Addon\Extension\Event\ExtensionWasUninstalled;
+use Anomaly\Streams\Platform\Addon\Module\Event\ModuleWasUninstalled;
 use Anomaly\Streams\Platform\Application\Application;
+use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
 
 /**
  * Class SettingsModuleServiceProvider
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class SettingsModuleServiceProvider extends AddonServiceProvider
 {
@@ -20,7 +30,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $plugins = [
-        'Anomaly\SettingsModule\SettingsModulePlugin',
+        SettingsModulePlugin::class,
     ];
 
     /**
@@ -29,14 +39,14 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $listeners = [
-        'Anomaly\SettingsModule\Setting\Event\SettingsWereSaved'                 => [
-            'Anomaly\SettingsModule\Setting\Listener\UpdateMaintenanceMode',
+        SettingsWereSaved::class       => [
+            UpdateMaintenanceMode::class,
         ],
-        'Anomaly\Streams\Platform\Addon\Module\Event\ModuleWasUninstalled'       => [
-            'Anomaly\SettingsModule\Setting\Listener\DeleteModuleSettings',
+        ModuleWasUninstalled::class    => [
+            DeleteModuleSettings::class,
         ],
-        'Anomaly\Streams\Platform\Addon\Extension\Event\ExtensionWasUninstalled' => [
-            'Anomaly\SettingsModule\Setting\Listener\DeleteExtensionSettings',
+        ExtensionWasUninstalled::class => [
+            DeleteExtensionSettings::class,
         ],
     ];
 
@@ -57,7 +67,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        'Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel' => 'Anomaly\SettingsModule\Setting\SettingModel',
+        SettingsSettingsEntryModel::class => SettingModel::class,
     ];
 
     /**
@@ -66,7 +76,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface' => 'Anomaly\SettingsModule\Setting\SettingRepository',
+        SettingRepositoryInterface::class => SettingRepository::class,
     ];
 
     /**
