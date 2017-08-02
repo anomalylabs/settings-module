@@ -23,6 +23,9 @@
     "autoload": {
         "psr-4": {
             "Anomaly\\SettingsModule\\": "src/"
-        }
+        },
+        "files": [
+            "src/Support/_helpers.php"
+        ]
     }
 }
