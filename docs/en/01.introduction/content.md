@@ -107,7 +107,7 @@ Settings can be set by `API` just like any other Stream entry however you may wa
 
 To get started you can extend or inject the `\Anomaly\SettingsModule\Setting\Form\SettingFormBuilder` class. The `entry` value for configuration form builders are the addon's `dot namespace`:
 
-use \Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
+    use \Anomaly\SettingsModule\Setting\Form\SettingFormBuilder;
 
     public function edit(SettingFormBuilder $builder)
     {
