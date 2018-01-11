@@ -20,9 +20,9 @@ class ConfigureSystem
      * Handle the command.
      *
      * @param SettingRepositoryInterface $settings
-     * @param AddonCollection            $addons
-     * @param Evaluator                  $evaluator
-     * @param Repository                 $config
+     * @param AddonCollection $addons
+     * @param Evaluator $evaluator
+     * @param Repository $config
      */
     public function handle(
         SettingRepositoryInterface $settings,

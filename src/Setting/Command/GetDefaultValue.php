@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Support\Resolver;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Container\Container;
 
 
 /**
@@ -37,7 +36,7 @@ class GetDefaultValue
      * Look for a default value from the config definition file. If it has one then return it, otherwise return null.
      *
      * @param  Repository $config
-     * @param  Resolver   $resolver
+     * @param  Resolver $resolver
      * @return mixed
      */
     public function handle(Repository $config, Resolver $resolver)

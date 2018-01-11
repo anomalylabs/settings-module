@@ -10,8 +10,8 @@ class SystemController extends AdminController
     /**
      * Return the form for editing settings.
      *
-     * @param  SettingFormBuilder                         $form
-     * @param  Authorizer                                 $authorizer
+     * @param  SettingFormBuilder $form
+     * @param  Authorizer $authorizer
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(SettingFormBuilder $form, Authorizer $authorizer)
@@ -19,7 +19,7 @@ class SystemController extends AdminController
         if (!$authorizer->authorize('anomaly.module.settings::settings.write')) {
             abort(403);
         }
-        
+
         return $form->render('streams');
     }
 }

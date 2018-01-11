@@ -36,7 +36,7 @@ class GetValueFieldType
      * Handle the command.
      *
      * @param  FieldTypeCollection $fieldTypes
-     * @param  Repository          $config
+     * @param  Repository $config
      * @return FieldType
      */
     public function handle(FieldTypeCollection $fieldTypes, Repository $config)

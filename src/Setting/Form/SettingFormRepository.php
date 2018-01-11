@@ -5,8 +5,8 @@ use Anomaly\SettingsModule\Setting\Event\SettingsWereSaved;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Container\Container;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Events\Dispatcher;
 
 /**
@@ -50,9 +50,9 @@ class SettingFormRepository implements FormRepositoryInterface
     /**
      * Create a new SettingFormRepositoryInterface instance.
      *
-     * @param Repository                 $config
-     * @param Dispatcher                 $events
-     * @param Container                  $container
+     * @param Repository $config
+     * @param Dispatcher $events
+     * @param Container $container
      * @param SettingRepositoryInterface $settings
      */
     public function __construct(

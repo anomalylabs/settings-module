@@ -33,7 +33,7 @@ class GetSettingValueFieldType
     /**
      * Handle the command.
      *
-     * @param  SettingRepositoryInterface                               $settings
+     * @param  SettingRepositoryInterface $settings
      * @return \Anomaly\Streams\Platform\Addon\FieldType\FieldType|null
      */
     public function handle(SettingRepositoryInterface $settings)

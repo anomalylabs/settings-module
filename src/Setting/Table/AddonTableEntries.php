@@ -18,7 +18,7 @@ class AddonTableEntries
      * Handle the command.
      *
      * @param AddonTableBuilder $builder
-     * @param AddonCollection   $addons
+     * @param AddonCollection $addons
      */
     public function handle(AddonTableBuilder $builder, AddonCollection $addons)
     {

@@ -2,7 +2,6 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**

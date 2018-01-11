@@ -38,8 +38,8 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     /**
      * Create a new SettingRepositoryInterface instance.
      *
-     * @param SettingModel        $model
-     * @param Repository          $config
+     * @param SettingModel $model
+     * @param Repository $config
      * @param FieldTypeCollection $fieldTypes
      */
     public function __construct(SettingModel $model)
@@ -61,20 +61,6 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     }
 
     /**
-     * Get a setting.
-     *
-     * @param                                     $key
-     * @param  null                               $default
-     * @return null|SettingInterface|SettingModel
-     */
-    public function get($key, $default = null)
-    {
-        $setting = $this->settings->get($key);
-
-        return ($setting) ? $setting : $default;
-    }
-
-    /**
      * Set a settings value.
      *
      * @param $key
@@ -88,44 +74,6 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         $setting->setValue($value);
 
         return $this->save($setting);
-    }
-
-    /**
-     * Get a setting value.
-     *
-     * @param             $key
-     * @param  null       $default
-     * @return mixed|null
-     */
-    public function value($key, $default = null)
-    {
-        $setting = $this->get($key);
-
-        if ($setting) {
-            return $setting->getValue();
-        }
-
-        if (!$setting && !$default) {
-            return $this->dispatch(new GetDefaultValue($key));
-        }
-
-        return $default;
-    }
-
-    /**
-     * Return the field type
-     * presenter for a setting.
-     *
-     * @param $key
-     * @return FieldTypePresenter|null
-     */
-    public function presenter($key)
-    {
-        if ($setting = $this->get($key)) {
-            return $setting->getFieldTypePresenter('value');
-        }
-
-        return null;
     }
 
     /**
@@ -145,6 +93,58 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         }
 
         return $setting;
+    }
+
+    /**
+     * Get a setting value.
+     *
+     * @param             $key
+     * @param  null $default
+     * @return mixed|null
+     */
+    public function value($key, $default = null)
+    {
+        $setting = $this->get($key);
+
+        if ($setting) {
+            return $setting->getValue();
+        }
+
+        if (!$setting && !$default) {
+            return $this->dispatch(new GetDefaultValue($key));
+        }
+
+        return $default;
+    }
+
+    /**
+     * Get a setting.
+     *
+     * @param                                     $key
+     * @param  null $default
+     * @return null|SettingInterface|SettingModel
+     */
+    public function get($key, $default = null)
+    {
+        $setting = $this->settings->get($key);
+
+        return ($setting) ? $setting : $default;
+    }
+
+    /**
+     * Return the field type
+     * presenter for a setting.
+     *
+     * @param $key
+     * @return FieldTypePresenter|null
+     */
+    public function presenter($key)
+    {
+        if ($setting = $this->get($key)) {
+            return $setting->getFieldTypePresenter('value');
+        }
+
+        return null;
     }
 
     /**

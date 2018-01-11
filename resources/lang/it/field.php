@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => [
+    'name'        => [
         'name' => 'Nome',
     ],
     'description' => [

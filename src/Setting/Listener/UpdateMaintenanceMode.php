@@ -31,7 +31,7 @@ class UpdateMaintenanceMode
     /**
      * Create a new UpdateMaintenanceMode instance.
      *
-     * @param Application                $application
+     * @param Application $application
      * @param SettingRepositoryInterface $settings
      */
     public function __construct(Application $application, SettingRepositoryInterface $settings)
@@ -49,7 +49,7 @@ class UpdateMaintenanceMode
     {
         $builder = $event->getBuilder();
 
-        if (!($namespace = $builder->getEntry()) == 'streams') {
+        if ($builder->getEntry() != 'streams') {
             return;
         }
 

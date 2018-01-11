@@ -18,8 +18,8 @@ class AddonsController extends AdminController
     /**
      * Return an index of addons with settings.
      *
-     * @param  AddonTableBuilder                          $table
-     * @param  Authorizer                                 $authorizer
+     * @param  AddonTableBuilder $table
+     * @param  Authorizer $authorizer
      * @param                                             $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -37,8 +37,8 @@ class AddonsController extends AdminController
     /**
      * Return a form for editing settings.
      *
-     * @param  SettingFormBuilder                         $form
-     * @param  Authorizer                                 $authorizer
+     * @param  SettingFormBuilder $form
+     * @param  Authorizer $authorizer
      * @param                                             $type
      * @param                                             $addon
      * @return \Symfony\Component\HttpFoundation\Response

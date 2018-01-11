@@ -2,7 +2,7 @@
 
 return [
     'settings' => [
-        'name' => 'Nustatymai',
+        'name'   => 'Nustatymai',
         'option' => [
             'write' => 'Gali valdyti sistemos nustatymus?',
         ],

@@ -27,23 +27,6 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     protected $ttl = 60;
 
     /**
-     * Return the value field.
-     *
-     * @return FieldType
-     */
-    public function field()
-    {
-        /* @var FieldType $field */
-        $field = $this->dispatch(new GetValueFieldType($this));
-
-        if (!$field) {
-            return null;
-        }
-
-        return $field;
-    }
-
-    /**
      * Get the key.
      *
      * @return string
@@ -90,6 +73,25 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     }
 
     /**
+     * Get the field type's presenter
+     * for a given field slug.
+     *
+     * We're overriding this to catch
+     * the "value" key.
+     *
+     * @param $fieldSlug
+     * @return FieldTypePresenter
+     */
+    public function getFieldTypePresenter($fieldSlug)
+    {
+        if ($fieldSlug == 'value') {
+            return $this->dispatch(new GetValuePresenter($this));
+        }
+
+        return parent::getFieldTypePresenter($fieldSlug);
+    }
+
+    /**
      * Set the value.
      *
      * @param $value
@@ -117,21 +119,19 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     }
 
     /**
-     * Get the field type's presenter
-     * for a given field slug.
+     * Return the value field.
      *
-     * We're overriding this to catch
-     * the "value" key.
-     *
-     * @param $fieldSlug
-     * @return FieldTypePresenter
+     * @return FieldType
      */
-    public function getFieldTypePresenter($fieldSlug)
+    public function field()
     {
-        if ($fieldSlug == 'value') {
-            return $this->dispatch(new GetValuePresenter($this));
+        /* @var FieldType $field */
+        $field = $this->dispatch(new GetValueFieldType($this));
+
+        if (!$field) {
+            return null;
         }
 
-        return parent::getFieldTypePresenter($fieldSlug);
+        return $field;
     }
 }

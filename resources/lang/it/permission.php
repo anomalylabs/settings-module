@@ -2,9 +2,9 @@
 
 return [
     'settings' => [
-        'name' => 'Impostazioni',
-    'option'   => [
-        'write' => 'Può gestire le impostazioni di sistema?',
-    ],
+        'name'   => 'Impostazioni',
+        'option' => [
+            'write' => 'Può gestire le impostazioni di sistema?',
+        ],
     ],
 ];
