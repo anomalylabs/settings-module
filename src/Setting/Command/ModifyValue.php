@@ -36,7 +36,7 @@ class ModifyValue
      * @param SettingInterface $setting
      * @param                  $value
      */
-    function __construct(SettingInterface $setting, $value)
+    public function __construct(SettingInterface $setting, $value)
     {
         $this->value   = $value;
         $this->setting = $setting;
