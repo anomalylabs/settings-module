@@ -6,12 +6,20 @@ use Illuminate\Contracts\Config\Repository;
 /**
  * Class SettingFormFields
  *
- * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
+ *
+ * @link          http://pyrocms.com/
  */
 class SettingFormFields
 {
+
+    /**
+     * The namespace
+     *
+     * @var string
+     */
+    protected $namespace = '';
 
     /**
      * The config repository.
@@ -33,21 +41,24 @@ class SettingFormFields
     /**
      * Return the form fields.
      *
-     * @param SettingFormBuilder $builder
+     * @param SettingFormBuilder         $builder
+     * @param SettingRepositoryInterface $settings
      */
-    public function handle(SettingFormBuilder $builder, SettingRepositoryInterface $settings)
-    {
-        $namespace = $builder->getFormEntry() . '::';
+    public function handle(
+        SettingFormBuilder $builder,
+        SettingRepositoryInterface $settings
+    ) {
+        $this->namespace = $builder->getFormEntry();
 
         /*
          * Get the fields from the config system. Sections are
          * optionally defined the same way.
          */
-        if (!$fields = $this->config->get($namespace . 'settings/settings')) {
-            $fields = $fields = $this->config->get($namespace . 'settings', []);
+        if (!$fields = $this->config->get($this->namespace . '::settings/settings')) {
+            $fields = $fields = $this->config->get($this->namespace . '::settings', []);
         }
 
-        if ($sections = $this->config->get($namespace . 'settings/sections')) {
+        if ($sections = $this->config->get($this->namespace . '::settings/sections')) {
             $builder->setSections($sections);
         }
 
@@ -55,6 +66,8 @@ class SettingFormFields
          * Finish each field.
          */
         foreach ($fields as $slug => &$field) {
+
+            $this->slug = $slug;
 
             /*
              * Force an array. This is done later
@@ -64,76 +77,29 @@ class SettingFormFields
              */
             if (is_string($field)) {
                 $field = [
-                    'type' => $field,
+                    'type'   => $field,
+                    'config' => [],
                 ];
             }
 
-            // Make sure we have a config property.
-            $field['config'] = array_get($field, 'config', []);
-
-            if (trans()->has(
-                $label = array_get(
-                    $field,
-                    'label',
-                    $namespace . 'setting.' . $slug . '.label'
-                )
-            )
-            ) {
-                $field['label'] = $label;
-            }
-
-            // Default the label.
-            $field['label'] = array_get(
-                $field,
-                'label',
-                $namespace . 'setting.' . $slug . '.name'
-            );
-
-            // Default the warning.
-            if (trans()->has(
-                $warning = array_get(
-                    $field,
-                    'warning',
-                    $namespace . 'setting.' . $slug . '.warning'
-                )
-            )
-            ) {
-                $field['warning'] = $warning;
-            }
-
-            // Default the placeholder.
-            if (trans()->has(
-                $placeholder = array_get(
-                    $field,
-                    'placeholder',
-                    $namespace . 'setting.' . $slug . '.placeholder'
-                )
-            )
-            ) {
-                $field['placeholder'] = $placeholder;
-            }
-
-            // Default the instructions.
-            if (trans()->has(
-                $instructions = array_get(
-                    $field,
-                    'instructions',
-                    $namespace . 'setting.' . $slug . '.instructions'
-                )
-            )
-            ) {
-                $field['instructions'] = $instructions;
-            }
+            $field = array_merge([
+                'value'        => null,
+                'config'       => [],
+                'label'        => $this->makeTrans('label'),
+                'warning'      => $this->makeTrans('warning'),
+                'placeholder'  => $this->makeTrans('placeholder'),
+                'instructions' => $this->makeTrans('instructions'),
+            ], $field);
 
             // Get the value defaulting to the default value.
-            if (!isset($field['value'])) {
-                $field['value'] = $settings->value($namespace . $slug, array_get($field['config'], 'default_value'));
+            if ($field['value'] === null) {
+                $field['value'] = $settings->value(
+                    "{$this->namespace}::{$slug}",
+                    array_get($field['config'], 'default_value')
+                );
             }
 
-            /*
-             * Disable the field if it
-             * has a set env value.
-             */
+            // Disable the field if it has a set env value.
             if (isset($field['env']) && isset($field['bind']) && env($field['env']) !== null) {
                 $field['disabled'] = true;
                 $field['warning']  = 'module::message.env_locked';
@@ -142,5 +108,18 @@ class SettingFormFields
         }
 
         $builder->setFields($fields);
+    }
+
+    /**
+     * Makes a translation
+     *
+     * @param  string $key The key.
+     * @return string      Translation.
+     */
+    protected function makeTrans(string $key)
+    {
+        return trans()->has($key)
+            ? "{$this->namespace}::setting.{$this->slug}.{$key}"
+            : '';
     }
 }
