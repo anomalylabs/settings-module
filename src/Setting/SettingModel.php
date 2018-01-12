@@ -73,22 +73,18 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     }
 
     /**
-     * Get the field type's presenter
-     * for a given field slug.
-     *
-     * We're overriding this to catch
-     * the "value" key.
+     * Get the field type's presenter for a given field slug.
+     * We're overriding this to catch the "value" key.
      *
      * @param $fieldSlug
+     *
      * @return FieldTypePresenter
      */
     public function getFieldTypePresenter($fieldSlug)
     {
-        if ($fieldSlug == 'value') {
-            return $this->dispatch(new GetValuePresenter($this));
-        }
-
-        return parent::getFieldTypePresenter($fieldSlug);
+        return $fieldSlug == 'value'
+            ? $this->dispatch(new GetValuePresenter($this))
+            : parent::getFieldTypePresenter($fieldSlug);
     }
 
     /**
