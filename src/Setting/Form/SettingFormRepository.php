@@ -1,7 +1,6 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\SettingsModule\Setting\Event\SettingsWereSaved;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
@@ -98,7 +97,5 @@ class SettingFormRepository implements FormRepositoryInterface
 
             $this->settings->set($key, $value);
         }
-
-        $this->events->fire(new SettingsWereSaved($builder));
     }
 }

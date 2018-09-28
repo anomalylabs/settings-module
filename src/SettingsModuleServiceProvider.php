@@ -2,10 +2,8 @@
 
 use Anomaly\SettingsModule\Setting\Command\ConfigureSystem;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\SettingsModule\Setting\Event\SettingsWereSaved;
 use Anomaly\SettingsModule\Setting\Listener\DeleteExtensionSettings;
 use Anomaly\SettingsModule\Setting\Listener\DeleteModuleSettings;
-use Anomaly\SettingsModule\Setting\Listener\UpdateMaintenanceMode;
 use Anomaly\SettingsModule\Setting\SettingModel;
 use Anomaly\SettingsModule\Setting\SettingRepository;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
@@ -39,9 +37,6 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $listeners = [
-        SettingsWereSaved::class       => [
-            UpdateMaintenanceMode::class,
-        ],
         ModuleWasUninstalled::class    => [
             DeleteModuleSettings::class,
         ],
