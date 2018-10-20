@@ -53,6 +53,15 @@ class SettingsModuleSeeder extends Seeder
             );
         }
 
+        if ($domain = array_pull($data, 'APPLICATION_DOMAIN')) {
+            $this->settings->create(
+                [
+                    'key'   => 'streams::domain',
+                    'value' => $domain,
+                ]
+            );
+        }
+
         if ($locale = array_pull($data, 'DEFAULT_LOCALE')) {
             $this->settings->create(
                 [
