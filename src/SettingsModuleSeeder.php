@@ -53,7 +53,7 @@ class SettingsModuleSeeder extends Seeder
             );
         }
 
-        if ($domain = array_pull($data, 'APPLICATION_DOMAIN')) {
+        if ($domain = array_get($data, 'APPLICATION_DOMAIN')) {
             $this->settings->create(
                 [
                     'key'   => 'streams::domain',
