@@ -65,7 +65,7 @@ class GetValueFieldType
          * the setting uses. If none exists
          * then just return the value as is.
          */
-        $type = $fieldTypes->build(array_get($field, 'type'));
+        $type = $fieldTypes->build($field);
 
         if (!$type) {
             return null;
