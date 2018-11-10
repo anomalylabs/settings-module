@@ -2,10 +2,12 @@
 
 use Anomaly\SettingsModule\Setting\Command\ConfigureSystem;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+use Anomaly\SettingsModule\Setting\Listener\ClearHttpCache;
 use Anomaly\SettingsModule\Setting\Listener\DeleteExtensionSettings;
 use Anomaly\SettingsModule\Setting\Listener\DeleteModuleSettings;
 use Anomaly\SettingsModule\Setting\SettingModel;
 use Anomaly\SettingsModule\Setting\SettingRepository;
+use Anomaly\SettingsModule\Setting\SettingsWereSaved;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Addon\Extension\Event\ExtensionWasUninstalled;
 use Anomaly\Streams\Platform\Addon\Module\Event\ModuleWasUninstalled;
@@ -37,6 +39,9 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $listeners = [
+        SettingsWereSaved::class       => [
+            ClearHttpCache::class,
+        ],
         ModuleWasUninstalled::class    => [
             DeleteModuleSettings::class,
         ],
