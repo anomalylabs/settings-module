@@ -1,7 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Setting\Listener;
 
 use Anomaly\SettingsModule\Setting\SettingsWereSaved;
-use Anomaly\Streams\Platform\Http\Command\ClearCache;
+use Anomaly\Streams\Platform\Http\Command\ClearHttpCache as ClearCache;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
