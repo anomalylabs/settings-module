@@ -26,7 +26,7 @@ class CacheConfiguration
         SettingConfiguration $configuration,
         AddonCollection $addons
     ) {
-        $settings->cache(
+        $settings->cacheForever(
             'anomaly.module.settings::settings.config',
             function () use ($addons, $configuration) {
 
@@ -41,7 +41,7 @@ class CacheConfiguration
                 }
 
                 $config = array_merge($config, $configuration->system());
-                
+
                 return $config;
             }
         );
