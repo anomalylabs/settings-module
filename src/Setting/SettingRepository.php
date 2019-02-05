@@ -46,7 +46,19 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     {
         $this->model = $model;
 
+        $this->load();
+    }
+
+    /**
+     * Load the settings.
+     *
+     * @return $this
+     */
+    public function load()
+    {
         $this->settings = $this->model->all();
+
+        return $this;
     }
 
     /**

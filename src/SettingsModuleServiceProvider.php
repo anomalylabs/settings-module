@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SettingsModule;
 
+use Anomaly\SettingsModule\Setting\Command\CacheConfiguration;
 use Anomaly\SettingsModule\Setting\Command\ConfigureSystem;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\SettingsModule\Setting\Listener\ClearHttpCache;
@@ -11,7 +12,6 @@ use Anomaly\SettingsModule\Setting\SettingsWereSaved;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Addon\Extension\Event\ExtensionWasUninstalled;
 use Anomaly\Streams\Platform\Addon\Module\Event\ModuleWasUninstalled;
-use Anomaly\Streams\Platform\Application\Application;
 use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
 
 /**
@@ -51,17 +51,6 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
-     * The addon routes.
-     *
-     * @var array
-     */
-    protected $routes = [
-        'admin/settings'                => 'Anomaly\SettingsModule\Http\Controller\Admin\SystemController@edit',
-        'admin/settings/{type}'         => 'Anomaly\SettingsModule\Http\Controller\Admin\AddonsController@index',
-        'admin/settings/{type}/{addon}' => 'Anomaly\SettingsModule\Http\Controller\Admin\AddonsController@edit',
-    ];
-
-    /**
      * The class bindings.
      *
      * @var array
@@ -80,17 +69,23 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
-     * Configure Streams.
+     * The addon routes.
      *
-     * @param Application $application
+     * @var array
      */
-    public function boot(Application $application)
-    {
-        if (!$application->isInstalled()) {
-            return;
-        }
+    protected $routes = [
+        'admin/settings'                => 'Anomaly\SettingsModule\Http\Controller\Admin\SystemController@edit',
+        'admin/settings/{type}'         => 'Anomaly\SettingsModule\Http\Controller\Admin\AddonsController@index',
+        'admin/settings/{type}/{addon}' => 'Anomaly\SettingsModule\Http\Controller\Admin\AddonsController@edit',
+    ];
 
-        $this->dispatch(new ConfigureSystem());
+    /**
+     * Boot the addon.
+     */
+    public function boot()
+    {
+        dispatch_now(new CacheConfiguration());
+        dispatch_now(new ConfigureSystem());
     }
 
 }
