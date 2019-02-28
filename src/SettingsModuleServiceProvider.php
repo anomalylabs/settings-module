@@ -1,5 +1,6 @@
 <?php namespace Anomaly\SettingsModule;
 
+use Anomaly\SettingsModule\Console\Dump;
 use Anomaly\SettingsModule\Setting\Command\DumpSettings;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\SettingsModule\Setting\Listener\ClearHttpCache;
@@ -22,6 +23,15 @@ use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
  */
 class SettingsModuleServiceProvider extends AddonServiceProvider
 {
+
+    /**
+     * The addon commands.
+     *
+     * @var array
+     */
+    protected $commands = [
+        Dump::class,
+    ];
 
     /**
      * The addon plugins.
