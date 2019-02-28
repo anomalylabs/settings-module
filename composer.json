@@ -3,9 +3,7 @@
     "type": "streams-addon",
     "description": "System settings management for the Streams Platform.",
     "keywords": [
-        "streams module",
-        "streams addon",
-        "module"
+        "settings"
     ],
     "homepage": "http://pyrocms.com/",
     "license": "MIT",

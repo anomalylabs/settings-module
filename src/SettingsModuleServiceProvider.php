@@ -1,6 +1,6 @@
 <?php namespace Anomaly\SettingsModule;
 
-use Anomaly\SettingsModule\Setting\Command\CacheConfiguration;
+use Anomaly\SettingsModule\Setting\Command\DumpSettings;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\SettingsModule\Setting\Listener\ClearHttpCache;
 use Anomaly\SettingsModule\Setting\Listener\DeleteExtensionSettings;
@@ -83,8 +83,11 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
      */
     public function boot()
     {
-        dispatch_now(new CacheConfiguration());
-        dispatch_now(new ConfigureSystem());
+        if (!file_exists($config = app_storage_path('settings/config.php'))) {
+            dispatch_now(new DumpSettings());
+        }
+
+        config(require $config);
     }
 
 }
