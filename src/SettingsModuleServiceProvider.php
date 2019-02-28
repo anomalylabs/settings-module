@@ -1,7 +1,6 @@
 <?php namespace Anomaly\SettingsModule;
 
 use Anomaly\SettingsModule\Setting\Command\CacheConfiguration;
-use Anomaly\SettingsModule\Setting\Command\ConfigureSystem;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\SettingsModule\Setting\Listener\ClearHttpCache;
 use Anomaly\SettingsModule\Setting\Listener\DeleteExtensionSettings;
