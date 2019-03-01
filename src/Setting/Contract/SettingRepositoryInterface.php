@@ -16,6 +16,13 @@ interface SettingRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
+     * Load the settings.
+     *
+     * @return $this
+     */
+    public function load();
+
+    /**
      * Return if the key exists or not.
      *
      * @param $key

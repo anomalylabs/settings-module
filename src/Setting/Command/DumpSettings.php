@@ -32,6 +32,8 @@ class DumpSettings
 
         $configuration = [];
 
+        $settings->load();
+
         /* @var Addon $addon */
         foreach ($addons->withConfig('settings') as $addon) {
 
