@@ -21,8 +21,8 @@ class SettingObserver extends EntryObserver
      */
     public function saved(EntryInterface $entry)
     {
-        dispatch_now(new DumpSettings());
-
         parent::saved($entry);
+
+        dispatch_now(new DumpSettings());
     }
 }
