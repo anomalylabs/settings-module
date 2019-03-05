@@ -3,6 +3,7 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Addon\AddonCollection;
+use Anomaly\Streams\Platform\Cache\Command\CacheConfig;
 use Anomaly\Streams\Platform\Support\Evaluator;
 
 /**
@@ -121,5 +122,7 @@ class DumpSettings
         }
 
         file_put_contents($file, "<?php\n\n return " . var_export($configuration, true) . ";");
+
+        dispatch_now(new CacheConfig());
     }
 }
