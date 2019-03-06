@@ -38,7 +38,7 @@ class GetValueFieldType
      *
      * @param  FieldTypeBuilder $fieldTypes
      * @param  Repository $config
-     * @return FieldType
+     * @return FieldType|void
      */
     public function handle(FieldTypeBuilder $fieldTypes, Repository $config)
     {
@@ -48,12 +48,17 @@ class GetValueFieldType
         // Get the bare value.
         $value = array_get($this->setting->getAttributes(), 'value');
 
-        // Try and find the setting's field configuration.
+        /**
+         * Try and find the
+         * field configuration.
+         */
         if (!$field = $config->get(str_replace('::', '::settings/settings.', $key))) {
             $field = $config->get(str_replace('::', '::settings.', $key));
         }
 
-        // Convert short syntax.
+        /**
+         * Convert short syntax.
+         */
         if (is_string($field)) {
             $field = [
                 'type' => $field,
@@ -65,13 +70,13 @@ class GetValueFieldType
          * the setting uses. If none exists
          * then just return the value as is.
          */
-        $type = $fieldTypes->build($field);
-
-        if (!$type) {
+        if (!$field || !$type = $fieldTypes->build($field)) {
             return null;
         }
 
-        // Setup the field type.
+        /**
+         * Setup the field type.
+         */
         $type->setEntry($this->setting);
         $type->mergeRules(array_get($field, 'rules', []));
         $type->mergeConfig(array_get($field, 'config', []));
