@@ -22,7 +22,11 @@
         }
     ],
     "support": {
-        "email": "support@pyrocms.com"
+        "docs": "https://pyrocms.com/documentation/settings-module/latest/the-basics",
+        "forum": "https://pyrocms.com/forum/channels/settings-module",
+        "slack": "https://pyrocms.com/slack",
+        "issues": "https://github.com/pyrocms/pyrocms/issues?q=is:issue is:open [settings-module]",
+        "source": "https://github.com/anomalylabs/settings-module"
     },
     "require": {
         "anomaly/streams-platform": "^1.6"
