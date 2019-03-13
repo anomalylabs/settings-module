@@ -10,13 +10,11 @@
     "authors": [
         {
             "name": "PyroCMS, Inc.",
-            "email": "support@pyrocms.com",
             "homepage": "http://pyrocms.com/",
             "role": "Owner"
         },
         {
             "name": "Ryan Thompson",
-            "email": "ryan@pyrocms.com",
             "homepage": "http://ryanthepyro.com/",
             "role": "Developer"
         }
