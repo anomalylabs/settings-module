@@ -69,6 +69,13 @@ class SettingsModuleSeeder extends Seeder
                     'value' => $locale,
                 ]
             );
+
+            $this->settings->create(
+                [
+                    'key'   => 'streams::enabled_locales',
+                    'value' => [$locale],
+                ]
+            );
         }
 
         $this->dispatch(new WriteEnvironmentFile($data));
