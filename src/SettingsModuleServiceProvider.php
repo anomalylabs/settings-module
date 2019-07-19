@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SettingsModule;
 
 use Anomaly\SettingsModule\Console\Dump;
+use Anomaly\SettingsModule\Listener\RefreshSettingsModule;
 use Anomaly\SettingsModule\Setting\Command\DumpSettings;
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\SettingsModule\Setting\Listener\ClearHttpCache;
@@ -12,6 +13,7 @@ use Anomaly\SettingsModule\Setting\SettingsWereSaved;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Addon\Extension\Event\ExtensionWasUninstalled;
 use Anomaly\Streams\Platform\Addon\Module\Event\ModuleWasUninstalled;
+use Anomaly\Streams\Platform\Application\Event\SystemIsRefreshing;
 use Anomaly\Streams\Platform\Model\Settings\SettingsSettingsEntryModel;
 
 /**
@@ -50,6 +52,9 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     protected $listeners = [
         SettingsWereSaved::class       => [
             ClearHttpCache::class,
+        ],
+        SystemIsRefreshing::class      => [
+            RefreshSettingsModule::class,
         ],
         ModuleWasUninstalled::class    => [
             DeleteModuleSettings::class,
