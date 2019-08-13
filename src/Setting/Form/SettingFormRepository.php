@@ -5,9 +5,6 @@ use Anomaly\SettingsModule\Setting\SettingsWereSaved;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Ui\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Illuminate\Container\Container;
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Events\Dispatcher;
 
 /**
  * Class SettingFormRepository
@@ -20,27 +17,6 @@ class SettingFormRepository implements FormRepositoryInterface
 {
 
     /**
-     * The config repository.
-     *
-     * @var Repository
-     */
-    protected $config;
-
-    /**
-     * The event dispatcher.
-     *
-     * @var Dispatcher
-     */
-    protected $events;
-
-    /**
-     * The application container.
-     *
-     * @var Container
-     */
-    protected $container;
-
-    /**
      * The settings repository.
      *
      * @var SettingRepositoryInterface
@@ -50,21 +26,11 @@ class SettingFormRepository implements FormRepositoryInterface
     /**
      * Create a new SettingFormRepositoryInterface instance.
      *
-     * @param Repository $config
-     * @param Dispatcher $events
-     * @param Container $container
      * @param SettingRepositoryInterface $settings
      */
-    public function __construct(
-        Repository $config,
-        Dispatcher $events,
-        Container $container,
-        SettingRepositoryInterface $settings
-    ) {
-        $this->config    = $config;
-        $this->events    = $events;
-        $this->settings  = $settings;
-        $this->container = $container;
+    public function __construct(SettingRepositoryInterface $settings)
+    {
+        $this->settings = $settings;
     }
 
     /**
@@ -98,6 +64,6 @@ class SettingFormRepository implements FormRepositoryInterface
             $this->settings->set($key, $value);
         }
 
-        $this->events->dispatch(new SettingsWereSaved($builder));
+        event(new SettingsWereSaved($builder));
     }
 }
