@@ -44,7 +44,7 @@ class SettingsModuleSeeder extends Seeder
     {
         $data = $this->dispatch(new ReadEnvironmentFile());
 
-        if ($timezone = array_pull($data, 'APP_TIMEZONE')) {
+        if ($timezone = array_get($data, 'APP_TIMEZONE')) {
             $this->settings->create(
                 [
                     'key'   => 'streams::timezone',
@@ -62,7 +62,7 @@ class SettingsModuleSeeder extends Seeder
             );
         }
 
-        if ($locale = array_pull($data, 'DEFAULT_LOCALE')) {
+        if ($locale = array_get($data, 'DEFAULT_LOCALE')) {
             $this->settings->create(
                 [
                     'key'   => 'streams::default_locale',
