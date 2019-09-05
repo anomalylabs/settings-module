@@ -1,6 +1,7 @@
 <?php namespace Anomaly\SettingsModule\Listener;
 
 use Anomaly\Streams\Platform\Application\Event\SystemIsRefreshing;
+use Anomaly\Streams\Platform\Console\Kernel;
 
 /**
  * Class RefreshSettingsModule
@@ -21,6 +22,8 @@ class RefreshSettingsModule
     {
         $command = $event->getCommand();
 
-        $command->call('settings:dump');
+        app(Kernel::class)->call('settings:dump');
+
+        $command->info('Settings cache refreshed.');
     }
 }
