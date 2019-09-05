@@ -1,22 +1,17 @@
 <?php namespace Anomaly\SettingsModule;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Anomaly\Streams\Platform\Application\Command\ReadEnvironmentFile;
-use Anomaly\Streams\Platform\Application\Command\WriteEnvironmentFile;
 use Anomaly\Streams\Platform\Database\Seeder\Seeder;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class SettingsModuleSeeder
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class SettingsModuleSeeder extends Seeder
 {
-
-    use DispatchesJobs;
 
     /**
      * The settings repository.
@@ -42,9 +37,7 @@ class SettingsModuleSeeder extends Seeder
      */
     public function run()
     {
-        $data = $this->dispatch(new ReadEnvironmentFile());
-
-        if ($timezone = array_get($data, 'APP_TIMEZONE')) {
+        if ($timezone = env('APP_TIMEZONE')) {
             $this->settings->create(
                 [
                     'key'   => 'streams::timezone',
@@ -53,7 +46,7 @@ class SettingsModuleSeeder extends Seeder
             );
         }
 
-        if ($domain = array_get($data, 'APPLICATION_DOMAIN')) {
+        if ($domain = env('APPLICATION_DOMAIN')) {
             $this->settings->create(
                 [
                     'key'   => 'streams::domain',
@@ -62,7 +55,8 @@ class SettingsModuleSeeder extends Seeder
             );
         }
 
-        if ($locale = array_get($data, 'DEFAULT_LOCALE')) {
+        if ($locale = env('DEFAULT_LOCALE')) {
+
             $this->settings->create(
                 [
                     'key'   => 'streams::default_locale',
@@ -77,7 +71,5 @@ class SettingsModuleSeeder extends Seeder
                 ]
             );
         }
-
-        $this->dispatch(new WriteEnvironmentFile($data));
     }
 }
