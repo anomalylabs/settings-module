@@ -33,5 +33,4 @@ class AnomalyModuleSettingsCreateSettingsStream extends Migration
         ],
         'value',
     ];
-
 }

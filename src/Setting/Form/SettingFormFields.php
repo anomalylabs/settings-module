@@ -1,34 +1,16 @@
 <?php namespace Anomaly\SettingsModule\Setting\Form;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Illuminate\Contracts\Config\Repository;
 
 /**
  * Class SettingFormFields
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class SettingFormFields
 {
-
-    /**
-     * The config repository.
-     *
-     * @var Repository
-     */
-    protected $config;
-
-    /**
-     * Create a new SettingFormFields instance.
-     *
-     * @param Repository $config
-     */
-    public function __construct(Repository $config)
-    {
-        $this->config = $config;
-    }
 
     /**
      * Return the form fields.
@@ -43,11 +25,11 @@ class SettingFormFields
          * Get the fields from the config system. Sections are
          * optionally defined the same way.
          */
-        if (!$fields = $this->config->get($namespace . 'settings/settings')) {
-            $fields = $fields = $this->config->get($namespace . 'settings', []);
+        if (!$fields = config($namespace . 'settings/settings')) {
+            $fields = $fields = config($namespace . 'settings', []);
         }
 
-        if ($sections = $this->config->get($namespace . 'settings/sections')) {
+        if ($sections = config($namespace . 'settings/sections')) {
             $builder->setSections($sections);
         }
 
@@ -137,7 +119,7 @@ class SettingFormFields
             if (isset($field['env']) && isset($field['bind']) && env($field['env']) !== null) {
                 $field['disabled'] = true;
                 $field['warning']  = 'module::message.env_locked';
-                $field['value']    = $this->config->get($field['bind']);
+                $field['value']    = config($field['bind']);
             }
         }
 

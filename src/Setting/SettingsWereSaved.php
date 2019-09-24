@@ -38,5 +38,4 @@ class SettingsWereSaved
     {
         return $this->builder;
     }
-
 }

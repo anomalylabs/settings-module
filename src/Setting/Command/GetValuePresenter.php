@@ -2,19 +2,16 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class GetValuePresenter
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class GetValuePresenter
 {
-
-    use DispatchesJobs;
 
     /**
      * The setting instance.
@@ -41,7 +38,7 @@ class GetValuePresenter
     public function handle()
     {
         /* @var FieldType $type */
-        if ($type = $this->dispatch(new GetValueFieldType($this->setting))) {
+        if ($type = dispatch_now(new GetValueFieldType($this->setting))) {
             return $type->getPresenter();
         }
 

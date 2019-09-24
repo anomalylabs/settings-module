@@ -57,7 +57,6 @@ class SettingFormRepository implements FormRepositoryInterface
 
         /* @var FieldType $field */
         foreach ($form->getEnabledFields() as $field) {
-
             $key   = $namespace . $field->getField();
             $value = $form->getValue($field->getInputName());
 

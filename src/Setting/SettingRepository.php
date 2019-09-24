@@ -6,20 +6,16 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
- * Class SettingRepositoryInterface
+ * Class SettingRepository
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class SettingRepository extends EntryRepository implements SettingRepositoryInterface
 {
-
-    use DispatchesJobs;
 
     /**
      * The setting model.
@@ -39,7 +35,6 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
      * Create a new SettingRepositoryInterface instance.
      *
      * @param SettingModel $model
-     * @param Repository $config
      * @param FieldTypeCollection $fieldTypes
      */
     public function __construct(SettingModel $model)
@@ -98,7 +93,6 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
     public function findByKeyOrNew($key)
     {
         if (!$setting = $this->model->where('key', $key)->first()) {
-
             $setting = $this->model->newInstance();
 
             $setting->setKey($key);
@@ -123,7 +117,7 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         }
 
         if (!$setting && !$default) {
-            return $this->dispatch(new GetDefaultValue($key));
+            return dispatch_now(new GetDefaultValue($key));
         }
 
         return $default;

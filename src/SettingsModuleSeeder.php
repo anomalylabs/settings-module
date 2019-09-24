@@ -56,7 +56,6 @@ class SettingsModuleSeeder extends Seeder
         }
 
         if ($locale = env('DEFAULT_LOCALE')) {
-
             $this->settings->create(
                 [
                     'key'   => 'streams::default_locale',

@@ -29,7 +29,6 @@ class CacheConfiguration
         $settings->cacheForever(
             'anomaly.module.settings::settings.config',
             function () use ($addons, $configuration) {
-
                 $config = [];
 
                 foreach ($addons->withConfig('settings') as $namespace => $addon) {

@@ -80,7 +80,6 @@ class SettingConfiguration
             }
 
             if ($presenter = $this->settings->presenter($key)) {
-
                 $config[$setting['bind']] = $presenter->__value();
 
                 continue;
@@ -128,7 +127,6 @@ class SettingConfiguration
             }
 
             if ($presenter = $this->settings->presenter($key)) {
-
                 $config[$setting['bind']] = $presenter->__value();
 
                 continue;

@@ -37,9 +37,7 @@ class DumpSettings
 
         /* @var Addon $addon */
         foreach ($addons->withConfig('settings') as $addon) {
-
             foreach (config($addon->getNamespace('settings')) as $key => $setting) {
-
                 if (isset($setting['env']) && env($setting['env']) !== null) {
                     continue;
                 }
@@ -55,7 +53,6 @@ class DumpSettings
                 }
 
                 if ($presenter = $settings->presenter($key)) {
-
                     $configuration[$setting['bind']] = $presenter->__value();
 
                     continue;
@@ -67,9 +64,7 @@ class DumpSettings
 
         /* @var Addon $addon */
         foreach ($addons->withConfig('settings/settings') as $addon) {
-
             foreach (config($addon->getNamespace('settings/settings')) as $key => $setting) {
-
                 if (isset($setting['env']) && env($setting['env']) !== null) {
                     continue;
                 }
@@ -85,7 +80,6 @@ class DumpSettings
                 }
 
                 if ($presenter = $settings->presenter($key)) {
-
                     $configuration[$setting['bind']] = $presenter->__value();
 
                     continue;
@@ -96,7 +90,6 @@ class DumpSettings
         }
 
         foreach (config('streams::settings/settings', []) as $key => $setting) {
-
             if (isset($setting['env']) && env($setting['env']) !== null) {
                 continue;
             }
@@ -112,7 +105,6 @@ class DumpSettings
             }
 
             if ($presenter = $settings->presenter($key)) {
-
                 $configuration[$setting['bind']] = $presenter->__value();
 
                 continue;

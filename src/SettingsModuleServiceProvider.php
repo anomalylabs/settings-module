@@ -104,5 +104,4 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
 
         config(require $config);
     }
-
 }

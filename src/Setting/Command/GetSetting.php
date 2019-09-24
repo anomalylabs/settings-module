@@ -2,7 +2,6 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 
-
 /**
  * Class GetSetting
  *

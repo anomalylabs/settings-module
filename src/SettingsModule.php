@@ -32,5 +32,4 @@ class SettingsModule extends Module
         'field_types',
         'plugins',
     ];
-
 }
