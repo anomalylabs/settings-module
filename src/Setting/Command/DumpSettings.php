@@ -3,7 +3,7 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Addon;
 use Anomaly\Streams\Platform\Addon\AddonCollection;
-use Anomaly\Streams\Platform\Cache\Command\CacheConfig;
+use Anomaly\Streams\Platform\Config\Command\CacheConfig;
 use Anomaly\Streams\Platform\Support\Evaluator;
 
 /**
