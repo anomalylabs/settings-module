@@ -23,6 +23,6 @@ class SettingObserver extends EntryObserver
     {
         parent::saved($entry);
 
-        dispatch_now(new DumpSettings());
+        dispatch_sync(new DumpSettings());
     }
 }

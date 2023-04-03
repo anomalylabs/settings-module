@@ -29,7 +29,7 @@ class ClearHttpCache
             return;
         }
 
-        $this->dispatch(new ClearCache());
+        $this->dispatchSync(new ClearCache());
     }
 
 }

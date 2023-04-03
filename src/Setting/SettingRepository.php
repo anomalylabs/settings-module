@@ -123,7 +123,7 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         }
 
         if (!$setting && !$default) {
-            return $this->dispatch(new GetDefaultValue($key));
+            return $this->dispatchSync(new GetDefaultValue($key));
         }
 
         return $default;

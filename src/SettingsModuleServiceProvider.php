@@ -99,7 +99,7 @@ class SettingsModuleServiceProvider extends AddonServiceProvider
     public function boot()
     {
         if (!file_exists($config = app_storage_path('settings/config.php'))) {
-            dispatch_now(new DumpSettings());
+            dispatch_sync(new DumpSettings());
         }
 
         config(require $config);

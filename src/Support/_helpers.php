@@ -17,7 +17,7 @@ if (!function_exists('setting')) {
     function setting($key)
     {
         /* @var SettingInterface $setting */
-        if (!$setting = dispatch_now(new GetSetting($key))) {
+        if (!$setting = dispatch_sync(new GetSetting($key))) {
             return null;
         }
 
@@ -36,6 +36,6 @@ if (!function_exists('setting_value')) {
      */
     function setting_value($key, $default = null)
     {
-        return dispatch_now(new GetSettingValue($key, $default));
+        return dispatch_sync(new GetSettingValue($key, $default));
     }
 }

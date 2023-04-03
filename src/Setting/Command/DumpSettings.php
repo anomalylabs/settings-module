@@ -123,6 +123,6 @@ class DumpSettings
 
         file_put_contents($file, "<?php\n\n return " . var_export($configuration, true) . ";");
 
-        dispatch_now(new CacheConfig());
+        dispatch_sync(new CacheConfig());
     }
 }

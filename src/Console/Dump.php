@@ -25,7 +25,7 @@ class Dump extends Command
      */
     public function handle()
     {
-        dispatch_now(new DumpSettings());
+        dispatch_sync(new DumpSettings());
 
         $this->info('Wrote: ' . app_storage_path('settings/config.php'));
     }
