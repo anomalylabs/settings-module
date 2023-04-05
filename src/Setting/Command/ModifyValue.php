@@ -2,7 +2,6 @@
 
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class ModifyValue
@@ -13,9 +12,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  */
 class ModifyValue
 {
-
-    use DispatchesJobs;
-
     /**
      * The setting value.
      *
@@ -50,7 +46,7 @@ class ModifyValue
     public function handle()
     {
         /* @var FieldType $type */
-        if ($type = $this->dispatchSync(new GetValueFieldType($this->setting))) {
+        if ($type = dispatch_sync(new GetValueFieldType($this->setting))) {
             return $type->getModifier()->modify($this->value);
         }
 

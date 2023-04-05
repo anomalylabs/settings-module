@@ -75,7 +75,7 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     public function getFieldTypePresenter($fieldSlug)
     {
         return $fieldSlug == 'value'
-            ? $this->dispatchSync(new GetValuePresenter($this))
+            ? dispatch_sync(new GetValuePresenter($this))
             : parent::getFieldTypePresenter($fieldSlug);
     }
 
@@ -87,7 +87,7 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
      */
     protected function setValueAttribute($value)
     {
-        $this->attributes['value'] = $this->dispatchSync(new ModifyValue($this, $value));
+        $this->attributes['value'] = dispatch_sync(new ModifyValue($this, $value));
 
         return $this;
     }
@@ -114,7 +114,7 @@ class SettingModel extends SettingsSettingsEntryModel implements SettingInterfac
     public function field()
     {
         /* @var FieldType $field */
-        $field = $this->dispatchSync(new GetValueFieldType($this));
+        $field = dispatch_sync(new GetValueFieldType($this));
 
         if (!$field) {
             return null;

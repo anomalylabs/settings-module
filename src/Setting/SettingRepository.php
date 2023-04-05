@@ -7,7 +7,6 @@ use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeCollection;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypePresenter;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class SettingRepositoryInterface
@@ -18,9 +17,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  */
 class SettingRepository extends EntryRepository implements SettingRepositoryInterface
 {
-
-    use DispatchesJobs;
-
     /**
      * The setting model.
      *
@@ -123,7 +119,7 @@ class SettingRepository extends EntryRepository implements SettingRepositoryInte
         }
 
         if (!$setting && !$default) {
-            return $this->dispatchSync(new GetDefaultValue($key));
+            return dispatch_sync(new GetDefaultValue($key));
         }
 
         return $default;

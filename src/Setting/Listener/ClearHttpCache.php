@@ -2,7 +2,6 @@
 
 use Anomaly\SettingsModule\Setting\SettingsWereSaved;
 use Anomaly\Streams\Platform\Http\Command\ClearHttpCache as ClearCache;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class ClearHttpCache
@@ -13,9 +12,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  */
 class ClearHttpCache
 {
-
-    use DispatchesJobs;
-
     /**
      * Handle the event.
      *
@@ -29,7 +25,7 @@ class ClearHttpCache
             return;
         }
 
-        $this->dispatchSync(new ClearCache());
+        dispatch_sync(new ClearCache());
     }
 
 }

@@ -21,7 +21,7 @@ if (!function_exists('setting')) {
             return null;
         }
 
-        return dispatch_now(new GetValueFieldType($setting));
+        return dispatch_sync(new GetValueFieldType($setting));
     }
 }
 
