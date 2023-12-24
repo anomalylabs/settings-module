@@ -1,5 +1,5 @@
 {
-    "name": "anomaly/settings-module",
+    "name": "purepanel/settings-module",
     "type": "streams-addon",
     "description": "System settings management for the Streams Platform.",
     "keywords": [

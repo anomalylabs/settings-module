@@ -6,6 +6,7 @@ use Anomaly\SettingsModule\Setting\Command\GetValueFieldType;
 use Anomaly\SettingsModule\Setting\Contract\SettingInterface;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 use Anomaly\Streams\Platform\Support\Decorator;
+use Twig\TwigFunction;
 
 /**
  * Class SettingsModulePlugin
@@ -25,13 +26,13 @@ class SettingsModulePlugin extends Plugin
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'setting_value',
                 function ($key, $default = null) {
                     return $this->dispatch(new GetSettingValue($key, $default));
                 }
             ),
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'setting',
                 function ($key) {
 
