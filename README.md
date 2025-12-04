@@ -1,10 +1,67 @@
 # Settings Module
 
-[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://packagist.org/packages/anomaly/settings-module) 
-[![Build Status](https://scrutinizer-ci.com/g/anomalylabs/settings-module/badges/build.png?b=master)](https://scrutinizer-ci.com/g/anomalylabs/settings-module/build-status/master)
-[![Code Quality](http://img.shields.io/scrutinizer/g/anomalylabs/settings-module.svg)](https://scrutinizer-ci.com/g/anomalylabs/settings-module/)
-[![Total Downloads](http://img.shields.io/packagist/dt/anomaly/settings-module.svg)](https://packagist.org/packages/anomaly/settings-module)
+*anomaly.module.settings*
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/36aca857-a877-439d-8edd-0cbc42924133/small.png)](https://insight.sensiolabs.com/projects/36aca857-a877-439d-8edd-0cbc42924133)
+#### System settings management for the Streams Platform.
 
-System settings management. 
+The Settings Module provides application-wide settings management with database-backed storage and field-based editing.
+
+## Features
+
+- Application-wide settings
+- Field-based settings editing
+- Default value handling
+- Settings caching
+- Validation support
+- Control panel interface
+
+## Usage
+
+### Accessing Settings
+
+```php
+// Get setting value
+$siteName = setting('streams::name');
+
+// Get with default
+$perPage = setting('posts::per_page', 25);
+
+// Using facade
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
+
+$settings = app(SettingRepositoryInterface::class);
+$value = $settings->value('streams::name');
+```
+
+### In Twig
+
+```twig
+{# Get setting #}
+{{ setting('streams::name') }}
+
+{# Check setting #}
+{% if setting('maintenance_mode') %}
+    <div class="alert">Site is in maintenance mode</div>
+{% endif %}
+```
+
+### Setting Values
+
+```php
+$settings->set('streams::name', 'My Site');
+
+// Set multiple
+$settings->set([
+    'streams::name' => 'My Site',
+    'streams::description' => 'Welcome'
+]);
+```
+
+## Requirements
+
+- Streams Platform ^1.10
+- PyroCMS 3.10+
+
+## License
+
+The Settings Module is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
